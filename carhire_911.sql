@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2018 at 11:43 AM
+-- Generation Time: Sep 15, 2018 at 08:18 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -30,7 +30,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cars` (
   `car_id` int(11) NOT NULL,
-  `make` int(11) NOT NULL,
+  `category` varchar(255) NOT NULL,
+  `make` varchar(255) NOT NULL,
   `colour` varchar(255) NOT NULL,
   `plate_no` varchar(255) NOT NULL,
   `chassis_no` varchar(255) NOT NULL,
@@ -86,8 +87,21 @@ CREATE TABLE `reservations` (
   `extra_feat_fee` int(11) DEFAULT NULL,
   `tax` int(11) NOT NULL,
   `amount_due` int(11) NOT NULL,
-  `amount_paid` int(11) NOT NULL,
+  `amount_paid` int(11) DEFAULT NULL,
   `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews`
+--
+
+CREATE TABLE `reviews` (
+  `review_no` int(11) NOT NULL,
+  `car_id` int(11) NOT NULL,
+  `rating` int(11) NOT NULL,
+  `comment` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -100,7 +114,7 @@ CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `fname` varchar(255) DEFAULT NULL,
   `lname` varchar(255) DEFAULT NULL,
-  `email` varchar(200) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `dob` date NOT NULL,
   `user_type` varchar(255) NOT NULL,
@@ -152,6 +166,13 @@ ALTER TABLE `reservations`
   ADD KEY `return_location_id` (`return_location_id`);
 
 --
+-- Indexes for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`review_no`),
+  ADD KEY `car_id` (`car_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -163,6 +184,16 @@ ALTER TABLE `users`
 ALTER TABLE `user_reservation_bridge`
   ADD KEY `user` (`user_id`),
   ADD KEY `car_id` (`res_no`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `reviews`
+--
+ALTER TABLE `reviews`
+  MODIFY `review_no` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -181,6 +212,12 @@ ALTER TABLE `rental_history`
 ALTER TABLE `reservations`
   ADD CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`pickup_location_id`) REFERENCES `locations` (`location_id`),
   ADD CONSTRAINT `reservations_ibfk_2` FOREIGN KEY (`return_location_id`) REFERENCES `locations` (`location_id`);
+
+--
+-- Constraints for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_id`);
 
 --
 -- Constraints for table `user_reservation_bridge`
