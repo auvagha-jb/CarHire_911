@@ -347,6 +347,9 @@ ALTER TABLE `password_reset`
 ALTER TABLE `reviews`
   MODIFY `review_no` int(11) NOT NULL AUTO_INCREMENT;
 
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
