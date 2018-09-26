@@ -186,23 +186,57 @@
         </div>
         <!-- END of page content -->
 
-        <!-- Modal for Adding New employee -->
-        <div class="modal fade" id="add_employee_modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="">ADD NEW EMPLOYEE</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
+                                    <div class="col-md-6">
+                                        <div class="form-material floating">
+                                            <input type="text" class="form-control" name="lname" required>
+                                            <label>Last Name</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Row 2 -->
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <div class="form-material floating">
+                                            <input type="text" class="form-control" name="email" required>
+                                            <label>Email</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-material floating">
+                                            <input type="text" class="js-datepicker form-control" name="dob" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="mm/dd/yy" data-date-end-date="0d" required>
+                                            <label>Date of Birth</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Row 3 -->
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <div class="form-material floating">
+                                            <select class="form-control" name="department">
+                                                <option></option><!-- Empty value for demostrating material select box -->
+                                                <option value="sales">Sales</option>
+                                                <option value="accounts">Accounts</option>
+                                                <option value="inventory">Inventory chek</option>
+                                            </select>
+                                            <label>Select department</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group flex-row">
+                                        <button type="submit" class="btn btn-alt-success">Submit Details</button>
+                                        <button type="reset" class="btn btn-alt-warning">Clear</button>
+                                </div>
+
+                            </form>
+                        </div>
+                        <!-- END of Content: form -->
                     </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+                    <!-- END add employees tab -->                    
                 </div>
+                <!-- END of content -->
             </div>
         </div>
+        <!-- END of page content -->
