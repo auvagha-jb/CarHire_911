@@ -21,6 +21,9 @@
         <!-- END Icons -->
 
         <!-- Stylesheets -->
+        
+        <!-- Datepicker Css -->
+        <link rel="stylesheet" href="<?= base_url('assets/vendors/codebase/assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css');?>">
 
         <!-- Fonts and Codebase framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,400i,600,700">
