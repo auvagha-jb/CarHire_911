@@ -15,8 +15,9 @@
     <script src="<?= base_url('assets/vendors/codebase/assets/js/plugins/datatables/jquery.dataTables.min.js');?>"></script>
     <script src="<?= base_url('assets/vendors/codebase/assets/js/plugins/datatables/dataTables.bootstrap4.min.js');?>"></script>
 
-    <!-- Datatables JS Code -->
-    <script src="<?= base_url('assets/vendors/codebase/assets/js/pages/be_tables_datatables.js');?>"></script>
+    <!-- Bootstrap datepicker -->
+    <script src="<?= base_url('assets/vendors/codebase/assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js');?>"></script>
+
 
 
     <!-- Local scripts -->
