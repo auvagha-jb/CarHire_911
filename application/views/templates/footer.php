@@ -18,6 +18,11 @@
     <!-- Bootstrap datepicker -->
     <script src="<?= base_url('assets/vendors/codebase/assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js');?>"></script>
 
+    <!-- Form validation plugin -->
+    <script src="<?= base_url('assets/vendors/codebase/assets/js/plugins/jquery-validation/jquery.validate.min.js');?>"></script>
+    <script src="<?= base_url('assets/vendors/codebase/assets/js/plugins/jquery-validation/additional-methods.js');?>"></script>
+
+
 
 
     <!-- Local scripts -->
