@@ -32,4 +32,25 @@
             $this->load->view('templates/footer');
         }
 
+        /**
+         * Checks for unique employee email
+         */
+        public function check_email(){
+            echo json_encode( $this->admin_model->check_email($this->input->post('email')) );
+        }
+
+        /**
+         * Adds employee
+         */
+        public function add_employee(){
+            //Encrypt password
+            $gen_password = random_string('alnum', 12);
+            $enc_password = password_hash($gen_password,PASSWORD_BCRYPT);
+
+            echo $gen_password;
+            echo $this->input->post('department');
+
+            return $this->admin_model->add_employee($enc_password);
+        }
+
     }
