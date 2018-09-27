@@ -188,43 +188,36 @@
 
                                     <div class="col-md-6">
                                         <div class="form-material floating">
-                                            <input type="text" class="form-control" name="lname" required>
+                                            <input type="text" class="form-control" name="lname" >
                                             <label>Last Name</label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Row 2 -->
-                                <div class="form-group row">
-                                    <div class="col-md-6">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
                                         <div class="form-material floating">
-                                            <input type="text" class="form-control" name="email" required>
+                                            <input type="text" class="form-control" name="email" >
                                             <label>Email</label>
+                                            <!-- Hidden helper field -->
+                                            <input type="hidden" id="check_email_url" name="check_email_url" value="<?= base_url('admin/check_email')?>">
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="form-group col-md-6">
                                         <div class="form-material floating">
-                                            <input type="text" class="js-datepicker form-control" name="dob" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="mm/dd/yy" data-date-end-date="0d" required>
-                                            <label>Date of Birth</label>
-                                        </div>
+                                                <select class="form-control" name="department">
+                                                    <option></option><!-- Empty value for demostrating material select box -->
+                                                    <option value="1">Sales</option>
+                                                    <option value="2">Accounts</option>
+                                                    <option value="3">Inventory</option>
+                                                </select>
+                                                <label>Choose department</label>
+                                            </div>
                                     </div>
                                 </div>
 
-                                <!-- Row 3 -->
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <div class="form-material floating">
-                                            <select class="form-control" name="department">
-                                                <option></option><!-- Empty value for demostrating material select box -->
-                                                <option value="sales">Sales</option>
-                                                <option value="accounts">Accounts</option>
-                                                <option value="inventory">Inventory chek</option>
-                                            </select>
-                                            <label>Select department</label>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="form-group flex-row">
                                         <button type="submit" class="btn btn-alt-success">Submit Details</button>
                                         <button type="reset" class="btn btn-alt-warning">Clear</button>
