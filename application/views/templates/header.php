@@ -25,6 +25,11 @@
         <!-- Datepicker Css -->
         <link rel="stylesheet" href="<?= base_url('assets/vendors/codebase/assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css');?>">
 
+        <!-- Datatables bootstrap styling -->
+        <link rel="stylesheet" href="<?= base_url('assets/vendors/codebase/assets/js/plugins/datatables/dataTables.bootstrap4.css');?>">
+
+
+
         <!-- Fonts and Codebase framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,400i,600,700">
         <link rel="stylesheet" id="css-main" href="<?= base_url('assets/vendors/codebase/assets/css/codebase.min.css'); ?>">
