@@ -53,4 +53,42 @@
             return $this->admin_model->add_employee($enc_password);
         }
 
+        /**
+         * Gets the employee details
+         */
+        public function get_employees(){
+            $draw = intval($this->input->post("draw"));
+
+            $fetch_data = $this->admin_model->get_employees();
+            $data = [];
+
+            //Actions column
+            $actions = '<div class="btn-group">
+                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
+                    <i class="fa fa-pencil"></i>
+                </button>
+                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>';
+            foreach($fetch_data['result'] as $row){
+                $data[] = array(
+                    $row->id,
+                    $row->name,
+                    $row->email,
+                    $row->department,
+                    $actions
+                );
+            }
+
+            $result = array(
+                'draw' => $draw,
+                'recordsTotal' => $fetch_data['recordsTotal'],
+                'recordsFiltered' => $fetch_data['recordsFiltered'],
+                'data' => $data
+            );
+
+            echo json_encode($result);            
+        }
+
     }

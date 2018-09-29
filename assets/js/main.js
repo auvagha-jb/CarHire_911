@@ -27,7 +27,8 @@ var employeesPage = function (){
      *  Datatable for the employees
      * 
      */
-    var initEmployeeTable = function(){
+    var initEmployeeTable = function(){   
+        var fetchUrl = $('.js-dataTable-employee').attr('data-source');  
         $('.js-dataTable-employee').dataTable({
             columnDefs: [ 
                 { 
@@ -36,6 +37,13 @@ var employeesPage = function (){
                     orderable: false 
                 } 
             ],
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                url: fetchUrl,
+                type: "POST",
+                dataType: "json"
+            }
         });
     };
 
@@ -119,6 +127,12 @@ var employeesPage = function (){
                 }
             }).done(function(){
                 $('.js-add-emp-validation button[type="reset"]').trigger('click');
+                
+                //Show success notification
+                var icon = "fa fa-check";
+                var message = "Employee details added successfully";
+                notify(icon,"success",message);                
+                
             });          
             
         });
@@ -154,6 +168,49 @@ var customersPage =  function(){
 }();
 
 /**
+ * Notification helper with bootstrap notify plugin
+ */
+var notify = function(icon,type,message,url,align){
+    // Create notification
+    $.notify({
+        icon: icon || '',
+        message: message,
+        url: url || ''
+    },
+    {
+        element: 'body',
+        type: type || 'info',
+        allow_dismiss: true,
+        newest_on_top: true,
+        showProgressbar: false,
+        placement: {
+            from: 'top',
+            align: align || 'right'
+        },
+        mouse_over: 'pause',
+        offset: 20,
+        spacing: 10,
+        z_index: 1033,
+        delay: 5000,
+        timer: 1000,
+        template: '<div data-notify="container" class="col-11 col-sm-3 alert alert-{0}" role="alert">' +
+                    '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+                    '<span data-notify="icon"></span> ' +
+                    '<span data-notify="title">{1}</span> ' +
+                    '<span data-notify="message">{2}</span>' +
+                    '<div class="progress" data-notify="progressbar">' +
+                    '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                    '</div>' +
+                    '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                    '</div>',
+        animate: {
+            enter: 'animated fadeIn',
+            exit: 'animated fadeOutDown'
+        }
+    });
+};
+
+/**
  * Loads when the page loads
  */
 $(document).ready(()=>{
@@ -179,7 +236,7 @@ $(document).ready(()=>{
     /**
      * Load Codebase helpers
      */
-    Codebase.helpers(['datepicker']);
+    Codebase.helpers(['datepicker','notify']);
 
 
     /**
@@ -196,5 +253,5 @@ $(document).ready(()=>{
         indexDashboard.init();
 
     }
-    
+
 });
