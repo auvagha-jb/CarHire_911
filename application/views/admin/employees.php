@@ -209,9 +209,7 @@
                                         <div class="form-material floating">
                                                 <select class="form-control" name="department">
                                                     <option></option><!-- Empty value for demostrating material select box -->
-                                                    <option value="1">Sales</option>
-                                                    <option value="2">Accounts</option>
-                                                    <option value="3">Inventory</option>
+                                                    
                                                 </select>
                                                 <label>Choose department</label>
                                             </div>
@@ -227,7 +225,71 @@
                         </div>
                         <!-- END of Content: form -->
                     </div>
-                    <!-- END add employees tab -->                    
+                    <!-- END add employees tab -->
+
+                    <!-- Edit employees tab -->
+                    <div class="tab-pane fade show" id="btabs-edit-employee" role="tabpanel">
+                        <div class="block block-themed">
+                            <div class="block-header bg-corporate">
+                                <h3 class="block-title">Edit employee details</h3>
+                            </div>
+                        </div>
+
+                        <!-- Content: Form -->
+                        <div class="block-content block-content-full">
+                            <form class="js-edit-emp-validation" action="<?= base_url('admin/edit_employee'); ?>" method="post" data-source="<?= base_url('admin/get_single_employee');?>">
+                                <!-- Hidden field for employee id -->
+                                <input type="hidden" name="emp_id">
+
+                                <!-- Row 1 -->
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <div class="form-material">
+                                            <label>First Name</label>
+                                            <input type="text" class="form-control" name="fname">
+                                        </div>
+                                    </div>
+
+                                    <div class=" form-group col-md-6">
+                                        <div class="form-material">
+                                            <label>Last Name</label>
+                                            <input type="text" class="form-control" name="lname" >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Row 2 -->
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <div class="form-material">
+                                            <label>Email</label>
+                                            <input type="text" class="form-control" name="email" >
+                                            <!-- Hidden helper field -->
+                                            <input type="hidden" id="check_edit_email_url" name="check_email_url" value="<?= base_url('admin/check_edit_email')?>">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <div class="form-material">
+                                                <label>Department</label>
+                                                <select class="form-control" name="department" data-source="<?= base_url('admin/fetch_departments'); ?>">
+                                                    <option></option><!-- Empty value for demostrating material select box -->
+                                                    
+                                                </select>
+                                            </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group flex-row">
+                                        <button type="submit" class="btn btn-alt-success">Save Changes</button>
+                                        <button type="cancel" class="btn btn-alt-warning">Cancel</button>
+                                </div>
+
+                            </form>
+                        </div>
+                        <!-- END of Content: form -->
+                    </div>
+                    <!-- END edit employees tab -->                    
                 </div>
                 <!-- END of content -->
             </div>
