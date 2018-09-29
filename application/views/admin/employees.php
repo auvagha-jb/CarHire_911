@@ -33,33 +33,18 @@
                 <div class="block-content tab-content overflow-hidden">
                     <!-- View employees tab -->
                     <div class="tab-pane fade show active" id="btabs-view-employees" role="tabpanel">
-                        <table class="table table-hover table-striped table-vcenter js-dataTable-employee">
+                        <table class="table table-hover table-striped table-vcenter table-responsive js-dataTable-employee" data-source="<?= base_url('admin/get_employees'); ?>">
                             <thead>
                                 <tr>
-                                    <th class="text-center" width="20">#</th>
-                                    <th class="text-center d-none d-sm-table-cell">Name</th>
-                                    <th class="text-center d-none d-sm-table-cell">Email</th>
-                                    <th class="text-center d-none d-sm-table-cell" width="170">Department</th>
+                                    <th width="20">#</th>
+                                    <th class=" d-none d-sm-table-cell">Name</th>
+                                    <th class=" d-none d-sm-table-cell">Email</th>
+                                    <th class=" d-none d-sm-table-cell" width="170">Department</th>
                                     <th style="width: 10px;">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th class="text-center" scope="row">1</th>
-                                    <td class="text-center">Carol Ray</td>
-                                    <td class="text-center">Carol@Ray.com</td>
-                                    <td class="text-center">Sales</td>
-                                    <td class="text-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                                                <i class="fa fa-pencil"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                               
                             </tbody>
                         </table>
                     </div>
