@@ -84,6 +84,9 @@
                     <li>
                         <a href="<?= base_url('admin/customers');?>" id="customers"><i class="fa fa-users" id="customers"></i> <span class="sidebar-mini-hide">Customers</span></a>
                     </li>
+                    <li>
+                        <a href="<?= base_url('admin/departments');?>" id="departments"><i class="fa fa-building" id="departments"></i> <span class="sidebar-mini-hide">Departments</span></a>
+                    </li>
 
 
                 </ul>

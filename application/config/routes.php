@@ -54,6 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['admin'] = 'admin/index';
 $route['admin/employees'] = 'admin/employees_index';
 $route['admin/customers'] = 'admin/customers_index';
+$route['admin/departments'] = 'admin/departments_index';
 
 
 $route['default_controller'] = 'customer/index';
