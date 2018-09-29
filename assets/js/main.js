@@ -414,6 +414,12 @@ var employeesPage = function (){
                 }
             }).done(function(){
                 $('.js-add-emp-validation button[type="reset"]').trigger('click');
+                
+                //Show success notification
+                var icon = "fa fa-check";
+                var message = "Employee details added successfully";
+                notify(icon,"success",message);                
+                
             });          
             
         });
