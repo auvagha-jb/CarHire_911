@@ -33,6 +33,16 @@
         }
 
         /**
+         * Loads the departments page
+         */
+        public function departments_index(){
+            $this->load->view('templates/header');
+            $this->load->view('admin/sidebar');
+            $this->load->view('admin/departments');
+            $this->load->view('templates/footer');
+        }
+
+        /**
          * Checks for unique employee email
          */
         public function check_email(){
@@ -62,16 +72,16 @@
             $fetch_data = $this->admin_model->get_employees();
             $data = [];
 
-            //Actions column
-            $actions = '<div class="btn-group">
-                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                    <i class="fa fa-pencil"></i>
-                </button>
-                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                    <i class="fa fa-times"></i>
-                </button>
-            </div>';
             foreach($fetch_data['result'] as $row){
+                //Actions column
+                $actions = '<div class="btn-group" data-emp-id="'.$row->id.'">
+                    <button type="button" class="btn btn-sm btn-alt-info" data-toggle="tooltip" title="Edit">
+                        <i class="fa fa-pencil"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-alt-danger" data-toggle="tooltip" title="Delete">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>';
                 $data[] = array(
                     $row->id,
                     $row->name,
@@ -89,6 +99,53 @@
             );
 
             echo json_encode($result);            
+        }
+
+        /**
+         * Get details of a single employee
+         */
+        public function get_single_employee(){
+            $data = $this->admin_model->get_single_employee($this->input->post('emp_id'));
+            echo json_encode($data);
+        }
+
+        /**
+         * Checks email edited is not an already registered email by another user
+         */
+        public function check_edit_email(){
+            echo json_encode( $this->admin_model->check_edit_email($this->input->post('email'), $this->input->post('emp_id')) );
+        }
+
+        /**
+         * Edit employee details
+         */
+        public function edit_employee(){
+            $success = $this->admin_model->edit_employee();
+            $response = array();
+
+            if($success){
+                $response["type"] = "success";
+                $response["message"] = "Details updated successfully";
+            }else{
+                $response["type"] = "danger";
+                $response["message"] = "Details could not be updated. Please try again later";
+            }
+            
+            echo json_encode($response);
+        }
+
+        /**
+         * Delete employee
+         */
+        public function delete_employee(){
+            echo json_encode($this->admin_model->delete_employee($this->input->post('emp_id')));
+        }
+
+        /**
+         * Fetch departments
+         */
+        public function fetch_departments(){
+            echo json_encode($this->admin_model->fetch_departments());
         }
 
     }
