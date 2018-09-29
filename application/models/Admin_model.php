@@ -26,6 +26,7 @@
                 'fname' => $this->input->post('fname'),
                 'lname' => $this->input->post('lname'),
                 'email' => $this->input->post('email'),
+                'user_type' => 'employee',
                 'password' => $enc_password
             );
             
@@ -52,6 +53,45 @@
             $this->db->where('email',$email);
             $result = $this->db->get('users');
             return $result->row_array();
+        }
+
+        /**
+         * Get employee details
+         */
+        public function get_employees(){
+            $order_column = array(null,"name","email",null,null);
+
+            $this->db->select("user_id AS id, concat_ws(' ',fname,lname) AS name, email, department.name AS department");
+            $this->db->from('users');
+            $this->db->join('employee','users.user_id = employee.employee_id','inner');
+            $this->db->join('department','employee.department_id = department.id','inner');
+
+            //Search
+            if(isset($_POST['search']['value'])){
+                $this->db->like('name',$_POST['search']['value']);
+                $this->db->or_like('email',$_POST['search']['value']);
+
+            }
+
+            //Order by
+            if(isset($_POST['order'])){
+                $this->db->order_by($order_column[$_POST['order'][0]['column']],$_POST['order'][0]['dir']);
+            }else{
+                $this->db->order_by("id","DESC");
+            }
+
+            //Limit
+            if($_POST['length'] != -1){
+                $this->db->limit($_POST['length'],$_POST['start']);
+            }
+
+            $query = $this->db->get();
+
+            return array(
+                'recordsTotal' => $query->num_rows(),
+                'recordsFiltered' => $query->num_rows(),
+                'result' => $query->result()
+            );
         }
 
     }
