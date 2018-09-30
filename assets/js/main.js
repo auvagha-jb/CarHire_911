@@ -71,7 +71,7 @@ var employeesPage = function (){
     /**
      * Fill department select dropdown
      */
-    (function getDepartments(){
+    var initFillDepartments = function getDepartments(){
         var dropdown = $('select[name="department"]');
         var source = $(dropdown).data('source');
         $.ajax({
@@ -92,7 +92,7 @@ var employeesPage = function (){
                 
             }
         });
-    })();
+    };
 
     /**
      * Form add employee
@@ -338,6 +338,7 @@ var employeesPage = function (){
         init: function() {
             setActiveNav();
             initEmployeeTable();
+            initFillDepartments();
             
             initValidationAddEmployee();
             initValidationEditEmployee();
