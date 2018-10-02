@@ -12,24 +12,23 @@
     <title>Car Rental Service</title>
     
     <!--=== Bootstrap CSS ===-->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!--=== Slicknav CSS ===-->
-    <link href="assets/css/plugins/slicknav.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/slicknav.css" rel="stylesheet">
     <!--=== Magnific Popup CSS ===-->
-    <link href="assets/css/plugins/magnific-popup.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet">
     <!--=== Owl Carousel CSS ===-->
-    <link href="assets/css/plugins/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet">
     <!--=== Gijgo CSS ===-->
-    <link href="assets/css/plugins/gijgo.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.10/combined/css/gijgo.css" rel="stylesheet">
     <!--=== FontAwesome CSS ===-->
-    <link href="assets/css/font-awesome.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!--=== Theme Reset CSS ===-->
-    <link href="assets/css/reset.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css" rel="stylesheet">
     <!--=== Main Style CSS ===-->
-    <link href="style.css" rel="stylesheet">
     <!--=== Responsive CSS ===-->
-    <link href="assets/css/responsive.css" rel="stylesheet">
-    
+  </body>
+</html>
     
     <!--[if lt IE 9]>
     <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -43,7 +42,7 @@
     <div class="preloader">
     <div class="preloader-spinner">
     <div class="loader-content">
-    <img src="assets/img/preloader.gif" alt="JSOFT">
+    <img src="<?= base_url("assets/img/preloader.gif");?>" alt="JSOFT">
     </div>
     </div>
     </div>
@@ -97,7 +96,7 @@
     <!--== Logo Start ==-->
     <div class="col-lg-4">
     <a href="index.html" class="logo">
-    <img src="assets/img/logo.png" alt="JSOFT">
+    <img src="<?= base_url("assets/img/logo.png");?>" alt="JSOFT">
     </a>
     </div>
     <!--== Logo End ==-->
@@ -194,7 +193,7 @@
     <option value='Meru'>Meru</option>
     <option value='Migori'>Migori</option>
     <option value='Mombasa'>Mombasa</option>
-    <option value='Murang'a'>Murang'a</option>
+    <option value="Murang'a">Murang'a</option>
     <option value='Nairobi City'>Nairobi City</option>
     <option value='Nakuru'>Nakuru</option>
     <option value='Nandi'>Nandi</option>
@@ -324,7 +323,7 @@
     <div class="single-partner">
     <div class="display-table">
     <div class="display-table-cell">
-    <img src="assets/img/partner/partner-logo-1.png" alt="JSOFT">
+    <img src="<?= base_url("assets/img/partner-logo-1.png");?>" alt="JSOFT">
     </div>
     </div>
     </div>
@@ -334,7 +333,7 @@
     <div class="single-partner">
     <div class="display-table">
     <div class="display-table-cell">
-    <img src="assets/img/partner/partner-logo-2.png" alt="JSOFT">
+    <img src="<?= base_url("assets/img/partner-logo-2.png");?>" alt="JSOFT">
     </div>
     </div>
     </div>
@@ -344,7 +343,7 @@
     <div class="single-partner">
     <div class="display-table">
     <div class="display-table-cell">
-    <img src="assets/img/partner/partner-logo-3.png" alt="JSOFT">
+    <img src="<?= base_url("assets/img/partner-logo-3.png");?>" alt="JSOFT">
     </div>
     </div>
     </div>
@@ -354,7 +353,7 @@
     <div class="single-partner">
     <div class="display-table">
     <div class="display-table-cell">
-    <img src="assets/img/partner/partner-logo-4.png" alt="JSOFT">
+    <img src="<?= base_url("assets/img/partner-logo-4.png");?>" alt="JSOFT">
     </div>
     </div>
     </div>
@@ -364,7 +363,7 @@
     <div class="single-partner">
     <div class="display-table">
     <div class="display-table-cell">
-    <img src="assets/img/partner/partner-logo-5.png" alt="JSOFT">
+    <img src="<?= base_url("assets/img/partner-logo-5.png");?>" alt="JSOFT">
     </div>
     </div>
     </div>
@@ -374,7 +373,7 @@
     <div class="single-partner">
     <div class="display-table">
     <div class="display-table-cell">
-    <img src="assets/img/partner/partner-logo-1.png" alt="JSOFT">
+        <img src="<?= base_url("assets/img/partner-logo-1.png"); ?>"  alt="JSOFT">
     </div>
     </div>
     </div>
@@ -384,7 +383,7 @@
     <div class="single-partner">
     <div class="display-table">
     <div class="display-table-cell">
-    <img src="assets/img/partner/partner-logo-4.png" alt="JSOFT">
+    <img src="<?= base_url("assets/img/partner-logo-4.png");?>"  alt="JSOFT">
     </div>
     </div>
     </div>
@@ -1049,15 +1048,18 @@
     
     <!--=======================Javascript============================-->
     <!--=== Jquery Min Js ===-->
-    <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="<?= base_url("assets/js/jquery-3.2.1.min.js"); ?>"></script>
     <!--=== Jquery Migrate Min Js ===-->
-    <script src="assets/js/jquery-migrate.min.js"></script>
+    
+    <script src="<?= base_url("assets/js/migrate.min.js"); ?>"></script>
     <!--=== Popper Min Js ===-->
-    <script src="assets/js/popper.min.js"></script>
+    
+    <script src="<?= base_url("assets/js/popper.min.js"); ?>"></script>
     <!--=== Bootstrap Min Js ===-->
-    <script src="assets/js/bootstrap.min.js"></script>
+    
+    <script src="<?= base_url("assets/js/bootstrap.min.js"); ?>"></script>
     <!--=== Gijgo Min Js ===-->
-    <script src="assets/js/plugins/gijgo.js"></script>
+    <script src="<?= base_url("assets/js/gijgo.js"); ?>"></script>
     <!--=== Vegas Min Js ===-->
     <script src="assets/js/plugins/vegas.min.js"></script>
     <!--=== Isotope Min Js ===-->

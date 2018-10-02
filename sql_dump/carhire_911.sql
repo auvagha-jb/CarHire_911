@@ -302,6 +302,15 @@ ALTER TABLE `department`
 ALTER TABLE `reviews`
   MODIFY `review_no` int(11) NOT NULL AUTO_INCREMENT;
 
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
