@@ -15,7 +15,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js"></script>
         
         
-<!--        <link rel="stylesheet" href="bootstrap-4.0.0-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap-4.0.0-dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.min.css">
         <link rel="stylesheet" href="dropzone/dropzone.css">
         <script src="jquery/jquery-3.3.1.js"></script>
@@ -26,4 +26,4 @@
         <script src="angular-js/angular-animate.min.js"></script>
         <script src="angular-js/angular-route.min.js"></script>
         <script src="jquery-ui-1.12.1/jquery-ui.js"></script>
-        <script src="dropzone/dropzone.js"></script>-->
+        <script src="dropzone/dropzone.js"></script>
