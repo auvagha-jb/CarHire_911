@@ -1,5 +1,13 @@
+/*
+ * *********************************************************************************
+ *                                                                                 *
+ * Functions dependent on the page being displayed.                                *
+ *                                                                                 * 
+ * *********************************************************************************
+ */
+
 /**
- * !Index of the dashboard
+ * Index of the dashboard
  */
 var indexDashboard = function(){
     //Set nav-link to active
@@ -15,7 +23,7 @@ var indexDashboard = function(){
 }();
 
 /**
- * !Employees page function
+ * Employees page function
  */
 var employeesPage = function (){
     /**
@@ -30,15 +38,12 @@ var employeesPage = function (){
      * 
      */
     var initEmployeeTable = function(){   
-        //Set td editable
-        $('.js-dataTable-employee td').prop('contenteditable','true');
-
         var fetchUrl = $('.js-dataTable-employee').attr('data-source'); 
 
         employeeTable = $('.js-dataTable-employee').DataTable({
             columnDefs: [ 
                 { 
-                    targets: [ 0,3,4,5 ], 
+                    targets: [ 0,3,4 ], 
                     searchable: false, 
                     orderable: false 
                 } 
@@ -75,10 +80,8 @@ var employeesPage = function (){
             dataType: "json",
             success: (data) => {
                 data.forEach(element => {
-                    if(element["id"] != 0){
-                        let option = '<option value="'+element["id"]+'">'+element["name"]+'</option>'
-                        $(dropdown).append(option);
-                    }
+                    var option = '<option value="'+element["id"]+'">'+element["name"]+'</option>'
+                    $(dropdown).append(option); 
                 });
                             
             },
@@ -97,6 +100,20 @@ var employeesPage = function (){
     var initValidationAddEmployee = function(){
         //Validation setup
         var validator = jQuery('.js-add-emp-validation').validate({
+            debug: true,
+            ignore: ['check_email_url'],
+            errorClass: 'invalid-feedback animated fadeInDown',
+            errorElement: 'div',
+            errorPlacement: function(error, e) {
+                jQuery(e).parents('.form-group').append(error);
+            },
+            highlight: function(e) {
+                jQuery(e).closest('.form-group').removeClass('is-invalid').addClass('is-invalid');
+            },
+            success: function(e) {
+                jQuery(e).closest('.form-group').removeClass('is-invalid');
+                jQuery(e).remove();
+            },
             rules: {
                 'fname': {
                     required: true,
@@ -130,22 +147,28 @@ var employeesPage = function (){
                 'department':"Must set a department"
             },
             submitHandler: () => {
-                let form = document.querySelector('.js-add-emp-validation');
-                let action = form.action;
-                let formdata = $(form).serialize();
+                var form = document.querySelector('.js-add-emp-validation');
+                var action = form.action;
+                var formdata = $(form).serialize();
                 
-                //Put loading mode
-                let elBlock = $("#refresh-emp-table").closest('.block');
-                elBlock.addClass('block-mode-loading');
-                ajaxComm(action,formdata,"json")
-                .done( data => {
-                    elBlock.removeClass('block-mode-loading');
-
+                $.ajax({
+                    url: action,
+                    type: "POST",
+                    data: formdata,
+                    success: (data) =>{
+                        console.log(data);
+                    },
+                    error: ()=>{
+                        console.log("Error");                    
+                    }
+                }).done(function(){
                     $('.js-add-emp-validation button[type="reset"]').trigger('click');
-                    //!! For development testing purposes only
-                    console.log(data.password);
-
-                    notify(data.res.icon,data.res.type,data.res.message);
+                    
+                    //Show success notification
+                    var icon = "fa fa-check";
+                    var message = "Employee details added successfully";
+                    notify(icon,"success",message);                
+                    
                 });
             }
         });
@@ -189,6 +212,20 @@ var employeesPage = function (){
 
         //Validation setup
         var validator = jQuery('.js-edit-emp-validation').validate({
+            debug: true,
+            ignore: ['check_edit_email_url'],
+            errorClass: 'invalid-feedback animated fadeInDown',
+            errorElement: 'div',
+            errorPlacement: function(error, e) {
+                jQuery(e).parents('.form-group').append(error);
+            },
+            highlight: function(e) {
+                jQuery(e).closest('.form-group').removeClass('is-invalid').addClass('is-invalid');
+            },
+            success: function(e) {
+                jQuery(e).closest('.form-group').removeClass('is-invalid');
+                jQuery(e).remove();
+            },
             rules: {
                 'fname': {
                     required: true,
@@ -259,80 +296,6 @@ var employeesPage = function (){
     };
 
     /**
-     * Suspending of employee account
-     */
-    var initSuspendEmployee = function(){
-        $(document).on('click','td button[title="Suspend account"]',function(){
-            let emp_id = $(this).parent().data('emp-id');
-            let suspend_target = $('.js-dataTable-employee').data('suspend-target');
-
-            const deleteSwal = mySwal();
-            deleteSwal({   
-                title: "Are you sure?",   
-                text: "The user will not be able to login after this",   
-                type: "warning",       
-                confirmButtonText: "Yes, suspend employee!",
-            })
-            .then((result)=>{
-                if(result.value){
-                    ajaxComm(suspend_target,{emp_id: emp_id},"json")
-                    .done(data => {
-                        var icon,message,type;
-                        if(data){
-                            icon = "fa fa-check";
-                            type="success";
-                            message = "Account suspended successfully";
-                        }else{
-                            icon = "fa fa-warning";
-                            type="danger";
-                            message = "Error in suspension. Try again later";
-                        }
-                        notify(icon,type,message);
-                        $('#refresh-emp-table').trigger('click');
-                    });
-                }    
-            });  
-        });
-    };
-
-    /**
-     * Unsuspending of employee account
-     */
-    var initUnsuspendEmployee = function(){
-        $(document).on('click','td button[title="Unsuspend account"]',function(){
-            let emp_id = $(this).parent().data('emp-id');
-            let unsuspend_target = $('.js-dataTable-employee').data('unsuspend-target');
-
-            const deleteSwal = mySwal();
-            deleteSwal({   
-                title: "Are you sure?",   
-                text: "The user will able to access the system after this",   
-                type: "warning",       
-                confirmButtonText: "Yes, unsuspend employee!",
-            })
-            .then((result)=>{
-                if(result.value){
-                    ajaxComm(unsuspend_target,{emp_id: emp_id},"json")
-                    .done(data => {
-                        var icon,message,type;
-                        if(data){
-                            icon = "fa fa-check";
-                            type="success";
-                            message = "Account unsuspended successfully";
-                        }else{
-                            icon = "fa fa-warning";
-                            type="danger";
-                            message = "Error in unsuspension. Try again later";
-                        }
-                        notify(icon,type,message);
-                        $('#refresh-emp-table').trigger('click');
-                    });
-                }    
-            });  
-        });
-    };
-
-    /**
      * Deleting of employee
      */
     var initDeleteEmployee = function(){
@@ -379,15 +342,14 @@ var employeesPage = function (){
             
             initValidationAddEmployee();
             initValidationEditEmployee();
-            initSuspendEmployee();
-            initUnsuspendEmployee();
+            initDeleteEmployee();
         }
     };
 
 }();
 
 /**
- * !Departments page function
+ * Departments page function
  */
 var departmentsPage = function(){
     //Set nav-link to active
@@ -395,164 +357,15 @@ var departmentsPage = function(){
         $('.nav-main #departments').addClass('active');
     };
 
-    var initDepartmentsView = () => {
-        let dataTarget = $('.dept-list').data('fetch-url');
-
-        ajaxComm(dataTarget,false,"html")
-        .done( data => {
-            $('.dept-list').html(data);
-        });
-        
-    }
-
-    var initAddDepartment = () => {
-        //Form attributes setting
-        $('.add-dept').on('click',event => {
-            $('#modalDept form').addClass('add-action').removeClass('edit-action');
-            $('#modalDept .block-title').html('Add new department');
-            $('#modalDept .modal-footer button[type="submit"]').text('Add department');
-            
-            //Add remote rule to dept_name
-            $('#modalDept form [name="dept_name"]').rules('add',{
-                remote: {
-                    url: $('#modalDept form [name="check_dept_name"]').val(),
-                    type: "POST",
-                    data: { 
-                        dept_name : () => { return $('#modalDept form [name="dept_name"]').val();}
-                    },
-                    dataType: 'json'
-                }
-            });
-        });            
-    }
-
-    var initEditDepartment = () => {
-        //Form attributes setting
-        $('.dept-list').on('click','.edit-dept',event => {
-            let _this = event.target;
-            let dept_id = $(_this).closest('li.list-group-item').data('dept-id') ;
-            let dept_name = $(_this).closest('li.list-group-item').data('dept-name') ;
-            
-            $('#modalDept form').addClass('edit-action').removeClass('add-action');
-            $('#modalDept form input[name="dept_name"]').val(dept_name);
-            $('#modalDept form input[name="dept_id"]').val(dept_id);
-            $('#modalDept .block-title').html('Edit department');
-            $('#modalDept .modal-footer button[type="submit"]').text('Save changes');
-            $('#modalDept').modal('show');
-
-            $('#modalDept form [name="dept_name"]').rules('remove','remote');
-            $('#modalDept form [name="dept_name"]').rules('add',{
-                required: true,
-                remote: {
-                    url: $('#modalDept form [name="check_dept_name_edit"]').val(),
-                    type: "POST",
-                    data: { 
-                        dept_name : () => { return $('#modalDept form [name="dept_name"]').val();},
-                        dept_id : () => { return $('#modalDept form [name="dept_id"]').val();}
-                    },
-                    dataType: 'json'
-                }
-            });
-        });
-    }
-
-    //Validation setup
-    var initValidator =  () => {
-        return $('#modalDept form').validate({
-                    rules: {
-                        'dept_name': {
-                            required: true,
-                        }
-                    },   
-                    messages: {
-                        'dept_name':{
-                            required: 'Department name is required',
-                            remote: 'The set department name is already registered'
-                        }
-                    },
-                    submitHandler: () => {
-                        let actionType = $('#modalDept form').attr('class');
-                        let dataTarget = "";
-                        if(actionType == "add-action"){
-                            dataTarget = $('#modalDept form').data('add-action');
-                        }else if(actionType == "edit-action"){
-                            dataTarget = $('#modalDept form').data('edit-action');
-                        }
-                        let dataSend = $('#modalDept form').serialize();
-                        
-                        ajaxComm(dataTarget,dataSend,"json")
-                        .done(data => {
-                            notify(data.icon,data.type,data.message);
-                        })        
-                        .always( () =>{
-                            $('#modalDept form [name="dept_name"]').val(' ');
-                            $('#modalDept').modal('hide');
-                            initDepartmentsView();
-                        });
-                        
-                    }
-                });
-    }
-
-    //Reset modal form
-    $('#modalDept').on('hide.bs.modal',function(event){
-        $('#modalDept form input[name="dept_name"]').val(' ');
-        $('#modalDept form input[name="dept_id"]').val(' ');
-        $('#modalDept form .form-group').removeClass('is-invalid');
-    });
-
-    /**
-     * Delete department
-     */
-    var initDeleteDepartment = function(){
-        $('.dept-list').on('click','.btn-group button[title="Delete"]',event => {
-            let _this = event.target;
-            let delete_target = $(_this).closest('li.list-group-item').data('delete-target');
-
-            const deleteSwal = mySwal();
-            deleteSwal({   
-                title: "Are you sure?",   
-                text: "Employees in this department will be unset!",   
-                type: "warning",       
-                confirmButtonText: "Yes, delete department!",
-            })
-            .then((result)=>{
-                if(result.value){
-                    ajaxComm(delete_target,false,"json")
-                    .done(data => {
-                        var icon,message,type;
-                        if(data){
-                            icon = "fa fa-check";
-                            type="success";
-                            message = "Records deleted successfully";
-                        }else{
-                            icon = "fa fa-warning";
-                            type="danger";
-                            message = "Error in deletion. Try again later";
-                        }
-                        notify(icon,type,message);
-                        initDepartmentsView();
-                    });
-                }    
-            });  
-        });
-    };
-
     return{
         init: function(){
             setActiveNav();
-            initDepartmentsView();
-            initValidator(); 
-            initAddDepartment();
-            initEditDepartment();
-            initDeleteDepartment();
         }
     }
 }();
 
 /**
- * !Customers page function
- * 
+ * Customers page function
  */
 var customersPage =  function(){
     //Set nav-link to active
@@ -560,124 +373,63 @@ var customersPage =  function(){
         $('.nav-main #customers').addClass('active');
     };
 
-    /**
-     * Datatable for customers
-     */
-    var initCustomerTable = function(){   
-        let fetchUrl = $('.js-dataTable-customer').attr('data-source'); 
-
-        let customerTable = $('.js-dataTable-customer').DataTable({
-            columnDefs: [ 
-                { 
-                    targets: [ 0,4,5 ], 
-                    searchable: false, 
-                    orderable: false 
-                } 
-            ],
-            "processing": true,
-            "serverSide": true,
-            "ajax": {
-                url: fetchUrl,
-                type: "POST",
-                dataType: "json"
-            },
-            responsive: true
-        });
-
-        //Reload the table
-        $('#refresh-customers').on('click',function(){
-            var elBlock = $(this).closest('.block');
-
-            customerTable.ajax.reload(function(){
-                elBlock.removeClass('block-mode-loading');
-            },false);
-        });
-    };
-
-    /**
-     * Suspend account
-     */
-    var initSuspendAccount = function (){
-        $(document).on('click','td button[title="Suspend account"]',function(){
-            let user_id = $(this).parent().data('user-id');
-            let suspend_target = $('.js-dataTable-customer').data('suspend-target');
-
-            const deleteSwal = mySwal();
-            deleteSwal({   
-                title: "Are you sure?",   
-                text: "The user will not be able to login after this",   
-                type: "warning",       
-                confirmButtonText: "Yes, suspend customer!",
-            })
-            .then((result)=>{
-                if(result.value){
-                    ajaxComm(suspend_target,{user_id: user_id,action: "suspend"},"json")
-                    .done(data => {
-                        var icon,message,type;
-                        if(data){
-                            icon = "fa fa-check";
-                            type="success";
-                            message = "Account suspended successfully";
-                        }else{
-                            icon = "fa fa-warning";
-                            type="danger";
-                            message = "Error in suspension. Try again later";
-                        }
-                        notify(icon,type,message);
-                        $('#refresh-customers').trigger('click');
-                    });
-                }    
-            });  
-        });
-    };
-
-    /**
-     * Unsuspend account
-     */
-    var initUnsuspendAccount = function (){
-        $(document).on('click','td button[title="Unsuspend account"]',function(){
-            let user_id = $(this).parent().data('user-id');
-            let suspend_target = $('.js-dataTable-customer').data('suspend-target');
-
-            const deleteSwal = mySwal();
-            deleteSwal({   
-                title: "Are you sure?",   
-                text: "The user will be able to login after this",   
-                type: "warning",       
-                confirmButtonText: "Yes, unsuspend customer!",
-            })
-            .then((result)=>{
-                if(result.value){
-                    ajaxComm(suspend_target,{user_id: user_id,action: "unsuspend"},"json")
-                    .done(data => {
-                        var icon,message,type;
-                        if(data){
-                            icon = "fa fa-check";
-                            type="success";
-                            message = "Account unsuspended successfully";
-                        }else{
-                            icon = "fa fa-warning";
-                            type="danger";
-                            message = "Error in unsuspension. Try again later";
-                        }
-                        notify(icon,type,message);
-                        $('#refresh-customers').trigger('click');
-                    });
-                }    
-            });  
-        });
-    };
-
     return{
         init: function(){
             setActiveNav();
-            initCustomerTable();
-            initSuspendAccount();
-            initUnsuspendAccount();
         }
     }
 }();
 
+/*
+ * *********************************************************************************
+ *                                                                                 *
+ * Utility functions                                                               *
+ *                                                                                 * 
+ * *********************************************************************************
+ */
+
+/**
+ * Notification helper with bootstrap notify plugin
+ */
+var notify = function(icon,type,message,url,align){
+    // Create notification
+    $.notify({
+        icon: icon || '',
+        message: message,
+        url: url || ''
+    },
+    {
+        element: 'body',
+        type: type || 'info',
+        allow_dismiss: true,
+        newest_on_top: true,
+        showProgressbar: false,
+        placement: {
+            from: 'top',
+            align: align || 'right'
+        },
+        mouse_over: 'pause',
+        offset: 20,
+        spacing: 10,
+        z_index: 1033,
+        delay: 5000,
+        timer: 1000,
+        template: '<div data-notify="container" class="col-11 col-sm-3 alert alert-{0}" role="alert">' +
+                    '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+                    '<span data-notify="icon"></span> ' +
+                    '<span data-notify="title">{1}</span> ' +
+                    '<span data-notify="message">{2}</span>' +
+                    '<div class="progress" data-notify="progressbar">' +
+                    '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                    '</div>' +
+                    '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                    '</div>',
+        animate: {
+            enter: 'animated fadeIn',
+            exit: 'animated fadeOutDown'
+        }
+    });
+};
 
 /*
  * *********************************************************************************
@@ -710,10 +462,7 @@ $(document).ready(()=>{
     /**
      * Load Codebase helpers
      */
-    Codebase.helpers(['datepicker','notify','table-tools']);
-
-    //Default validator options
-    initDefaultValidator();
+    Codebase.helpers(['datepicker','notify']);
 
 
     /**
