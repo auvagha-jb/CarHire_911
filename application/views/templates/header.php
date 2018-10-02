@@ -35,7 +35,7 @@
         <link rel="stylesheet" id="css-main" href="<?= base_url('assets/vendors/codebase/assets/css/codebase.min.css'); ?>">
 
         <!-- Local stylesheets -->
-        <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+        <link rel="stylesheet" href="<?= base_url('assets/css/admin.css') ?>">
 
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
         <link rel="stylesheet" id="css-theme" href="<?= base_url('assets/vendors/codebase/assets/css/themes/corporate.css');?>">
