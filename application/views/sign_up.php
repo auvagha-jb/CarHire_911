@@ -17,13 +17,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-route.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js"></script>
         
-        <link rel="stylesheet" href="../../assets/css/forms.css">
-        <script src="../../assets/js/forms.js"></script>
+        <link rel="stylesheet" href="<?= base_url('assets/css/forms.css'); ?>">
+        <script>
+            $(document).ready(function(){
+               
+               $("#s-u-submit").click(function(){
+                  add_customer(); 
+               });
+               
+               function add_customer(){
+                   var action = "<?= base_url('SignUp/test');?>";
+               
+                    $.post(action, function(data){
+                        alert(data);
+                    });
+               }
+               
+            });
+        </script>
     </head>
 <body>
 
     <!--Navigation bar-->
-    <?php echo 'Needs nav';?>
     
     <div class="container-fluid">
     <!--Form-->
@@ -31,19 +46,19 @@
         
         <div class="col-md-6 col-sm-12">
             <img class="img-responsive sign-up-img" src="<?= base_url('assets/img/car/car-1.jpg');?>" alt="sign_up img">
-            
         </div>
         
         <div class="col-md-6 col-sm-12">
             <div class="form-data">
                        
-                <form action="SignUp" method="post" class="sign-up">
+                
+                <form method="post" class="sign-up">
                      <h4 class="lead">Sign up</h4>
                     
                     <div class="row">
                     <div class="col-md-6"> 
                         <div class="form-group">
-                            <label for='fname'>First name</label>
+                            <label>First name</label>
                             <input type="text" name="fname" id="fname" class="form-control" required>
                         </div>
                     </div> 
@@ -83,10 +98,10 @@
                          </select>
                      </div>
                      
-                     <button type="submit" name="s-u-submit" id="s-u-submit" class="btn btn-primary px-4">Join</button>
+                     <button type="button" name="s-u-submit" id="s-u-submit" class="btn btn-primary px-4">Join</button>
                 </form>
             </div>
-            
+            <button id="click">Button</button>
         </div>
         
     </div>

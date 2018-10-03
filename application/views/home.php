@@ -12,29 +12,31 @@
     <title>Car Rental Service</title>
     
     <!--=== Bootstrap CSS ===-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= base_url("assets/css/bootstrap.min.css");?>">
     <!--=== Slicknav CSS ===-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/slicknav.css" rel="stylesheet">
+    <link href="<?= base_url("assets/css/plugins/slicknav.min.css");?>" rel="stylesheet">
     <!--=== Magnific Popup CSS ===-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet">
+    <link href="<?= base_url("assets/css/plugins/magnific-popup.css");?>" rel="stylesheet">
     <!--=== Owl Carousel CSS ===-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="<?= base_url("assets/css/plugins/owl.carousel.min.css");?>" rel="stylesheet">
     <!--=== Gijgo CSS ===-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.10/combined/css/gijgo.css" rel="stylesheet">
+    <link href="<?= base_url("assets/css/plugins/gijgo.css");?>"  rel="stylesheet">
     <!--=== FontAwesome CSS ===-->
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?= base_url("assets/css/font-awesome.css");?>"  rel="stylesheet">
     <!--=== Theme Reset CSS ===-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css" rel="stylesheet">
+    <link href="<?= base_url("assets/css/reset.css");?>"  rel="stylesheet">
     <!--=== Main Style CSS ===-->
     <!--=== Responsive CSS ===-->
-  </body>
-</html>
+    <link href="<?= base_url("assets/css/responsive.css");?>"  rel="stylesheet">
+    </head>
+<!--  </body>
+</html>-->
     
     <!--[if lt IE 9]>
     <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    </head>
+<!--    </head>-->
     
     <body class="loader-active">
     
@@ -1061,21 +1063,25 @@
     <!--=== Gijgo Min Js ===-->
     <script src="<?= base_url("assets/js/gijgo.js"); ?>"></script>
     <!--=== Vegas Min Js ===-->
-    <script src="assets/js/plugins/vegas.min.js"></script>
+    <script src="<?= base_url("assets/js/plugins/vegas.min.js"); ?>"></script>
+ 
     <!--=== Isotope Min Js ===-->
-    <script src="assets/js/plugins/isotope.min.js"></script>
+    <script src="<?= base_url("assets/js/plugins/isotope.min.js"); ?>"></script>
     <!--=== Owl Caousel Min Js ===-->
-    <script src="assets/js/plugins/owl.carousel.min.js"></script>
+    <script src="<?= base_url("assets/js/plugins/owl.carousel.min.js"); ?>"></script>
     <!--=== Waypoint Min Js ===-->
-    <script src="assets/js/plugins/waypoints.min.js"></script>
+    <script src="<?= base_url("assets/js/plugins/waypoints.min.js"); ?>"></script>
     <!--=== CounTotop Min Js ===-->
-    <script src="assets/js/plugins/counterup.min.js"></script>
+    <script src="<?= base_url("assets/js/plugins/counterup.min.js"); ?>"></script>
     <!--=== YtPlayer Min Js ===-->
-    <script src="assets/js/plugins/mb.YTPlayer.js"></script>
+    <script src="<?= base_url("assets/js/plugins/mb.YTPlayer.js"); ?>"></script>
+    <script src=""></script>
     <!--=== Magnific Popup Min Js ===-->
-    <script src="assets/js/plugins/magnific-popup.min.js"></script>
+    <script src="<?= base_url("assets/js/plugins/magnific-popup.min.js"); ?>"></script>
     <!--=== Slicknav Min Js ===-->
-    <script src="assets/js/plugins/slicknav.min.js"></script>
+    <script src="<?= base_url("assets/js/plugins/slicknav.min.js"); ?>"></script>
     
-    <!--=== Mian Js ===-->
-    <script src="assets/js/main.js"></script>
+    <!--=== Main Js ===-->
+    <script src="<?= base_url("assets/js/main.js"); ?>"></script>
+    </body>
+    </html>
