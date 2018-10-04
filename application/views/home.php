@@ -26,6 +26,7 @@
     <!--=== Theme Reset CSS ===-->
     <link href="<?= base_url("assets/css/reset.css");?>"  rel="stylesheet">
     <!--=== Main Style CSS ===-->
+    <link href="<?= base_url("assets/css/style.css");?>"  rel="stylesheet">
     <!--=== Responsive CSS ===-->
     <link href="<?= base_url("assets/css/responsive.css");?>"  rel="stylesheet">
     </head>
@@ -325,7 +326,7 @@
     <div class="single-partner">
     <div class="display-table">
     <div class="display-table-cell">
-    <img src="<?= base_url("assets/img/partner-logo-1.png");?>" alt="JSOFT">
+    <img src="<?= base_url("assets/img/partner/partner-logo-1.png");?>" alt="JSOFT">
     </div>
     </div>
     </div>
@@ -335,7 +336,7 @@
     <div class="single-partner">
     <div class="display-table">
     <div class="display-table-cell">
-    <img src="<?= base_url("assets/img/partner-logo-2.png");?>" alt="JSOFT">
+    <img src="<?= base_url("assets/img/partner/partner-logo-2.png");?>" alt="JSOFT">
     </div>
     </div>
     </div>
@@ -345,7 +346,7 @@
     <div class="single-partner">
     <div class="display-table">
     <div class="display-table-cell">
-    <img src="<?= base_url("assets/img/partner-logo-3.png");?>" alt="JSOFT">
+    <img src="<?= base_url("assets/img/partner/partner-logo-3.png");?>" alt="JSOFT">
     </div>
     </div>
     </div>
@@ -355,7 +356,7 @@
     <div class="single-partner">
     <div class="display-table">
     <div class="display-table-cell">
-    <img src="<?= base_url("assets/img/partner-logo-4.png");?>" alt="JSOFT">
+    <img src="<?= base_url("assets/img/partner/partner-logo-4.png");?>" alt="JSOFT">
     </div>
     </div>
     </div>
@@ -365,7 +366,7 @@
     <div class="single-partner">
     <div class="display-table">
     <div class="display-table-cell">
-    <img src="<?= base_url("assets/img/partner-logo-5.png");?>" alt="JSOFT">
+    <img src="<?= base_url("assets/img/partner/partner-logo-5.png");?>" alt="JSOFT">
     </div>
     </div>
     </div>
@@ -375,7 +376,7 @@
     <div class="single-partner">
     <div class="display-table">
     <div class="display-table-cell">
-        <img src="<?= base_url("assets/img/partner-logo-1.png"); ?>"  alt="JSOFT">
+        <img src="<?= base_url("assets/img/partner/partner-logo-1.png"); ?>"  alt="JSOFT">
     </div>
     </div>
     </div>
@@ -385,7 +386,7 @@
     <div class="single-partner">
     <div class="display-table">
     <div class="display-table-cell">
-    <img src="<?= base_url("assets/img/partner-logo-4.png");?>"  alt="JSOFT">
+    <img src="<?= base_url("assets/img/partner/partner-logo-4.png");?>"  alt="JSOFT">
     </div>
     </div>
     </div>
@@ -1053,7 +1054,7 @@
     <script src="<?= base_url("assets/js/jquery-3.2.1.min.js"); ?>"></script>
     <!--=== Jquery Migrate Min Js ===-->
     
-    <script src="<?= base_url("assets/js/migrate.min.js"); ?>"></script>
+    <script src="<?= base_url("assets/js/jquery-migrate.min.js"); ?>"></script>
     <!--=== Popper Min Js ===-->
     
     <script src="<?= base_url("assets/js/popper.min.js"); ?>"></script>
@@ -1061,7 +1062,7 @@
     
     <script src="<?= base_url("assets/js/bootstrap.min.js"); ?>"></script>
     <!--=== Gijgo Min Js ===-->
-    <script src="<?= base_url("assets/js/gijgo.js"); ?>"></script>
+    <script src="<?= base_url("assets/js/plugins/gijgo.js"); ?>"></script>
     <!--=== Vegas Min Js ===-->
     <script src="<?= base_url("assets/js/plugins/vegas.min.js"); ?>"></script>
  
