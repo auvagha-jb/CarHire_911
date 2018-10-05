@@ -1,45 +1,5 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-    <!DOCTYPE html>
-    <html class="no-js" lang="zxx">
+
     
-    <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--=== Favicon ===-->
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    
-    <title>Car Rental Service</title>
-    
-    <!--=== Bootstrap CSS ===-->
-    <link rel="stylesheet" href="<?= base_url("assets/css/bootstrap.min.css");?>">
-    <!--=== Slicknav CSS ===-->
-    <link href="<?= base_url("assets/css/plugins/slicknav.min.css");?>" rel="stylesheet">
-    <!--=== Magnific Popup CSS ===-->
-    <link href="<?= base_url("assets/css/plugins/magnific-popup.css");?>" rel="stylesheet">
-    <!--=== Owl Carousel CSS ===-->
-    <link href="<?= base_url("assets/css/plugins/owl.carousel.min.css");?>" rel="stylesheet">
-    <!--=== Gijgo CSS ===-->
-    <link href="<?= base_url("assets/css/plugins/gijgo.css");?>"  rel="stylesheet">
-    <!--=== FontAwesome CSS ===-->
-    <link href="<?= base_url("assets/css/font-awesome.css");?>"  rel="stylesheet">
-    <!--=== Theme Reset CSS ===-->
-    <link href="<?= base_url("assets/css/reset.css");?>"  rel="stylesheet">
-    <!--=== Main Style CSS ===-->
-    <link href="<?= base_url("assets/css/style.css");?>"  rel="stylesheet">
-    <!--=== Responsive CSS ===-->
-    <link href="<?= base_url("assets/css/responsive.css");?>"  rel="stylesheet">
-    </head>
-<!--  </body>
-</html>-->
-    
-    <!--[if lt IE 9]>
-    <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-<!--    </head>-->
-    
-    <body class="loader-active">
     
     <!--== Preloader Area Start ==-->
     <div class="preloader">
@@ -73,17 +33,17 @@
     
     <!--== Single HeaderTop Start ==-->
     <div class="col-lg-3 text-center">
-    <i class="fa fa-clock-o"></i> Mon-Fri 09.00 - 17.00
+    <i class="far fa-clock"></i> Mon-Fri 09.00 - 17.00
     </div>
     <!--== Single HeaderTop End ==-->
     
     <!--== Social Icons Start ==-->
     <div class="col-lg-3 text-right">
     <div class="header-social-icons">
-    <a href="#"><i class="fa fa-behance"></i></a>
-    <a href="#"><i class="fa fa-pinterest"></i></a>
-    <a href="#"><i class="fa fa-facebook"></i></a>
-    <a href="#"><i class="fa fa-linkedin"></i></a>
+    <a href="#"><i class="fab fa-behance"></i></a>
+    <a href="#"><i class="fab fa-pinterest"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
     </div>
     </div>
     <!--== Social Icons End ==-->
@@ -314,142 +274,14 @@
     </div>
     </div>
     </section>
+    <!--HR-->
+    <hr class="my-4">
+    
     <!--== About Us Area End ==-->
     
-    <!--== Partner Area Start ==-->
-    <div id="partner-area">
-    <div class="container-fluid">
-    <div class="row">
-    <div class="col-lg-12 text-center">
-    <div class="partner-content-wrap">
-    <!-- Single Partner Start -->
-    <div class="single-partner">
-    <div class="display-table">
-    <div class="display-table-cell">
-    <img src="<?= base_url("assets/img/partner/partner-logo-1.png");?>" alt="JSOFT">
-    </div>
-    </div>
-    </div>
-    <!-- Single Partner End -->
+   <!--== <!--== Partner Area removed ==--> ==-->
     
-    <!-- Single Partner Start -->
-    <div class="single-partner">
-    <div class="display-table">
-    <div class="display-table-cell">
-    <img src="<?= base_url("assets/img/partner/partner-logo-2.png");?>" alt="JSOFT">
-    </div>
-    </div>
-    </div>
-    <!-- Single Partner End -->
-    
-    <!-- Single Partner Start -->
-    <div class="single-partner">
-    <div class="display-table">
-    <div class="display-table-cell">
-    <img src="<?= base_url("assets/img/partner/partner-logo-3.png");?>" alt="JSOFT">
-    </div>
-    </div>
-    </div>
-    <!-- Single Partner End -->
-    
-    <!-- Single Partner Start -->
-    <div class="single-partner">
-    <div class="display-table">
-    <div class="display-table-cell">
-    <img src="<?= base_url("assets/img/partner/partner-logo-4.png");?>" alt="JSOFT">
-    </div>
-    </div>
-    </div>
-    <!-- Single Partner End -->
-    
-    <!-- Single Partner Start -->
-    <div class="single-partner">
-    <div class="display-table">
-    <div class="display-table-cell">
-    <img src="<?= base_url("assets/img/partner/partner-logo-5.png");?>" alt="JSOFT">
-    </div>
-    </div>
-    </div>
-    <!-- Single Partner End -->
-    
-    <!-- Single Partner Start -->
-    <div class="single-partner">
-    <div class="display-table">
-    <div class="display-table-cell">
-        <img src="<?= base_url("assets/img/partner/partner-logo-1.png"); ?>"  alt="JSOFT">
-    </div>
-    </div>
-    </div>
-    <!-- Single Partner End -->
-    
-    <!-- Single Partner Start -->
-    <div class="single-partner">
-    <div class="display-table">
-    <div class="display-table-cell">
-    <img src="<?= base_url("assets/img/partner/partner-logo-4.png");?>"  alt="JSOFT">
-    </div>
-    </div>
-    </div>
-    <!-- Single Partner End -->
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <!--== Partner Area End ==-->
-    
-    <!--== Services Area Start ==-->
-    <section id="service-area" class="section-padding">
-    <div class="container">
-    <div class="row">
-    <!-- Section Title Start -->
-    <div class="col-lg-12">
-    <div class="section-title  text-center">
-    <h2>Our Services</h2>
-    <span class="title-line"><i class="fa fa-car"></i></span>
-    <p>Are you in dire need of these services? We have you covered.</p>
-    </div>
-    </div>
-    <!-- Section Title End -->
-    </div>
-    
-    
-    <!-- Service Content Start -->
-    <div class="row">
-    <!-- Single Service Start -->
-    <div class="col-lg-4 text-center">
-    <div class="service-item">
-    <i class="fa fa-taxi"></i>
-    <h3>RENTAL CAR</h3>
-    <p>We prode ourselves in providing the best rental services at budget friendly rates.</p>
-    </div>
-    </div>
-    <!-- Single Service End -->
-    
-    <!-- Single Service Start -->
-    <div class="col-lg-4 text-center">
-    <div class="service-item">
-    <i class="fa fa-cog"></i>
-    <h3>CAR REPAIR</h3>
-    <p>Car diagnostics, mechanical and electrical repairs. Keep your car running.</p>
-    </div>
-    </div>
-    <!-- Single Service End -->
-    
-    <!-- Single Service Start -->
-    <div class="col-lg-4 text-center">
-    <div class="service-item">
-    <i class="fa fa-phone"></i>
-    <h3>CALL A DRIVER</h3>
-    <p>No need to drive for a long distance if you are not a fan.</p>
-    </div>
-    </div>
-    <!-- Single Service End -->
-    </div>
-    <!-- Service Content End -->
-    </div>
-    </section>
-    <!--== Services Area End ==-->
+    <!--== Services area removed==-->
     
     <!--== Fun Fact Area Start ==-->
     <section id="funfact-area" class="overlay section-padding">
@@ -462,7 +294,7 @@
     <div class="col-lg-4 col-md-6">
     <div class="single-funfact">
     <div class="funfact-icon">
-    <i class="fa fa-smile-o"></i>
+    <i class="far fa-smile-beam"></i>
     </div>
     <div class="funfact-content">
     <p><span class="counter">550</span>+</p>
@@ -490,7 +322,7 @@
     <div class="col-lg-4 col-md-6">
     <div class="single-funfact">
     <div class="funfact-icon">
-    <i class="fa fa-bank"></i>
+    <i class="fa fa-hotel"></i>
     </div>
     <div class="funfact-content">
     <p><span class="counter">50</span>+</p>
@@ -507,347 +339,7 @@
     </section>
     <!--== Fun Fact Area End ==-->
     
-    <!--== Choose Car Area Start ==-->
-    <section id="choose-car" class="section-padding">
-    <div class="container">
-    <div class="row">
-    <!-- Section Title Start -->
-    <div class="col-lg-12">
-    <div class="section-title  text-center">
-    <h2>Choose your Car</h2>
-    <span class="title-line"><i class="fa fa-car"></i></span>
-    <p>Pick what works for you.</p>
-    </div>
-    </div>
-    <!-- Section Title End -->
-    </div>
-    
-    <div class="row">
-    <!-- Choose Area Content Start -->
-    <div class="col-lg-12">
-    <div class="choose-content-wrap">
-    <!-- Choose Area Tab Menu -->
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#popular_cars" role="tab" aria-selected="true">popular Cars</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#newest_cars" role="tab" aria-selected="false">newest cars</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#office_map" role="tab" aria-selected="false">Our Office</a>
-    </li>
-    </ul>
-    <!-- Choose Area Tab Menu -->
-    
-    <!-- Choose Area Tab content -->
-    <div class="tab-content" id="myTabContent">
-    <!-- Popular Cars Tab Start -->
-    <div class="tab-pane fade show active" id="popular_cars" role="tabpanel" aria-labelledby="home-tab">
-    <!-- Popular Cars Content Wrapper Start -->
-    <div class="popular-cars-wrap">
-    <!-- Filtering Menu -->
-    <div class="popucar-menu text-center">
-    <a href="#" data-filter="*" class="active">all</a>
-    <a href="#" data-filter=".con">Conver</a>
-    <a href="#" data-filter=".hat">Truck</a>
-    <a href="#" data-filter=".mpv">MPV</a>
-    <a href="#" data-filter=".sedan">Sedan</a>
-    <a href="#" data-filter=".suv">SUV</a>
-    </div>
-    
-    <!-- Filtering Menu -->
-    
-    <!-- PopularCars Tab Content Start -->
-    <div class="row popular-car-gird">
-    <!-- Single Popular Car Start -->
-    <div class="col-lg-4 col-md-6 con suv mpv">
-    <div class="single-popular-car">
-    <div class="p-car-thumbnails">
-    <a class="car-hover" href="assets/img/car/car-1.jpg">
-    <img src="assets/img/car/car-1.jpg" alt="JSOFT">
-    </a>
-    </div>
-    
-    <div class="p-car-content">
-    <h3>
-    <a href="#">Dodge Ram 1500</a>
-    <span class="price"><i class="fa fa-tag"></i> Kshs. 5,500/day</span>
-    </h3>
-    
-    <h5>HATCHBACK</h5>
-    
-    <div class="p-car-feature">
-    <a href="#">2017</a>
-    <a href="#">manual</a>
-    <a href="#">AIR CONDITION</a>
-    </div>
-    </div>
-    </div>
-    </div>
-    <!-- Single Popular Car End -->
-    
-    <!-- Single Popular Car Start -->
-    <div class="col-lg-4 col-md-6 hat sedan">
-    <div class="single-popular-car">
-    <div class="p-car-thumbnails">
-    <a class="car-hover" href="assets/img/car/car-2.jpg">
-    <img src="assets/img/car/car-2.jpg" alt="JSOFT">
-    </a>
-    </div>
-    
-    <div class="p-car-content">
-    <h3>
-    <a href="#">Dodge Ram 1500</a>
-    <span class="price"><i class="fa fa-tag"></i> Kshs. 5,500/day</span>
-    </h3>
-    
-    <h5>HATCHBACK</h5>
-    
-    <div class="p-car-feature">
-    <a href="#">2017</a>
-    <a href="#">manual</a>
-    <a href="#">AIR CONDITION</a>
-    </div>
-    </div>
-    </div>
-    </div>
-    <!-- Single Popular Car End -->
-    
-    <!-- Single Popular Car Start -->
-    <div class="col-lg-4 col-md-6 suv con mpv">
-    <div class="single-popular-car">
-    <div class="p-car-thumbnails">
-    <a class="car-hover" href="assets/img/car/car-3.jpg">
-    <img src="assets/img/car/car-3.jpg" alt="JSOFT">
-    </a>
-    </div>
-    
-    <div class="p-car-content">
-    <h3>
-    <a href="#">Dodge Ram 1500</a>
-    <span class="price"><i class="fa fa-tag"></i> Kshs. 5,500/day</span>
-    </h3>
-    
-    <h5>HATCHBACK</h5>
-    
-    <div class="p-car-feature">
-    <a href="#">2017</a>
-    <a href="#">manual</a>
-    <a href="#">AIR CONDITION</a>
-    </div>
-    </div>
-    </div>
-    </div>
-    <!-- Single Popular Car End -->
-    
-    <!-- Single Popular Car Start -->
-    <div class="col-lg-4 col-md-6 con hat">
-    <div class="single-popular-car">
-    <div class="p-car-thumbnails">
-    <a class="car-hover" href="assets/img/car/car-4.jpg">
-    <img src="assets/img/car/car-4.jpg" alt="JSOFT">
-    </a>
-    </div>
-    
-    <div class="p-car-content">
-    <h3>
-    <a href="#">Dodge Ram 1500</a>
-    <span class="price"><i class="fa fa-tag"></i> Kshs. 5,500/day</span>
-    </h3>
-    
-    <h5>HATCHBACK</h5>
-    
-    <div class="p-car-feature">
-    <a href="#">2017</a>
-    <a href="#">manual</a>
-    <a href="#">AIR CONDITION</a>
-    </div>
-    </div>
-    </div>
-    </div>
-    <!-- Single Popular Car End -->
-    
-    <!-- Single Popular Car Start -->
-    <div class="col-lg-4 col-md-6 con sedan mpv">
-    <div class="single-popular-car">
-    <div class="p-car-thumbnails">
-    <a class="car-hover" href="assets/img/car/car-5.jpg">
-    <img src="assets/img/car/car-5.jpg" alt="JSOFT">
-    </a>
-    </div>
-    
-    <div class="p-car-content">
-    <h3>
-    <a href="#">Dodge Ram 1500</a>
-    <span class="price"><i class="fa fa-tag"></i> Kshs. 5,500/day</span>
-    </h3>
-    
-    <h5>HATCHBACK</h5>
-    
-    <div class="p-car-feature">
-    <a href="#">2017</a>
-    <a href="#">manual</a>
-    <a href="#">AIR CONDITION</a>
-    </div>
-    </div>
-    </div>
-    </div>
-    <!-- Single Popular Car End -->
-    
-    <!-- Single Popular Car Start -->
-    <div class="col-lg-4 col-md-6 hat suv mpv">
-    <div class="single-popular-car">
-    <div class="p-car-thumbnails">
-    <a class="car-hover" href="assets/img/car/car-6.jpg">
-    <img src="assets/img/car/car-6.jpg" alt="JSOFT">
-    </a>
-    </div>
-    
-    <div class="p-car-content">
-    <h3>
-    <a href="#">Dodge Ram 1500</a>
-    <span class="price"><i class="fa fa-tag"></i> Kshs. 5,500/day</span>
-    </h3>
-    
-    <h5>HATCHBACK</h5>
-    
-    <div class="p-car-feature">
-    <a href="#">2017</a>
-    <a href="#">manual</a>
-    <a href="#">AIR CONDITION</a>
-    </div>
-    </div>
-    </div>
-    </div>
-    <!-- Single Popular Car End -->
-    </div>
-    <!-- PopularCars Tab Content End -->
-    </div>
-    <!-- Popular Cars Content Wrapper End -->
-    </div>
-    <!-- Popular Cars Tab End -->
-    
-    <!-- Newest Cars Tab Start -->
-    <div class="tab-pane fade" id="newest_cars" role="tabpanel" aria-labelledby="profile-tab">
-    <!-- Newest Cars Content Wrapper Start -->
-    <div class="popular-cars-wrap">
-    <!-- Filtering Menu -->
-    <div class="newcar-menu text-center">
-    <a href="#" data-filter="*" class="active">all</a>
-    <a href="#" data-filter=".toyota">toyota</a>
-    <a href="#" data-filter=".bmw">bmw</a>
-    <a href="#" data-filter=".audi">audi</a>
-    <a href="#" data-filter=".tata">Tata</a>
-    </div>
-    
-    <!-- Filtering Menu -->
-    
-    <!-- NewestCars Tab Content Start -->
-    <div class="row newest-car-gird">
-    <!-- Single Newest Car Start -->
-    <div class="col-lg-4 col-md-6 tata audi">
-    <div class="single-new-car">
-    <div class="p-car-thumbnails">
-    <a class="car-hover" href="assets/img/car/car-6.jpg">
-    <img src="assets/img/car/car-6.jpg" alt="JSOFT">
-    </a>
-    </div>
-    
-    <div class="p-car-content">
-    <h3>
-    <a href="#">Toyota RAV4 EV</a>
-    <span class="price"><i class="fa fa-tag"></i> Kshs. 3,500/day</span>
-    </h3>
-    
-    <h5>Toyota</h5>
-    
-    <div class="p-car-feature">
-    <a href="#">2018</a>
-    <a href="#">Auto</a>
-    <a href="#">Non AIR CONDITION</a>
-    </div>
-    </div>
-    </div>
-    </div>
-    <!-- Single Newest Car End -->
-    
-    <!-- Single Newest Car Start -->
-    <div class="col-lg-4 col-md-6 bmw tata toyota">
-    <div class="single-new-car">
-    <div class="p-car-thumbnails">
-    <a class="car-hover" href="assets/img/car/car-5.jpg">
-    <img src="assets/img/car/car-5.jpg" alt="JSOFT">
-    </a>
-    </div>
-    
-    <div class="p-car-content">
-    <h3>
-    <a href="#">Toyota RAV4 EV</a>
-    <span class="price"><i class="fa fa-tag"></i> Kshs. 3,500/day</span>
-    </h3>
-    
-    <h5>Toyota</h5>
-    
-    <div class="p-car-feature">
-    <a href="#">2018</a>
-    <a href="#">Auto</a>
-    <a href="#">Non AIR CONDITION</a>
-    </div>
-    </div>
-    </div>
-    </div>
-    <!-- Single Newest Car End -->
-    
-    <!-- Single Newest Car Start -->
-    <div class="col-lg-4 col-md-6 bmw">
-    <div class="single-new-car">
-    <div class="p-car-thumbnails">
-    <a class="car-hover" href="assets/img/car/car-4.jpg">
-    <img src="assets/img/car/car-4.jpg" alt="JSOFT">
-    </a>
-    </div>
-    
-    <div class="p-car-content">
-    <h3>
-    <a href="#">Toyota RAV4 EV</a>
-    <span class="price"><i class="fa fa-tag"></i> Kshs. 3,500/day</span>
-    </h3>
-    
-    <h5>Toyota</h5>
-    
-    <div class="p-car-feature">
-    <a href="#">2018</a>
-    <a href="#">Auto</a>
-    <a href="#">Non AIR CONDITION</a>
-    </div>
-    </div>
-    </div>
-    </div>
-    <!-- Single Newest Car End -->
-    </div>
-    <!-- NewestCars Tab Content End -->
-    </div>
-    <!-- Newest Cars Content Wrapper End -->
-    </div>
-    <!-- Newest Cars Tab End -->
-    
-    <!-- Office Map Tab -->
-    <div class="tab-pane fade" id="office_map" role="tabpanel" aria-labelledby="contact-tab">
-    <div class="map-area">
-    <iframe src="https://maps.google.com/maps?width=100%&height=600&hl=en&coord=-1.28333, 36.81667&q=Nairobi%20West%2C%20Nairobi+(Silicon%20Valley%20Season%20One)&ie=UTF8&t=&z=16&iwloc=B&output=embed"></iframe>
-    </div>
-    </div>
-    <!-- Office Map Tab -->
-    </div>
-    <!-- Choose Area Tab content -->
-    </div>
-    </div>
-    <!-- Choose Area Content End -->
-    </div>
-    </div>
-    </section>
-    <!--== Choose Car Area End ==-->
+    <!--Choose Car Area removed-->
     
     <!--== Pricing Area Start ==-->
     <section id="pricing-area" class="section-padding overlay">
@@ -948,8 +440,8 @@
     <div class="testimonial-content">
     <!--== Single Testimoial Start ==-->
     <div class="single-testimonial">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis totam obcaecati impedit, at autem repellat vel magni architecto veritatis sed.</p>
-    <h3>Vongchong Smith</h3>
+    <p>There was excellent customer service and the car perfomance was top notch.</p>
+    <h3>Fidhrosa Khalifa</h3>
     <div class="client-logo">
     <img src="assets/img/client/client-pic-1.jpg" alt="JSOFT">
     </div>
@@ -958,7 +450,7 @@
     
     <!--== Single Testimoial Start ==-->
     <div class="single-testimonial">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis totam obcaecati impedit, at autem repellat vel magni architecto veritatis sed.</p>
+    <p>It's amazing how clean the car was. Even cleaner than my car back in Norway!</p>
     <h3>Amader Tuni</h3>
     <div class="client-logo">
     <img src="assets/img/client/client-pic-3.jpg" alt="JSOFT">
@@ -968,8 +460,8 @@
     
     <!--== Single Testimoial Start ==-->
     <div class="single-testimonial">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis totam obcaecati impedit, at autem repellat vel magni architecto veritatis sed.</p>
-    <h3>Atex Tuntuni Smith</h3>
+    <p>The entire process was simple and straight forward. No hidden costs, no strings attached.</p>
+    <h3>Alex Tuntuni Smith</h3>
     <div class="client-logo">
     <img src="assets/img/client/client-pic-2.jpg" alt="JSOFT">
     </div>
@@ -1010,7 +502,7 @@
     <!-- Single Footer Widget Start -->
     <div class="col-lg-4 col-md-6">
     <div class="single-footer-widget">
-    <h2>get touch</h2>
+    <h2>get in touch</h2>
     <div class="widget-body">
     <ul class="get-touch">
     <li><i class="fa fa-map-marker"></i> Nairobi West, Kenya</li>
@@ -1033,7 +525,7 @@
     <div class="row">
     <div class="col-lg-12 text-center">
     <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="far fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
     </div>
     </div>
@@ -1049,40 +541,4 @@
     </div>
     <!--== Scroll Top Area End ==-->
     
-    <!--=======================Javascript============================-->
-    <!--=== Jquery Min Js ===-->
-    <script src="<?= base_url("assets/js/jquery-3.2.1.min.js"); ?>"></script>
-    <!--=== Jquery Migrate Min Js ===-->
     
-    <script src="<?= base_url("assets/js/jquery-migrate.min.js"); ?>"></script>
-    <!--=== Popper Min Js ===-->
-    
-    <script src="<?= base_url("assets/js/popper.min.js"); ?>"></script>
-    <!--=== Bootstrap Min Js ===-->
-    
-    <script src="<?= base_url("assets/js/bootstrap.min.js"); ?>"></script>
-    <!--=== Gijgo Min Js ===-->
-    <script src="<?= base_url("assets/js/plugins/gijgo.js"); ?>"></script>
-    <!--=== Vegas Min Js ===-->
-    <script src="<?= base_url("assets/js/plugins/vegas.min.js"); ?>"></script>
- 
-    <!--=== Isotope Min Js ===-->
-    <script src="<?= base_url("assets/js/plugins/isotope.min.js"); ?>"></script>
-    <!--=== Owl Caousel Min Js ===-->
-    <script src="<?= base_url("assets/js/plugins/owl.carousel.min.js"); ?>"></script>
-    <!--=== Waypoint Min Js ===-->
-    <script src="<?= base_url("assets/js/plugins/waypoints.min.js"); ?>"></script>
-    <!--=== CounTotop Min Js ===-->
-    <script src="<?= base_url("assets/js/plugins/counterup.min.js"); ?>"></script>
-    <!--=== YtPlayer Min Js ===-->
-    <script src="<?= base_url("assets/js/plugins/mb.YTPlayer.js"); ?>"></script>
-    <script src=""></script>
-    <!--=== Magnific Popup Min Js ===-->
-    <script src="<?= base_url("assets/js/plugins/magnific-popup.min.js"); ?>"></script>
-    <!--=== Slicknav Min Js ===-->
-    <script src="<?= base_url("assets/js/plugins/slicknav.min.js"); ?>"></script>
-    
-    <!--=== Main Js ===-->
-    <script src="<?= base_url("assets/js/main.js"); ?>"></script>
-    </body>
-    </html>
