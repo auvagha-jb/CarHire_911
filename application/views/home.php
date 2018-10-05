@@ -1,120 +1,3 @@
-
-    
-    
-    <!--== Preloader Area Start ==-->
-    <div class="preloader">
-    <div class="preloader-spinner">
-    <div class="loader-content">
-    <img src="<?= base_url("assets/img/preloader.gif");?>" alt="JSOFT">
-    </div>
-    </div>
-    </div>
-    <!--== Preloader Area End ==-->
-    
-    <!--== Header Area Start ==-->
-    <header id="header-area" class="fixed-top">
-    <!--== Header Top Start ==-->
-    <div id="header-top" class="d-none d-xl-block">
-    <div class="container">
-    <div class="row">
-    <!--== Single HeaderTop Start ==-->
-    <div class="col-lg-3 text-left">
-    <i class="fa fa-map-marker"></i>
-    Nairobi West, Kenya
-    </div>
-    <!--== Single HeaderTop End ==-->
-    
-    <!--== Single HeaderTop Start ==-->
-    <div class="col-lg-3 text-center">
-    <i class="fa fa-mobile"></i>
-    +254 725 127 193
-    </div>
-    <!--== Single HeaderTop End ==-->
-    
-    <!--== Single HeaderTop Start ==-->
-    <div class="col-lg-3 text-center">
-    <i class="far fa-clock"></i> Mon-Fri 09.00 - 17.00
-    </div>
-    <!--== Single HeaderTop End ==-->
-    
-    <!--== Social Icons Start ==-->
-    <div class="col-lg-3 text-right">
-    <div class="header-social-icons">
-    <a href="#"><i class="fab fa-behance"></i></a>
-    <a href="#"><i class="fab fa-pinterest"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-    </div>
-    </div>
-    <!--== Social Icons End ==-->
-    </div>
-    </div>
-    </div>
-    <!--== Header Top End ==-->
-    
-    <!--== Header Bottom Start ==-->
-    <div id="header-bottom">
-    <div class="container">
-    <div class="row">
-    <!--== Logo Start ==-->
-    <div class="col-lg-4">
-    <a href="index.html" class="logo">
-    <img src="<?= base_url("assets/img/logo.png");?>" alt="JSOFT">
-    </a>
-    </div>
-    <!--== Logo End ==-->
-    
-    <!--== Main Menu Start ==-->
-    <div class="col-lg-8 d-none d-xl-block">
-    <nav class="mainmenu alignright">
-    <ul>
-    <li class="active"><a href="#">Home</a>
-    <ul>
-    <li><a href="#">Home 1</a></li>
-    <li><a href="#">Home 2</a></li>
-    <li><a href="#">Home 3</a></li>
-    </ul>
-    </li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">services</a></li>
-    <li><a href="#">Cars</a>
-    <ul>
-    <li><a href="car-left-sidebar.html">Car Left Sidebar</a></li>
-    <li><a href="car-right-sidebar.html">Car Right Sidebar</a></li>
-    <li><a href="car-without-sidebar.html">Car Without Sidebar</a></li>
-    <li><a href="car-details.html">Car Details</a></li>
-    </ul>
-    </li>
-    <li><a href="index.html">Pages</a>
-    <ul>
-    <li><a href="package.html">Pricing</a></li>
-    <li><a href="driver.html">Driver</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="help-desk.html">Help Desk</a></li>
-    <li><a href="login.html">Log In</a></li>
-    <li><a href="register.html">Register</a></li>
-    <li><a href="404.html">404</a></li>
-    </ul>
-    </li>
-    <li><a href="#">Blog</a>
-    <ul>
-    <li><a href="article.html">Blog Page</a></li>
-    <li><a href="article-details.html">Blog Details</a></li>
-    </ul>
-    </li>
-    <li><a href="contact.html">Contact</a></li>
-    </ul>
-    </nav>
-    </div>
-    <!--== Main Menu End ==-->
-    </div>
-    </div>
-    </div>
-    <!--== Header Bottom End ==-->
-    </header>
-    <!--== Header Area End ==-->
-    
     <!--== Slider Area Start ==-->
     <section id="slider-area">
     <!--== slide Item One ==-->
@@ -195,13 +78,13 @@
     <div class="choose-car-type book-item">
     <h4>CHOOSE CAR TYPE:</h4>
     <select class="custom-select">
-    <option selected>Select</option>
-    <option value="1">BMW</option>
-    <option value="2">Audi</option>
-    <option value="3">Lexus</option>
-    <option value="4">Subaru</option>
-    <option value="5">Toyota</option>
-    <option value="6">Nissan</option>
+        <option selected>Select</option>
+        <option value="1">BMW</option>
+        <option value="2">Audi</option>
+        <option value="3">Lexus</option>
+        <option value="4">Subaru</option>
+        <option value="5">Toyota</option>
+        <option value="6">Nissan</option>
     </select>
     </div>
     <!--== Car Choose ==-->
@@ -442,8 +325,8 @@
     <div class="single-testimonial">
     <p>There was excellent customer service and the car perfomance was top notch.</p>
     <h3>Fidhrosa Khalifa</h3>
-    <div class="client-logo">
-    <img src="assets/img/client/client-pic-1.jpg" alt="JSOFT">
+    <div class="client-logo"> 
+    <img src="<?= base_url("assets/img/client/client-pic-1.jpg"); ?>" alt="JSOFT">
     </div>
     </div>
     <!--== Single Testimoial End ==-->
@@ -452,8 +335,8 @@
     <div class="single-testimonial">
     <p>It's amazing how clean the car was. Even cleaner than my car back in Norway!</p>
     <h3>Amader Tuni</h3>
-    <div class="client-logo">
-    <img src="assets/img/client/client-pic-3.jpg" alt="JSOFT">
+    <div class="client-logo">   
+    <img src="<?= base_url("assets/img/client/client-pic-3.jpg"); ?>" alt="JSOFT">
     </div>
     </div>
     <!--== Single Testimoial End ==-->
@@ -462,8 +345,8 @@
     <div class="single-testimonial">
     <p>The entire process was simple and straight forward. No hidden costs, no strings attached.</p>
     <h3>Alex Tuntuni Smith</h3>
-    <div class="client-logo">
-    <img src="assets/img/client/client-pic-2.jpg" alt="JSOFT">
+    <div class="client-logo"> 
+    <img src="<?= base_url("assets/img/client/client-pic-2.jpg"); ?>" alt="JSOFT">
     </div>
     </div>
     <!--== Single Testimoial End ==-->
@@ -473,72 +356,3 @@
     </div>
     </section>
     <!--== Testimonials Area End ==-->
-    
-    <!--== Footer Area Start ==-->
-    <section id="footer-area">
-    <!-- Footer Widget Start -->
-    <div class="footer-widget-area">
-    <div class="container">
-    <div class="row">
-    <!-- Single Footer Widget Start -->
-    <div class="col-lg-4 col-md-6">
-    <div class="single-footer-widget">
-    <h2>About Us</h2>
-    <div class="widget-body">
-    <img src="assets/img/logo.png" alt="JSOFT">
-    
-    <div class="newsletter-area">
-    <form action="index.html">
-    <input type="email" placeholder="Subscribe Our Newsletter">
-    <button type="submit" class="newsletter-btn"><i class="fa fa-send"></i></button>
-    </form>
-    </div>
-    
-    </div>
-    </div>
-    </div>
-    <!-- Single Footer Widget End -->
-    
-    <!-- Single Footer Widget Start -->
-    <div class="col-lg-4 col-md-6">
-    <div class="single-footer-widget">
-    <h2>get in touch</h2>
-    <div class="widget-body">
-    <ul class="get-touch">
-    <li><i class="fa fa-map-marker"></i> Nairobi West, Kenya</li>
-    <li><i class="fa fa-mobile"></i> +254 725 127 193</li>
-    <li><i class="fa fa-envelope"></i>steekam@gmail.com</li>
-    </ul>
-    <a href="https://goo.gl/maps/b5mt45MCaPB2" class="map-show" target="_blank">Show Location</a>
-    </div>
-    </div>
-    </div>
-    <!-- Single Footer Widget End -->
-    </div>
-    </div>
-    </div>
-    <!-- Footer Widget End -->
-    
-    <!-- Footer Bottom Start -->
-    <div class="footer-bottom-area">
-    <div class="container">
-    <div class="row">
-    <div class="col-lg-12 text-center">
-    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="far fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-    </div>
-    </div>
-    </div>
-    </div>
-    <!-- Footer Bottom End -->
-    </section>
-    <!--== Footer Area End ==-->
-    
-    <!--== Scroll Top Area Start ==-->
-    <div class="scroll-top">
-    <img src="assets/img/scroll-top.png" alt="JSOFT">
-    </div>
-    <!--== Scroll Top Area End ==-->
-    
-    

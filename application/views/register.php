@@ -1,45 +1,45 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-<!DOCTYPE html>
+<?php // defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<!--<!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--=== Favicon ===-->
+    === Favicon ===
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
     <title>Register</title>
 
-    <!--=== Bootstrap CSS ===-->
+    === Bootstrap CSS ===
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <!--=== Slicknav CSS ===-->
+    === Slicknav CSS ===
     <link href="assets/css/plugins/slicknav.min.css" rel="stylesheet">
-    <!--=== Magnific Popup CSS ===-->
+    === Magnific Popup CSS ===
     <link href="assets/css/plugins/magnific-popup.css" rel="stylesheet">
-    <!--=== Owl Carousel CSS ===-->
+    === Owl Carousel CSS ===
     <link href="assets/css/plugins/owl.carousel.min.css" rel="stylesheet">
-    <!--=== Gijgo CSS ===-->
+    === Gijgo CSS ===
     <link href="assets/css/plugins/gijgo.css" rel="stylesheet">
-    <!--=== FontAwesome CSS ===-->
+    === FontAwesome CSS ===
     <link href="assets/css/font-awesome.css" rel="stylesheet">
-    <!--=== Theme Reset CSS ===-->
+    === Theme Reset CSS ===
     <link href="assets/css/reset.css" rel="stylesheet">
-    <!--=== Main Style CSS ===-->
+    === Main Style CSS ===
     <link href="style.css" rel="stylesheet">
-    <!--=== Responsive CSS ===-->
+    === Responsive CSS ===
     <link href="assets/css/responsive.css" rel="stylesheet">
 
 
-    <!--[if lt IE 9]>
+    [if lt IE 9]>
         <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <![endif]
 </head>
 
 <body class="loader-active">
 
-    <!--== Preloader Area Start ==-->
+    == Preloader Area Start ==
     <div class="preloader">
         <div class="preloader-spinner">
             <div class="loader-content">
@@ -47,34 +47,34 @@
             </div>
         </div>
     </div>
-    <!--== Preloader Area End ==-->
+    == Preloader Area End ==
 
     <header id="header-area" class="fixed-top">
-        <!--== Header Top Start ==-->
+        == Header Top Start ==
         <div id="header-top" class="d-none d-xl-block">
             <div class="container">
                 <div class="row">
-                    <!--== Single HeaderTop Start ==-->
+                    == Single HeaderTop Start ==
                     <div class="col-lg-3 text-left">
                         <i class="fa fa-map-marker"></i>
                         Nairobi West, Kenya
                     </div>
-                    <!--== Single HeaderTop End ==-->
+                    == Single HeaderTop End ==
 
-                    <!--== Single HeaderTop Start ==-->
+                    == Single HeaderTop Start ==
                     <div class="col-lg-3 text-center">
                         <i class="fa fa-mobile"></i>
                         +254 725 127 193
                     </div>
-                    <!--== Single HeaderTop End ==-->
+                    == Single HeaderTop End ==
 
-                    <!--== Single HeaderTop Start ==-->
+                    == Single HeaderTop Start ==
                     <div class="col-lg-3 text-center">
                         <i class="fa fa-clock-o"></i> Mon-Fri 09.00 - 17.00
                     </div>
-                    <!--== Single HeaderTop End ==-->
+                    == Single HeaderTop End ==
 
-                    <!--== Social Icons Start ==-->
+                    == Social Icons Start ==
                     <div class="col-lg-3 text-right">
                         <div class="header-social-icons">
                             <a href="#"><i class="fa fa-behance"></i></a>
@@ -83,25 +83,25 @@
                             <a href="#"><i class="fa fa-linkedin"></i></a>
                         </div>
                     </div>
-                    <!--== Social Icons End ==-->
+                    == Social Icons End ==
                 </div>
             </div>
         </div>
-        <!--== Header Top End ==-->
+        == Header Top End ==
 
-        <!--== Header Bottom Start ==-->
+        == Header Bottom Start ==
         <div id="header-bottom">
             <div class="container">
                 <div class="row">
-                    <!--== Logo Start ==-->
+                    == Logo Start ==
                     <div class="col-lg-4">
                         <a href="index.html" class="logo">
                             <img src="assets/img/logo.png" alt="JSOFT">
                         </a>
                     </div>
-                    <!--== Logo End ==-->
+                    == Logo End ==
 
-                    <!--== Main Menu Start ==-->
+                    == Main Menu Start ==
                     <div class="col-lg-8 d-none d-xl-block">
                         <nav class="mainmenu alignright">
                             <ul>
@@ -144,13 +144,13 @@
                             </ul>
                         </nav>
                     </div>
-                    <!--== Main Menu End ==-->
+                    == Main Menu End ==
                 </div>
             </div>
         </div>
-        <!--== Header Bottom End ==-->
+        == Header Bottom End ==
     </header>
-    <!--== Header Area End ==-->
+    == Header Area End ==-->
 
     <!--== Page Title Area Start ==-->
     <section id="page-title-area" class="section-padding overlay">
@@ -161,7 +161,7 @@
                     <div class="section-title  text-center">
                         <h2>Sign Up</h2>
                         <span class="title-line"><i class="fa fa-car"></i></span>
-                        <p>Welcome to our services.</p>
+                        <p>Join the community. Create a free account</p>
                     </div>
                 </div>
                 <!-- Page Title End -->
@@ -175,57 +175,52 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-md-8 m-auto">
-                	<div class="login-page-content">
-                		<div class="login-form">
-                			<h3>Sign Up</h3>
-							<form action="index.html">
-								<div class="name">
-									<div class="row">
-										<div class="col-md-6">
-											<input type="text" placeholder="First Name">
-										</div>
-										<div class="col-md-6">
-											<input type="text" placeholder="Last Name">
-										</div>
-									</div>
-								</div>
-								<div class="username">
-									<input type="email" placeholder="Email">
-								</div>
-								<div class="usertype">
-									<input type="text" placeholder="Usertype">
-								</div>
-								<div class="password">
-									<input type="password" placeholder="Password">
-								</div>
-								<div class="log-btn">
-									<button type="submit"><i class="fa fa-check-square"></i> Sign Up</button>
-								</div>
-							</form>
-                		</div>
+                    <div class="login-page-content">
+                            <div class="login-form">
+                                <h3>Sign Up</h3>  
+                                <form action="<?= base_url("customer/add_customer");?>" method="post">
+                                        <div class="name">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <input type="text" name="fname" placeholder="First Name">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" name="lname" placeholder="Last Name">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="username">
+                                            <input type="email" name="email" placeholder="Email">
+                                        </div>
+                                        <div class="password">
+                                            <input type="password" name="password" placeholder="Password">
+                                        </div>
+                                        <div class="password">
+                                            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password">
+                                        </div>
+                                        <div class="log-btn">
+                                            <button type="submit"><i class="fa fa-sign-in-alt"></i> Sign Up</button>
+                                        </div>
+                                    </form>
+                            </div>
 
-                		<div class="create-ac">
-                			<p>Have an account? <a href="login.php">Sign In</a></p>
-                		</div>
-                		<div class="login-menu">
-                			<a href="about.html">About</a>
-                			<span>|</span>
-                			<a href="contact.html">Contact</a>
-                		</div>
-                	</div>
+                            <div class="create-ac"> 
+                                    <p>Have an account? <a href="<?= base_url("customer/login");?>">Sign In</a></p>
+                            </div>
+                    </div>
                 </div>
         	</div>
         </div>
     </section>
     <!--== Login Page Content End ==-->
 
-    <!--== Footer Area Start ==-->
+<!--    == Footer Area Start ==
     <section id="footer-area">
-        <!-- Footer Widget Start -->
+         Footer Widget Start 
         <div class="footer-widget-area">
             <div class="container">
                 <div class="row">
-                    <!-- Single Footer Widget Start -->
+                     Single Footer Widget Start 
                     <div class="col-lg-4 col-md-6">
                         <div class="single-footer-widget">
                             <h2>About Us</h2>
@@ -242,9 +237,9 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Single Footer Widget End -->
+                     Single Footer Widget End 
 
-                    <!-- Single Footer Widget Start -->
+                     Single Footer Widget Start 
                     <div class="col-lg-4 col-md-6">
                         <div class="single-footer-widget">
                             <h2>get touch</h2>
@@ -258,65 +253,65 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Single Footer Widget End -->
+                     Single Footer Widget End 
                 </div>
             </div>
         </div>
-        <!-- Footer Widget End -->
+         Footer Widget End 
 
-        <!-- Footer Bottom Start -->
+         Footer Bottom Start 
         <div class="footer-bottom-area">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p> Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. 
                             Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                             Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. </p>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Footer Bottom End -->
+         Footer Bottom End 
     </section>
-    <!--== Footer Area End ==-->
+    == Footer Area End ==
 
-    <!--== Scroll Top Area Start ==-->
+    == Scroll Top Area Start ==
     <div class="scroll-top">
         <img src="assets/img/scroll-top.png" alt="JSOFT">
     </div>
-    <!--== Scroll Top Area End ==-->
+    == Scroll Top Area End ==
 
-    <!--=======================Javascript============================-->
-    <!--=== Jquery Min Js ===-->
+    =======================Javascript============================
+    === Jquery Min Js ===
     <script src="assets/js/jquery-3.2.1.min.js"></script>
-    <!--=== Jquery Migrate Min Js ===-->
+    === Jquery Migrate Min Js ===
     <script src="assets/js/jquery-migrate.min.js"></script>
-    <!--=== Popper Min Js ===-->
+    === Popper Min Js ===
     <script src="assets/js/popper.min.js"></script>
-    <!--=== Bootstrap Min Js ===-->
+    === Bootstrap Min Js ===
     <script src="assets/js/bootstrap.min.js"></script>
-    <!--=== Gijgo Min Js ===-->
+    === Gijgo Min Js ===
     <script src="assets/js/plugins/gijgo.js"></script>
-    <!--=== Vegas Min Js ===-->
+    === Vegas Min Js ===
     <script src="assets/js/plugins/vegas.min.js"></script>
-    <!--=== Isotope Min Js ===-->
+    === Isotope Min Js ===
     <script src="assets/js/plugins/isotope.min.js"></script>
-    <!--=== Owl Caousel Min Js ===-->
+    === Owl Caousel Min Js ===
     <script src="assets/js/plugins/owl.carousel.min.js"></script>
-    <!--=== Waypoint Min Js ===-->
+    === Waypoint Min Js ===
     <script src="assets/js/plugins/waypoints.min.js"></script>
-    <!--=== CounTotop Min Js ===-->
+    === CounTotop Min Js ===
     <script src="assets/js/plugins/counterup.min.js"></script>
-    <!--=== YtPlayer Min Js ===-->
+    === YtPlayer Min Js ===
     <script src="assets/js/plugins/mb.YTPlayer.js"></script>
-    <!--=== Magnific Popup Min Js ===-->
+    === Magnific Popup Min Js ===
     <script src="assets/js/plugins/magnific-popup.min.js"></script>
-    <!--=== Slicknav Min Js ===-->
+    === Slicknav Min Js ===
     <script src="assets/js/plugins/slicknav.min.js"></script>
 
-    <!--=== Mian Js ===-->
+    === Mian Js ===
     <script src="assets/js/main.js"></script>
 
 </body>
 
-</html>
+</html>-->
