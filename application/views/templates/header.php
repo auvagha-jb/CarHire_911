@@ -29,7 +29,15 @@
     <link href="<?= base_url("assets/css/style.css");?>"  rel="stylesheet">
     <!--=== Responsive CSS ===-->
     <link href="<?= base_url("assets/css/responsive.css");?>"  rel="stylesheet">
+    <!--=== Jquery-ui CSS===-->
+    <link href="<?= base_url("assets/css/plugins/jquery-ui.min.css");?>"  rel="stylesheet">
+    
+    <!--=== Jquery Min Js ===-->
+    <script src="<?= base_url("assets/js/jquery-3.2.1.min.js"); ?>"></script>
+    <!--=== Jquery-ui Js ===-->
+    <script src="<?= base_url("assets/js/plugins/jquery-ui.js"); ?>"></script>
     </head>
+    
 <!--  </body>
 </html>-->
     
@@ -97,7 +105,7 @@
     <div class="row">
     <!--== Logo Start ==-->
     <div class="col-lg-4">
-    <a href="index.html" class="logo">
+    <a href="<?= base_url("customer/");?>" class="logo">
     <img src="<?= base_url("assets/img/logo.png");?>" alt="JSOFT">
     </a> 
     </div>
@@ -107,42 +115,12 @@
     <div class="col-lg-8 d-none d-xl-block">
     <nav class="mainmenu alignright">
     <ul>
-    <li class="active"><a href="#">Home</a>
-    <ul>
-    <li><a href="#">Home 1</a></li>
-    <li><a href="#">Home 2</a></li>
-    <li><a href="#">Home 3</a></li>
-    </ul>
-    </li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">services</a></li>
-    <li><a href="#">Cars</a>
-    <ul>
-    <li><a href="car-left-sidebar.html">Car Left Sidebar</a></li>
-    <li><a href="car-right-sidebar.html">Car Right Sidebar</a></li>
-    <li><a href="car-without-sidebar.html">Car Without Sidebar</a></li>
-    <li><a href="car-details.html">Car Details</a></li>
-    </ul>
-    </li>
-    <li><a href="index.html">Pages</a>
-    <ul>
-    <li><a href="package.html">Pricing</a></li>
-    <li><a href="driver.html">Driver</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="help-desk.html">Help Desk</a></li>
-    <li><a href="login.html">Log In</a></li>
-    <li><a href="register.html">Register</a></li>
-    <li><a href="404.html">404</a></li>
-    </ul>
-    </li>
-    <li><a href="#">Blog</a>
-    <ul>
-    <li><a href="article.html">Blog Page</a></li>
-    <li><a href="article-details.html">Blog Details</a></li>
-    </ul>
-    </li>
-    <li><a href="contact.html">Contact</a></li>
+    <li class="active"><a href="<?= base_url("customer/");?>">Home</a></li>
+<!--    <li><a href="#">About</a></li>-->
+<!--    <li><a href="#">Services</a></li>-->
+    <li><a href="#">Cars</a></li>
+    <li><a href="<?= base_url("customer/contact_us");?>">Contact Us</a></li>
+    <li><a href="<?= base_url("customer/login");?>">Sign In</a></li>
     </ul>
     </nav>
     </div>
@@ -153,3 +131,84 @@
     <!--== Header Bottom End ==-->
     </header>
     <!--== Header Area End ==-->
+
+    <script src="<?= base_url("assets/js/jquery-3.2.1.min.js"); ?>"></script>
+        
+    <script>
+        $(document).ready(function(){
+            //To ensure the email address is not replicated
+            $("#email").change(function(){
+                var email = $("#email").val();
+                check_email(email);
+            }).keyup(function(){
+                var email = $("#email").val();
+                check_email(email);
+            });
+            
+            //To ensure the passwords match
+            $("#confirm_password").keyup(function(){
+                var pwd = $("#password").val();
+                var confirm_pwd = $(this).val();
+                confirmPassword(pwd,confirm_pwd);
+            });
+            
+            //To ensure the form is fit to be submitted
+            $("#register_form").submit(function(event){
+                if(!isValid()){
+                    event.preventDefault();
+                }
+            });
+            
+            function check_email(email){
+     
+                $.post("../customer/check_email", {email: email}, function(data,status){
+                    if(data === "email-exists"){               
+                        showInvalid(".username #email");
+                    }else{
+                        removeInvalid(".username #email");
+                    } 
+                });
+            }
+            
+            function confirmPassword(pwd,confirm_pwd){
+                if(pwd !== confirm_pwd){
+                    showInvalid("#password");
+                    showInvalid("#confirm_password");
+                    valid = false;
+                }else{
+                    removeInvalid("#password");
+                    removeInvalid("#confirm_password");
+                }
+                
+            }
+           
+           
+            function showInvalid(selector){
+                $(selector).addClass("is-invalid");
+            }
+            
+            function removeInvalid(selector){
+                $(selector).removeClass("is-invalid");
+            }
+            
+            function isValid(){
+                var email = document.getElementById("email");
+                var password = document.getElementById("password");
+                var className = "is-invalid";
+                
+                //If the file is free of errors
+                if(!hasClass(email,className) && !hasClass(password,className) ){
+                   return true;
+                }
+                
+                return false;
+            }
+            
+            function hasClass(element,cls){
+                return (' '+element.className+' ').indexOf(' '+cls+' ') > -1;
+            }
+                
+        });
+
+    </script>
+    

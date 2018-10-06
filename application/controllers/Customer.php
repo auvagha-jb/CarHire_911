@@ -15,28 +15,8 @@ class Customer extends CI_Controller{
     }
     
     public function add_customer(){
-        //Form data
-        $fname = $this->input->post('fname');
-        $lname = $this->input->post('lname');
-        $email = $this->input->post('email');
-        $password = $this->input->post('password');
-        $pw_hash = password_hash($password, PASSWORD_BCRYPT);
-        $user_type = "customer";
-        
-        date_default_timezone_set('Africa/Nairobi');
-        $date_reg = date('Y-m-d H:i:s');
-        
-        $data = array(
-            'fname' => $fname,
-            'lname' => $lname,
-            'email' => $email,
-            'password' => $pw_hash,
-            'user_type' => $user_type,
-            'date_reg' => $date_reg,
-        );
-        
         $this->load->model('users');
-        $this->users->add_customer($data);
+        $this->users->add_customer();
     }
     
     public function login(){
@@ -47,6 +27,11 @@ class Customer extends CI_Controller{
     
     public function test(){
         echo "Ajax ok";
+    }
+    
+    function check_email(){
+        $this->load->model("ajax");
+        $this->ajax->check_email();
     }
     
 }

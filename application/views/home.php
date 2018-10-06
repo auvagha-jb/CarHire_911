@@ -134,7 +134,7 @@
     <div class="display-table">
     <div class="display-table-cell">
     <div class="about-content">
-    <p>Welcome to Skyscanner comprehensive car hire search. We search hundreds of destinations and compare thousands of car hire deals to help you find your perfect drive at a low price.</p>
+<!--    <p>Welcome to our comprehensive car hire search. We search hundreds of destinations and compare thousands of car hire deals to help you find your perfect drive at a low price.</p>-->
     
     <p>We'll help you make your trip as cheap as possible, so you're sure to hit the road smiling. Come drive with us.</p>
     <div class="about-btn">
@@ -147,12 +147,7 @@
     </div>
     <!-- About Content End -->
     
-    <!-- About Video Start -->
-    <div class="col-lg-6">
-    <div class="about-video">
-    <iframe src="https://player.vimeo.com/video/121982328?title=0&byline=0&portrait=0"></iframe>
-    </div>
-    </div>
+    
     <!-- About Video End -->
     </div>
     </div>
@@ -162,7 +157,7 @@
     
     <!--== About Us Area End ==-->
     
-   <!--== <!--== Partner Area removed ==--> ==-->
+   <!--=== Partner Area removed ==-->
     
     <!--== Services area removed==-->
     
