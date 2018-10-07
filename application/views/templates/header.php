@@ -28,10 +28,13 @@
         <!-- Datatables bootstrap styling -->
         <link rel="stylesheet" href="<?= base_url('assets/vendors/codebase/assets/js/plugins/datatables/dataTables.bootstrap4.css');?>">
 
+        <!-- Sweetalert CSS -->
+        <link rel="stylesheet" href="<?= base_url('assets/vendors/codebase/assets/js/plugins/sweetalert2/sweetalert2.min.css');?>">
+
 
 
         <!-- Fonts and Codebase framework -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,400i,600,700">
+        <link rel="stylesheet" href="<?= base_url('assets/vendors/codebase/assets/fonts/muli-font.css'); ?>">
         <link rel="stylesheet" id="css-main" href="<?= base_url('assets/vendors/codebase/assets/css/codebase.min.css'); ?>">
 
         <!-- Local stylesheets -->
@@ -42,6 +45,8 @@
         <!-- END Stylesheets -->
     </head>
     <body>
+    <div id="page-loader" class="bg-corporate-dark show"></div>
+
 
     <!-- Page Container -->
     <div id="page-container" class="sidebar-o side-scroll page-header-fixed page-header-inverse sidebar-inverse">

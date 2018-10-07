@@ -1,14 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <?php
-    class Admin_model extends CI_Model {
-        /**
-         * Concstructor loading the database
-         */
-        public function __construct(){
-            $this->load->database();
-        }
-
+    class Employee_model extends CI_Model {
         /**
          * Checks if email is already registered
          */
@@ -105,7 +98,7 @@
             $query = $this->db->get();
 
             return array(
-                'recordsTotal' => $this->all_records(),
+                'recordsTotal' => $this->all_emp_records(),
                 'recordsFiltered' => $query->num_rows(),
                 'result' => $query->result()
             );
@@ -114,7 +107,7 @@
         /**
          * Counts all the records in employees view
          */
-        public function all_records(){
+        public function all_emp_records(){
             $this->employee_query();
             
             $query = $this->db->get();

@@ -46,7 +46,7 @@
          * Checks for unique employee email
          */
         public function check_email(){
-            echo json_encode( $this->admin_model->check_email($this->input->post('email')) );
+            echo json_encode( $this->employee_model->check_email($this->input->post('email')) );
         }
 
         /**
@@ -60,7 +60,7 @@
             echo $gen_password;
             echo $this->input->post('department');
 
-            return $this->admin_model->add_employee($enc_password);
+            return $this->employee_model->add_employee($enc_password);
         }
 
         /**
@@ -69,7 +69,7 @@
         public function get_employees(){
             $draw = intval($this->input->post("draw"));
 
-            $fetch_data = $this->admin_model->get_employees();
+            $fetch_data = $this->employee_model->get_employees();
             $data = [];
 
             foreach($fetch_data['result'] as $row){
@@ -105,7 +105,7 @@
          * Get details of a single employee
          */
         public function get_single_employee(){
-            $data = $this->admin_model->get_single_employee($this->input->post('emp_id'));
+            $data = $this->employee_model->get_single_employee($this->input->post('emp_id'));
             echo json_encode($data);
         }
 
@@ -113,14 +113,14 @@
          * Checks email edited is not an already registered email by another user
          */
         public function check_edit_email(){
-            echo json_encode( $this->admin_model->check_edit_email($this->input->post('email'), $this->input->post('emp_id')) );
+            echo json_encode( $this->employee_model->check_edit_email($this->input->post('email'), $this->input->post('emp_id')) );
         }
 
         /**
          * Edit employee details
          */
         public function edit_employee(){
-            $success = $this->admin_model->edit_employee();
+            $success = $this->employee_model->edit_employee();
             $response = array();
 
             if($success){
@@ -138,14 +138,104 @@
          * Delete employee
          */
         public function delete_employee(){
-            echo json_encode($this->admin_model->delete_employee($this->input->post('emp_id')));
+            echo json_encode($this->employee_model->delete_employee($this->input->post('emp_id')));
         }
 
         /**
          * Fetch departments
          */
         public function fetch_departments(){
-            echo json_encode($this->admin_model->fetch_departments());
+            echo json_encode($this->employee_model->fetch_departments());
+        }
+
+        /* 
+        *******************************************************************
+        **  Department calls  handler
+        ********************************************************************/
+        /**
+         * Handler for view departments call
+         */
+        public function view_departments(){
+            $depts = $this->department_model->get_departments();
+            $response = "";
+            foreach ($depts as $dept) {
+                $response .= '<li class="list-group-item" data-dept-id="'.$dept["id"].'" data-dept-name="'.$dept["name"].'" data-delete-target="'.base_url("admin/delete_department/".$dept["id"]).'">
+                                <span class="dept-name">'.$dept["name"].'</span>
+                                <div class="btn-group float-right">
+                                    <button type="button" class="btn btn-sm btn-alt-info edit-dept" data-toggle="tooltip" title="Edit">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-alt-danger" data-toggle="tooltip" title="Delete">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </div>
+                            </li>';                
+            }
+
+            echo $response;
+        }
+
+        /**
+         * Validates the department name
+         */
+        public function check_dept_name(){
+            echo json_encode( $this->department_model->check_dept_name($this->input->post('dept_name')) );
+        }
+
+        /**
+         * Validates the department name when editing
+         */
+        public function check_dept_name_edit(){
+            echo json_encode( $this->department_model->check_dept_name_edit($this->input->post('dept_name'), $this->input->post('dept_id')) );
+        }
+
+        /**
+         * Handler for add department call
+         */
+        public function add_department(){
+            if($this->department_model->add_department()){
+                $success = array(
+                    "icon" => "zmdi zmdi-badge-check",
+                    "type" => "success",
+                    "message" => "New department added successfully"
+                );
+                echo json_encode($success);
+            }else{
+                $error = array(
+                    "icon" => "zmdi zmdi-alert-circle-o",
+                    "type" => "danger",
+                    "message" => "Error in adding records. Try again later"
+                );
+                echo json_encode($error);
+            }
+        }
+
+        /**
+         * Handler for edit department call
+         */
+        public function edit_department(){
+            if($this->department_model->edit_department()){
+                $success = array(
+                    "icon" => "zmdi zmdi-badge-check",
+                    "type" => "success",
+                    "message" => "Department name changed added successfully"
+                );
+                echo json_encode($success);
+            }else{
+                $error = array(
+                    "icon" => "zmdi zmdi-alert-circle-o",
+                    "type" => "danger",
+                    "message" => "Error in editing records. Try again later"
+                );
+                echo json_encode($error);
+            }
+        }
+
+        /**
+         * Handler for delete department
+         */
+        public function delete_department($dept_id){
+            echo json_encode($this->department_model->delete_department($dept_id));
         }
 
     }
