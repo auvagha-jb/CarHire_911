@@ -1,5 +1,5 @@
-   </main>
-   <!-- END of Main container -->
+    </main>
+    <!-- END of Main container -->
 
     <!-- Codebase Core JS -->
     <script src="<?= base_url('assets/vendors/codebase/assets/js/core/jquery.min.js'); ?>"></script>
@@ -20,6 +20,9 @@
 
     <!-- Bootstrap notify -->
     <script src="<?= base_url('assets/vendors/codebase/assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js');?>"></script>
+
+    <!-- Sweetalert js -->
+    <script src="<?= base_url('assets/vendors/codebase/assets/js/plugins/sweetalert2/sweetalert2.min.js');?>"></script>
 
 
     <!-- Form validation plugin -->

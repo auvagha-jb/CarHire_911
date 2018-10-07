@@ -1,13 +1,5 @@
-/*
- * *********************************************************************************
- *                                                                                 *
- * Functions dependent on the page being displayed.                                *
- *                                                                                 * 
- * *********************************************************************************
- */
-
 /**
- * Index of the dashboard
+ * !Index of the dashboard
  */
 var indexDashboard = function(){
     //Set nav-link to active
@@ -23,7 +15,7 @@ var indexDashboard = function(){
 }();
 
 /**
- * Employees page function
+ * !Employees page function
  */
 var employeesPage = function (){
     /**
@@ -100,20 +92,6 @@ var employeesPage = function (){
     var initValidationAddEmployee = function(){
         //Validation setup
         var validator = jQuery('.js-add-emp-validation').validate({
-            debug: true,
-            ignore: ['check_email_url'],
-            errorClass: 'invalid-feedback animated fadeInDown',
-            errorElement: 'div',
-            errorPlacement: function(error, e) {
-                jQuery(e).parents('.form-group').append(error);
-            },
-            highlight: function(e) {
-                jQuery(e).closest('.form-group').removeClass('is-invalid').addClass('is-invalid');
-            },
-            success: function(e) {
-                jQuery(e).closest('.form-group').removeClass('is-invalid');
-                jQuery(e).remove();
-            },
             rules: {
                 'fname': {
                     required: true,
@@ -212,20 +190,6 @@ var employeesPage = function (){
 
         //Validation setup
         var validator = jQuery('.js-edit-emp-validation').validate({
-            debug: true,
-            ignore: ['check_edit_email_url'],
-            errorClass: 'invalid-feedback animated fadeInDown',
-            errorElement: 'div',
-            errorPlacement: function(error, e) {
-                jQuery(e).parents('.form-group').append(error);
-            },
-            highlight: function(e) {
-                jQuery(e).closest('.form-group').removeClass('is-invalid').addClass('is-invalid');
-            },
-            success: function(e) {
-                jQuery(e).closest('.form-group').removeClass('is-invalid');
-                jQuery(e).remove();
-            },
             rules: {
                 'fname': {
                     required: true,
@@ -300,37 +264,36 @@ var employeesPage = function (){
      */
     var initDeleteEmployee = function(){
         $(document).on('click','td button[title="Delete"]',function(){
-            var emp_id = $(this).parent().data('emp-id');
-            var delete_target = $('.js-dataTable-employee').data('delete-target');
-            
-            $.ajax({
-                url: delete_target,
-                type: "POST",
-                data: {emp_id: emp_id},
-                dataType: "json",
-                success:(data) =>{
-                    var icon,message,type;
-                    if(data){
-                        icon = "fa fa-check";
-                        type="success";
-                        message = "Records deleted successfully";
-                    }else{
-                        icon = "fa fa-warning";
-                        type="danger";
-                        message = "Error in deletion. Try again later";
-                    }
-                    notify(icon,type,message);
-                    $('#refresh-emp-table').trigger('click');
+            let emp_id = $(this).parent().data('emp-id');
+            let delete_target = $('.js-dataTable-employee').data('delete-target');
 
-                },
-                error: () => {
-                    var icon = "fa fa-warning";
-                    var message = "Error occurred. Please check server connection";
-                    notify(icon,"danger",message);
-                }
-
-            });
-            
+            const deleteSwal = mySwal();
+            deleteSwal({   
+                title: "Are you sure?",   
+                text: "You will not be able to recover this record",   
+                type: "warning",       
+                // confirmButtonColor: "#DD6B55",  
+                confirmButtonText: "Yes, delete employee!",
+            })
+            .then((result)=>{
+                if(result.value){
+                    ajaxComm(delete_target,{emp_id: emp_id},"json")
+                    .done(data => {
+                        var icon,message,type;
+                        if(data){
+                            icon = "fa fa-check";
+                            type="success";
+                            message = "Records deleted successfully";
+                        }else{
+                            icon = "fa fa-warning";
+                            type="danger";
+                            message = "Error in deletion. Try again later";
+                        }
+                        notify(icon,type,message);
+                        $('#refresh-emp-table').trigger('click');
+                    });
+                }    
+            });  
         });
     };
 
@@ -615,7 +578,7 @@ var employeesPage = function (){
 }();
 
 /**
- * Departments page function
+ * !Departments page function
  */
 var departmentsPage = function(){
     //Set nav-link to active
@@ -623,15 +586,163 @@ var departmentsPage = function(){
         $('.nav-main #departments').addClass('active');
     };
 
+    var initDepartmentsView = () => {
+        let dataTarget = $('.dept-list').data('fetch-url');
+
+        ajaxComm(dataTarget,false,"html")
+        .done( data => {
+            $('.dept-list').html(data);
+        });
+        
+    }
+
+    var initAddDepartment = () => {
+        //Form attributes setting
+        $('.add-dept').on('click',event => {
+            $('#modalDept form').addClass('add-action').removeClass('edit-action');
+            $('#modalDept .block-title').html('Add new department');
+            $('#modalDept .modal-footer button[type="submit"]').text('Add department');
+            
+            //Add remote rule to dept_name
+            $('#modalDept form [name="dept_name"]').rules('add',{
+                remote: {
+                    url: $('#modalDept form [name="check_dept_name"]').val(),
+                    type: "POST",
+                    data: { 
+                        dept_name : () => { return $('#modalDept form [name="dept_name"]').val();}
+                    },
+                    dataType: 'json'
+                }
+            });
+        });            
+    }
+
+    var initEditDepartment = () => {
+        //Form attributes setting
+        $('.dept-list').on('click','.edit-dept',event => {
+            let _this = event.target;
+            let dept_id = $(_this).closest('li.list-group-item').data('dept-id') ;
+            let dept_name = $(_this).closest('li.list-group-item').data('dept-name') ;
+            
+            $('#modalDept form').addClass('edit-action').removeClass('add-action');
+            $('#modalDept form input[name="dept_name"]').val(dept_name);
+            $('#modalDept form input[name="dept_id"]').val(dept_id);
+            $('#modalDept .block-title').html('Edit department');
+            $('#modalDept .modal-footer button[type="submit"]').text('Save changes');
+            $('#modalDept').modal('show');
+
+            $('#modalDept form [name="dept_name"]').rules('remove','remote');
+            $('#modalDept form [name="dept_name"]').rules('add',{
+                required: true,
+                remote: {
+                    url: $('#modalDept form [name="check_dept_name_edit"]').val(),
+                    type: "POST",
+                    data: { 
+                        dept_name : () => { return $('#modalDept form [name="dept_name"]').val();},
+                        dept_id : () => { return $('#modalDept form [name="dept_id"]').val();}
+                    },
+                    dataType: 'json'
+                }
+            });
+        });
+    }
+
+    //Validation setup
+    var initValidator =  () => {
+        return $('#modalDept form').validate({
+                    rules: {
+                        'dept_name': {
+                            required: true,
+                        }
+                    },   
+                    messages: {
+                        'dept_name':{
+                            required: 'Department name is required',
+                            remote: 'The set department name is already registered'
+                        }
+                    },
+                    submitHandler: () => {
+                        let actionType = $('#modalDept form').attr('class');
+                        let dataTarget = "";
+                        if(actionType == "add-action"){
+                            dataTarget = $('#modalDept form').data('add-action');
+                        }else if(actionType == "edit-action"){
+                            dataTarget = $('#modalDept form').data('edit-action');
+                        }
+                        let dataSend = $('#modalDept form').serialize();
+                        
+                        ajaxComm(dataTarget,dataSend,"json")
+                        .done(data => {
+                            notify(data.icon,data.type,data.message);
+                        })        
+                        .always( () =>{
+                            $('#modalDept form [name="dept_name"]').val(' ');
+                            $('#modalDept').modal('hide');
+                            initDepartmentsView();
+                        });
+                        
+                    }
+                });
+    }
+
+    //Reset modal form
+    $('#modalDept').on('hide.bs.modal',function(event){
+        $('#modalDept form input[name="dept_name"]').val(' ');
+        $('#modalDept form input[name="dept_id"]').val(' ');
+        $('#modalDept form .form-group').removeClass('is-invalid');
+    });
+
+    /**
+     * Delete department
+     */
+    var initDeleteDepartment = function(){
+        $('.dept-list').on('click','.btn-group button[title="Delete"]',event => {
+            let _this = event.target;
+            let delete_target = $(_this).closest('li.list-group-item').data('delete-target');
+
+            const deleteSwal = mySwal();
+            deleteSwal({   
+                title: "Are you sure?",   
+                text: "You will not be able to recover this record",   
+                type: "warning",       
+                confirmButtonText: "Yes, delete department!",
+            })
+            .then((result)=>{
+                if(result.value){
+                    ajaxComm(delete_target,false,"json")
+                    .done(data => {
+                        var icon,message,type;
+                        if(data){
+                            icon = "fa fa-check";
+                            type="success";
+                            message = "Record deleted successfully";
+                        }else{
+                            icon = "fa fa-warning";
+                            type="danger";
+                            message = "Error in deletion. Try again later";
+                        }
+                        notify(icon,type,message);
+                        initDepartmentsView();
+                    });
+                }    
+            });  
+        });
+    };
+
     return{
         init: function(){
             setActiveNav();
+            initDepartmentsView();
+            initValidator(); 
+            initAddDepartment();
+            initEditDepartment();
+            initDeleteDepartment();
         }
     }
 }();
 
 /**
- * Customers page function
+ * !Customers page function
  */
 var customersPage =  function(){
     //Set nav-link to active
@@ -655,7 +766,12 @@ var customersPage =  function(){
  */
 
 /**
- * Notification helper with bootstrap notify plugin
+ * 
+ * @param {String} icon An icon class to be used for the notification.
+ * @param {Strin} type success || danger || warning || info(default)
+ * @param {String} message Message to be displayed in the notification body
+ * @param {Sting} url If you want the notification to be a link (Optional)
+ * @param {String} align Position to be aligned on page right(default) || left
  */
 var notify = function(icon,type,message,url,align){
     // Create notification
@@ -697,6 +813,68 @@ var notify = function(icon,type,message,url,align){
     });
 };
 
+/**
+ * Ajax comunication helper for data sending and receiving with the server
+ *  
+ * @param {String} dataTarget URL tp where to send the request
+ * @param {Object} dataSend   An object with data to send with request
+ * @param {String} dataType     json || text || html || xml This is whatever the server will respond with
+ * @param {String} errorMessage  Message to be displayed when ajax call fails
+ * 
+ * @return {Object} an ajax object of the ajax call
+ */
+var ajaxComm = function(dataTarget,dataSend,dataType){
+    return $.ajax({
+                url: dataTarget,
+                type: "POST",
+                data: dataSend,
+                dataType: dataType
+            })
+            .catch(error => {
+                var icon = "zmdi zmdi-alert-circle-o";
+                notify(icon,"danger","Error in server connection");
+                console.log(error);
+            });
+}
+
+/**
+ * Sets sweet alert defaults
+ * @returns {Object} A swal object
+ */
+var mySwal =  () => {
+    // Set default properties
+    return swal.mixin({
+                buttonsStyling: false,
+                showCancelButton: true,
+                confirmButtonClass: 'btn btn-lg btn-alt-success m-5',
+                cancelButtonClass: 'btn btn-lg btn-alt-danger m-5',
+                inputClass: 'form-control'
+            });
+};
+
+/**
+ * Set form validatorjquery defaults
+ */
+var initDefaultValidator = () => {
+    $.validator.setDefaults({
+        debug: true,
+        ignore: ':hidden',
+        errorClass: 'invalid-feedback animated fadeInDown',
+        errorElement: 'div',
+        errorPlacement: function(error, e) {
+            jQuery(e).parents('.form-group').append(error);
+        },
+        highlight: function(e) {
+            jQuery(e).closest('.form-group').removeClass('is-invalid').addClass('is-invalid');
+        },
+        success: function(e) {
+            jQuery(e).closest('.form-group').removeClass('is-invalid');
+            jQuery(e).remove();
+        }
+    });
+}
+
+
 /*
  * *********************************************************************************
  *                                                                                 *
@@ -728,7 +906,10 @@ $(document).ready(()=>{
     /**
      * Load Codebase helpers
      */
-    Codebase.helpers(['datepicker','notify']);
+    Codebase.helpers(['datepicker','notify','table-tools']);
+
+    //Default validator options
+    initDefaultValidator();
 
 
     /**

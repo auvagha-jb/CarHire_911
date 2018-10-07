@@ -55,6 +55,7 @@ $route['admin'] = 'admin/index';
 $route['admin/employees'] = 'admin/employees_index';
 $route['admin/customers'] = 'admin/customers_index';
 $route['admin/departments'] = 'admin/departments_index';
+$route['admin/delete_department/(:any)'] = 'admin/delete_department/$1';
 
 
 $route['default_controller'] = 'customer/index';
