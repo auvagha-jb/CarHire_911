@@ -238,4 +238,58 @@
             echo json_encode($this->department_model->delete_department($dept_id));
         }
 
+        /*
+        ****************************************************
+        ** Customer call handler
+        ****************************************************
+        */
+        /**
+         * Get customers call handler
+         */
+        public function get_customers(){
+            $draw = intval($this->input->post("draw"));
+
+            $fetch_data = $this->customer_model->get_customers();
+            $data = [];
+
+            foreach($fetch_data['result'] as $row){
+                //Actions column
+                $actions = '<div class="btn-group" data-emp-id="'.$row->id.'">
+                    <button type="button" class="btn btn-sm btn-alt-danger" data-toggle="tooltip" title="Suspend account">
+                        <i class="fa fa-lock"></i>
+                    </button>
+                </div>';
+                $data[] = array(
+                    $row->id,
+                    $row->name,
+                    $row->email,
+                    $row->date_reg,
+                    "<button class='btn btn-sm btn-alt-success'>Active</button>",
+                    $actions
+                );
+            }
+
+            $result = array(
+                'draw' => $draw,
+                'recordsTotal' => $fetch_data['recordsTotal'],
+                'recordsFiltered' => $fetch_data['recordsFiltered'],
+                'data' => $data
+            );
+
+            echo json_encode($result);
+        }
+
+        /**
+         * Suspend customer call handler
+         */
+        public function suspend_customer(){
+
+        }
+
+        /*
+        ****************************************************
+        ** Processes in the index page
+        ****************************************************
+        */
+
     }
