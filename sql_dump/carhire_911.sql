@@ -1,5 +1,5 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
@@ -31,12 +31,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `cars` (
   `car_id` int(11) NOT NULL,
   `category` varchar(255) NOT NULL,
+  `brand` varchar(255) NOT NULL,
   `make` varchar(255) NOT NULL,
   `colour` varchar(255) NOT NULL,
   `plate_no` varchar(255) NOT NULL,
-  `chassis_no` varchar(255) NOT NULL,
-  `engine_no` varchar(255) NOT NULL,
-  `min_age` int(11) NOT NULL,
   `base_price` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
@@ -302,14 +300,11 @@ ALTER TABLE `department`
 ALTER TABLE `reviews`
   MODIFY `review_no` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `users`
