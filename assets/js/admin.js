@@ -743,6 +743,7 @@ var departmentsPage = function(){
 
 /**
  * !Customers page function
+ * 
  */
 var customersPage =  function(){
     //Set nav-link to active
@@ -750,9 +751,44 @@ var customersPage =  function(){
         $('.nav-main #customers').addClass('active');
     };
 
+    /**
+     * Datatable for customers
+     */
+    var initCustomerTable = function(){   
+        let fetchUrl = $('.js-dataTable-customer').attr('data-source'); 
+
+        let customerTable = $('.js-dataTable-customer').DataTable({
+            columnDefs: [ 
+                { 
+                    targets: [ 0,3,4 ], 
+                    searchable: false, 
+                    orderable: false 
+                } 
+            ],
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                url: fetchUrl,
+                type: "POST",
+                dataType: "json"
+            },
+            responsive: true
+        });
+
+        //Reload the table
+        $('#refresh-customers').on('click',function(){
+            var elBlock = $(this).closest('.block');
+
+            customerTable.ajax.reload(function(){
+                elBlock.removeClass('block-mode-loading');
+            },false);
+        });
+    };
+
     return{
         init: function(){
             setActiveNav();
+            initCustomerTable();
         }
     }
 }();
