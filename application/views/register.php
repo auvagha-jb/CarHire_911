@@ -61,3 +61,77 @@
         </div>
     </section>
     <!--== Login Page Content End ==-->
+    <script>
+        $(document).ready(function(){
+            //To ensure the email address is not replicated
+            $("#email").change(function(){
+                var email = $("#email").val();
+                check_email(email);
+            }).keyup(function(){
+                var email = $("#email").val();
+                check_email(email);
+            });
+            
+            //To ensure the passwords match
+            $("#confirm_password").keyup(function(){
+                var pwd = $("#password").val();
+                var confirm_pwd = $(this).val();
+                confirmPassword(pwd,confirm_pwd);
+            });
+            
+            //To ensure the form is fit to be submitted
+            $("#register_form").submit(function(event){
+                if(!isValid()){
+                    event.preventDefault();
+                }
+            });
+            
+            function check_email(email){
+     
+                $.post("../customer/check_email", {email: email}, function(data,status){
+                    if(data === "email-exists"){               
+                        showInvalid("#email");
+                    }else{
+                        removeInvalid("#email");
+                    } 
+                });
+            }
+            
+            function confirmPassword(pwd,confirm_pwd){
+                if(pwd !== confirm_pwd){
+                    showInvalid("#password");
+                    showInvalid("#confirm_password");
+                }else{
+                    removeInvalid("#password");
+                    removeInvalid("#confirm_password");
+                }
+            }
+           
+           
+            function showInvalid(selector){
+                $(selector).addClass("is-invalid");
+            }
+            
+            function removeInvalid(selector){
+                $(selector).removeClass("is-invalid");
+            }
+            
+            function isValid(){
+                var email = document.getElementById("email");
+                var password = document.getElementById("password");
+                var className = "is-invalid";
+                
+                //If the file is free of errors
+                if(!hasClass(email,className) && !hasClass(password,className) ){
+                   return true;
+                }
+                
+                return false;
+            }
+            
+            function hasClass(element,cls){
+                return (' '+element.className+' ').indexOf(' '+cls+' ') > -1;
+            }
+                
+        });
+    </script>

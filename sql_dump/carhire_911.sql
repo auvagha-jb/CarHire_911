@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Sep 25, 2018 at 07:22 AM
--- Server version: 10.2.17-MariaDB
--- PHP Version: 7.2.10
+-- Host: 127.0.0.1
+-- Generation Time: Oct 08, 2018 at 11:14 AM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,12 +31,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `cars` (
   `car_id` int(11) NOT NULL,
   `category` varchar(255) NOT NULL,
+  `brand` varchar(255) NOT NULL,
   `make` varchar(255) NOT NULL,
   `colour` varchar(255) NOT NULL,
   `plate_no` varchar(255) NOT NULL,
-  `chassis_no` varchar(255) NOT NULL,
-  `engine_no` varchar(255) NOT NULL,
-  `min_age` int(11) NOT NULL,
   `base_price` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
@@ -72,7 +70,7 @@ INSERT INTO `department` (`id`, `name`) VALUES
 CREATE TABLE `employee` (
   `employee_id` int(11) NOT NULL,
   `department_id` int(11) NOT NULL,
-  `logged_once` int(1) NOT NULL DEFAULT 0
+  `logged_once` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -161,7 +159,7 @@ CREATE TABLE `users` (
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `user_type` varchar(255) NOT NULL,
-  `date_reg` timestamp NOT NULL DEFAULT current_timestamp()
+  `date_reg` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -174,7 +172,16 @@ INSERT INTO `users` (`user_id`, `fname`, `lname`, `email`, `password`, `user_typ
 (5, 'Dean', 'Lewis', 'dean.lewis@gmail.com', '$2y$10$MD97qkycavXctgeJ8xUHfe5eWBPC4ju91QyfCnhdusT3nHZpqnDtu', 'employee', '2018-09-29 13:09:45'),
 (6, 'David', 'Jones', 'djone@gmail.com', '$2y$10$UKaJxMZ/Xbn1/rlDaOW8EO3HkrjcXxlCNkcqCtG1XN7lI/400K9iC', 'employee', '2018-09-29 14:39:22'),
 (7, 'Montreal ', 'Canada', 'cancan@gmail.com', '$2y$10$zbRBvkB2n1A5GsuGjJgBb.PHeWV87QeMKYFdzmpsSunJHEa0NWeva', 'employee', '2018-09-29 14:41:36'),
-(14, 'James', 'Thurber', 'jaymo@gmail.com', '$2y$10$I32RI8CH4AswwvBhAhz8ge.xFPEeN3S5mAGxftLTHivlvVYBSS5Hi', 'employee', '2018-09-29 20:16:30');
+(14, 'James', 'Thurber', 'jaymo@gmail.com', '$2y$10$I32RI8CH4AswwvBhAhz8ge.xFPEeN3S5mAGxftLTHivlvVYBSS5Hi', 'employee', '2018-09-29 20:16:30'),
+(16, 'Mike', 'Lowrey', 'mike.lowrey@gmail.com', '$2y$10$ebi/jMfOanCHKbbB3s1tMerDGfadJKDJ9u8F5S3u5kjvlqiimAKMy', 'customer', '2018-10-03 20:12:38'),
+(17, 'Marcus ', 'Rashford', 'marcus.rashford@gmail.com', '$2y$10$I4IS2lAkFY5ZjLpASBN16ewpCIZ5DHQN82lN.dqxBsGQWYiDBmFka', 'customer', '2018-10-04 05:06:02'),
+(18, 'Fidhrosa', 'Khalifa', 'fidhrosa@gmail.com', '$2y$10$iagfbIRBjGCok4guyN/.lurxQX6HG2xcEwjTwwXTS6vJ0yX3E05za', 'customer', '2018-10-04 05:12:48'),
+(22, 'Amader', 'Tuni', 'amader.tuni@gmail.com', '$2y$10$vS1kqR..NUdwihYoESnSJO0bwTRDkwCZoVu4iBkeIgu8noq/evrz6', 'customer', '2018-10-05 15:13:57'),
+(23, 'Alex', 'Tuntuni Smith', 'alex.smith@gmail.com', '$2y$10$Yvck9fzt3YeQRIDFVaSiN.2m0hXqmq/jOJuKkzBufR6rzXLSBvnxW', 'customer', '2018-10-05 17:58:30'),
+(24, 'Jerry', 'Auvagha', 'jerry.auvagha@strathmore.edu', '$2y$10$pMokbTRAhfQoNa2B5iFnzuHmW/ru7fTVkgWaaZy24jPhC7e/cVblq', 'customer', '2018-10-06 19:43:42'),
+(26, 'Jerry', 'Auvagha', 'jerrybenjamin007@gmail.com', '$2y$10$Qs0HFtHeVTCKhY1kTsRRVeMoWyiv02RRqFDdFdjUQFtHpemk8dZES', 'customer', '2018-10-06 20:24:06'),
+(27, 'Gareth', 'Bale', 'gareth.bale@gmail.com', '$2y$10$2nU7yJc9Ahv8aPnST8SrgOWTnJeUmnyyo5y3AzMTQmWw9hsEwPy3m', 'customer', '2018-10-07 07:39:24'),
+(29, 'Amanda', 'Gosling', 'amanda.gosling@gmail.com', '$2y$10$vMPjXyapvZUAX8cdkOigGuvfZohEsPMxl6iulzoDeqPzzpttapyX.', 'customer', '2018-10-07 07:48:18');
 
 -- --------------------------------------------------------
 
@@ -269,14 +276,11 @@ ALTER TABLE `department`
 ALTER TABLE `reviews`
   MODIFY `review_no` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Constraints for dumped tables

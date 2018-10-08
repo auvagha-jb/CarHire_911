@@ -36,8 +36,9 @@
     <script src="<?= base_url("assets/js/jquery-3.2.1.min.js"); ?>"></script>
     <!--=== Jquery-ui Js ===-->
     <script src="<?= base_url("assets/js/plugins/jquery-ui.js"); ?>"></script>
+    <!--=== My Js ===-->
+    <script src="<?= base_url("assets/js/forms.js"); ?>"></script>
     </head>
-    
 <!--  </body>
 </html>-->
     
@@ -47,7 +48,6 @@
     <![endif]-->
 <!--    </head>-->
     <body class="loader-active">
-        
         <!--== Preloader Area Start ==-->
     <div class="preloader">
         <div class="preloader-spinner">
@@ -120,7 +120,8 @@
 <!--    <li><a href="#">Services</a></li>-->
     <li><a href="#">Cars</a></li>
     <li><a href="<?= base_url("customer/contact_us");?>">Contact Us</a></li>
-    <li><a href="<?= base_url("customer/login");?>">Sign In</a></li>
+    <?php toggleNav();?>
+<!--    <li><a href="<?= base_url("customer/login");?>">Sign In</a></li>-->
     </ul>
     </nav>
     </div>
@@ -133,82 +134,29 @@
     <!--== Header Area End ==-->
 
     <script src="<?= base_url("assets/js/jquery-3.2.1.min.js"); ?>"></script>
-        
-    <script>
-        $(document).ready(function(){
-            //To ensure the email address is not replicated
-            $("#email").change(function(){
-                var email = $("#email").val();
-                check_email(email);
-            }).keyup(function(){
-                var email = $("#email").val();
-                check_email(email);
-            });
-            
-            //To ensure the passwords match
-            $("#confirm_password").keyup(function(){
-                var pwd = $("#password").val();
-                var confirm_pwd = $(this).val();
-                confirmPassword(pwd,confirm_pwd);
-            });
-            
-            //To ensure the form is fit to be submitted
-            $("#register_form").submit(function(event){
-                if(!isValid()){
-                    event.preventDefault();
-                }
-            });
-            
-            function check_email(email){
-     
-                $.post("../customer/check_email", {email: email}, function(data,status){
-                    if(data === "email-exists"){               
-                        showInvalid(".username #email");
-                    }else{
-                        removeInvalid(".username #email");
-                    } 
-                });
-            }
-            
-            function confirmPassword(pwd,confirm_pwd){
-                if(pwd !== confirm_pwd){
-                    showInvalid("#password");
-                    showInvalid("#confirm_password");
-                    valid = false;
-                }else{
-                    removeInvalid("#password");
-                    removeInvalid("#confirm_password");
-                }
-                
-            }
-           
-           
-            function showInvalid(selector){
-                $(selector).addClass("is-invalid");
-            }
-            
-            function removeInvalid(selector){
-                $(selector).removeClass("is-invalid");
-            }
-            
-            function isValid(){
-                var email = document.getElementById("email");
-                var password = document.getElementById("password");
-                var className = "is-invalid";
-                
-                //If the file is free of errors
-                if(!hasClass(email,className) && !hasClass(password,className) ){
-                   return true;
-                }
-                
-                return false;
-            }
-            
-            function hasClass(element,cls){
-                return (' '+element.className+' ').indexOf(' '+cls+' ') > -1;
-            }
-                
-        });
-
-    </script>
     
+    <?php
+    
+    function toggleNav(){
+        
+        $data = "";
+        
+        if(isset($_SESSION['fname'])){
+            $fname = $_SESSION['fname'];
+          $data = '<li>
+                        <a href="#" class="btn btn-sm btn-outline-light">'.$fname.'</a>
+                        <ul>
+                            <li>
+                                <a href="'.base_url("customer/logout").'">Logout</a>
+                            </li>
+                        </ul>
+                    </li>'; 
+        }else{
+           $data = '<li><a href="'.base_url("customer/login").'">Sign In</a></li>';
+        }
+        
+        
+        echo $data;
+    }
+    
+  ?>

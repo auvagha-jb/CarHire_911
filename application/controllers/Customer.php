@@ -30,8 +30,17 @@ class Customer extends CI_Controller{
     }
     
     function check_email(){
-        $this->load->model("ajax");
-        $this->ajax->check_email();
+        $this->load->model("users");
+        $this->users->check_email();
     }
     
+    function verify_user(){
+        $this->load->model("users");
+        $this->users->verify_user();
+    }
+    
+    function logout(){
+        $this->load->model("users");
+        $this->users->logout();
+    }
 }
