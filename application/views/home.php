@@ -5,120 +5,35 @@
     <div class="container">
     <div class="row">
     <div class="col-lg-5">
-    <div class="book-a-car">
-    <form action="index.html">
-    <!--== Pick Up Location ==-->
-    <div class="pickup-location book-item">
-    <h4>PICK-UP LOCATION:</h4>
-    <select class="custom-select">
-    <option value='Baringo'>Baringo</option>
-    <option value='Bomet'>Bomet</option>
-    <option value='Bungoma'>Bungoma</option>
-    <option value='Busia'>Busia</option>
-    <option value='Elgeyo-Marakwet'>Elgeyo-Marakwet</option>
-    <option value='Embu'>Embu</option>
-    <option value='Garissa'>Garissa</option>
-    <option value='Homa Bay'>Homa Bay</option>
-    <option value='Isiolo'>Isiolo</option>
-    <option value='Kajiado'>Kajiado</option>
-    <option value='Kakamega'>Kakamega</option>
-    <option value='Kericho'>Kericho</option>
-    <option value='Kiambu'>Kiambu</option>
-    <option value='Kilifi'>Kilifi</option>
-    <option value='Kirinyaga'>Kirinyaga</option>
-    <option value='Kisii'>Kisii</option>
-    <option value='Kisumu'>Kisumu</option>
-    <option value='Kitui'>Kitui</option>
-    <option value='Kwale'>Kwale</option>
-    <option value='Laikipia'>Laikipia</option>
-    <option value='Lamu'>Lamu</option>
-    <option value='Machakos'>Machakos</option>
-    <option value='Makueni'>Makueni</option>
-    <option value='Mandera'>Mandera</option>
-    <option value='Marsabit'>Marsabit</option>
-    <option value='Meru'>Meru</option>
-    <option value='Migori'>Migori</option>
-    <option value='Mombasa'>Mombasa</option>
-    <option value="Murang'a">Murang'a</option>
-    <option value='Nairobi City'>Nairobi City</option>
-    <option value='Nakuru'>Nakuru</option>
-    <option value='Nandi'>Nandi</option>
-    <option value='Narok'>Narok</option>
-    <option value='Nyamira'>Nyamira</option>
-    <option value='Nyandarua'>Nyandarua</option>
-    <option value='Nyeri'>Nyeri</option>
-    <option value='Samburu'>Samburu</option>
-    <option value='Siaya'>Siaya</option>
-    <option value='Taita-Taveta'>Taita-Taveta</option>
-    <option value='Tana River'>Tana River</option>
-    <option value='Tharaka-Nithi'>Tharaka-Nithi</option>
-    <option value='Trans Nzoia'>Trans Nzoia</option>
-    <option value='Turkana'>Turkana</option>
-    <option value='Uasin Gishu'>Uasin Gishu</option>
-    <option value='Vihiga'>Vihiga</option>
-    <option value='West Pokot'>West Pokot</option>
-    <option value='wajir'>Wajir</option>
-    </select>
-    </div>
-    <!--== Pick Up Location ==-->
-    
-    <!--== Pick Up Date ==-->
-    <div class="pick-up-date book-item">
-    <h4>PICK-UP DATE:</h4>
-    <input id="startDate" placeholder="Pick Up Date" />
-    
-    <div class="return-car">
-    <h4>RETURN DATE:</h4>
-    <input id="endDate" placeholder="Return Date" />
-    </div>
-    </div>
-    <!--== Pick Up Location ==-->
-    
-    <h4>SEARCH BY</h4>
-    <div class="row pl-2">
-        <span class="col-md-6">
-            <label>Category
-            <input type="radio" name="search-option" id="category-option" value='category' style="transform:scale(0.5);">
-            </label>
-        </span>
-        <span class="col-md-6">
-            <label>Brand
-            <input type="radio" name="search-option" id="brand-option" value='brand' style="transform:scale(0.5);">
-            </label>
-        </span>
-    </div>
-    
-    <!--== Car Choose ==-->
-    <div class="choose-car-type book-item" id="category-items">
-    <h4>CATEGORY:</h4>
-    <select class="custom-select">
-        <option selected>Select category</option>
-        <option value="sedan">Sedan</option>
-        <option value="Truck">Truck</option>
-        <option value="SUV">SUV</option>
-        <option value="Special Purpose">Special Purpose</option>
-    </select>
-    </div>
-    <!--== Car Choose ==-->
-    
-    <!--== Car Choose ==-->
-    <div class="choose-car-type book-item" id="brand-items">
-    <h4>BRAND:</h4>
-    <select class="custom-select">
-        <option selected>Select brand</option>
-        <option value="1">BMW</option>
-        <option value="2">Audi</option>
-        <option value="3">Lexus</option>
-        <option value="4">Subaru</option>
-        <option value="5">Toyota</option>
-        <option value="6">Nissan</option>
-    </select>
-    </div>
-    
-    <div class="book-button text-center">
-    <button class="book-now-btn">Search</button>
-    </div>
-    </form>
+    <div class="book-a-car"> 
+        <form action="<?= base_url("Customer/search");?>">
+        <h4 style="text-align: center; font-weight: bold;">FIND A CAR</h4>
+        <h4>SEARCH BY</h4>
+        <div class="row pl-2">
+            <span class="col-md-6">
+                <label>Category
+                <input type="radio" name="search-option" id="category-option" value='category' style="transform:scale(0.5);">
+                </label>
+            </span>
+            <span class="col-md-6">
+                <label>Brand
+                <input type="radio" name="search-option" id="brand-option" value='brand' style="transform:scale(0.5);">
+                </label>
+            </span>
+        </div>
+
+        <!--== Car Choose ==-->
+        <div class="choose-car-type book-item">
+            <h4 id="search-by"></h4>
+            <select class="custom-select" name="car-chosen" required="" id="car-chosen">
+                
+            </select>
+        </div>
+        
+        <div class="book-button text-center">
+            <button class="book-now-btn" type="submit">Search</button>
+        </div>
+        </form>
     </div>
     </div>
     
@@ -377,3 +292,53 @@
     </div>
     </section>
     <!--== Testimonials Area End ==-->
+    <script>
+        $(document).ready(function(){
+           //Onload -->Show the car categories
+           changeSelect("category");
+           
+           $("input[type=radio][name=search-option]").change(function(){
+                var checked = $(this).val();
+                changeSelect(checked);
+           });
+           
+           function changeSelect(checked){
+               if(checked === "category"){
+                   showCategory();
+               }else if(checked === "brand"){
+                   showBrand(checked);
+               }
+           }
+           
+           
+           function showCategory(){
+            var html ="";
+                html +='<option selected>Select category</option>';
+                html +='<option value="sedan">Sedan</option>';
+                html +='<option value="Truck">Truck</option>';
+                html +='<option value="SUV">SUV</option>';
+                html +='<option value="Special Purpose">Special Purpose</option>';
+                
+             $("#car-chosen").html(html);
+             $("#search-by").html("CATEGORY");
+           }
+           
+           function showBrand(){
+               var html = "";
+
+                html +='<option selected>Select brand</option>';
+                html +='<option value="1">BMW</option>';
+                html +='<option value="2">Audi</option>';
+                html +='<option value="3">Lexus</option>';
+                html +='<option value="4">Subaru</option>';
+                html +='<option value="5">Toyota</option>';
+                html +='<option value="6">Nissan</option>';
+                
+                $("#car-chosen").html(html);
+                $("#search-by").html("BRAND");
+           }
+        
+        });
+    </script>
+    
+    

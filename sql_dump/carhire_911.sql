@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2018 at 11:14 AM
+-- Generation Time: Oct 09, 2018 at 10:51 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -32,7 +32,7 @@ CREATE TABLE `cars` (
   `car_id` int(11) NOT NULL,
   `category` varchar(255) NOT NULL,
   `brand` varchar(255) NOT NULL,
-  `make` varchar(255) NOT NULL,
+  `model` varchar(255) NOT NULL,
   `colour` varchar(255) NOT NULL,
   `plate_no` varchar(255) NOT NULL,
   `base_price` int(11) NOT NULL,
@@ -40,6 +40,13 @@ CREATE TABLE `cars` (
   `status` varchar(255) NOT NULL,
   `features` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cars`
+--
+
+INSERT INTO `cars` (`car_id`, `category`, `brand`, `model`, `colour`, `plate_no`, `base_price`, `image`, `status`, `features`) VALUES
+(1, 'sedan', 'Mercedes Benz', 'S 550', 'black', 'KCF 990J', 9000, 'mercedes-s550', '', 'Air conditioning\r\nGreat control\r\nGreat Chassis\r\n');
 
 -- --------------------------------------------------------
 
@@ -265,6 +272,12 @@ ALTER TABLE `user_reservation_bridge`
 --
 
 --
+-- AUTO_INCREMENT for table `cars`
+--
+ALTER TABLE `cars`
+  MODIFY `car_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
@@ -297,8 +310,8 @@ ALTER TABLE `employee`
 -- Constraints for table `rental_history`
 --
 ALTER TABLE `rental_history`
-  ADD CONSTRAINT `rental_history_ibfk_1` FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_id`),
-  ADD CONSTRAINT `rental_history_ibfk_2` FOREIGN KEY (`res_no`) REFERENCES `reservations` (`res_no`);
+  ADD CONSTRAINT `rental_history_ibfk_2` FOREIGN KEY (`res_no`) REFERENCES `reservations` (`res_no`),
+  ADD CONSTRAINT `rental_history_ibfk_3` FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_id`);
 
 --
 -- Constraints for table `reservations`
