@@ -113,17 +113,16 @@
     
     <!--== Main Menu Start ==-->
     <div class="col-lg-8 d-none d-xl-block">
-    <nav class="mainmenu alignright">
-    <ul>
-    <li class="active"><a href="<?= base_url("customer/");?>">Home</a></li>
-<!--    <li><a href="#">About</a></li>-->
-<!--    <li><a href="#">Services</a></li>-->
-    <li><a href="#">Cars</a></li>
-    <li><a href="<?= base_url("customer/contact_us");?>">Contact Us</a></li>
-    <?php toggleNav();?>
-<!--    <li><a href="<?= base_url("customer/login");?>">Sign In</a></li>-->
-    </ul>
-    </nav>
+        <nav class="mainmenu alignright">
+            <ul>
+                <li class="active"><a href="<?= base_url("customer/");?>">Home</a></li>
+            <!--    <li><a href="#">About</a></li>-->
+            <!--    <li><a href="#">Services</a></li>-->
+                <li><a href="#">Cars</a></li>
+                <li><a href="<?= base_url("customer/contact_us");?>">Contact Us</a></li>
+                <?php toggleNav();?>
+            </ul>
+        </nav>
     </div>
     <!--== Main Menu End ==-->
     </div>
@@ -160,3 +159,4 @@
     }
     
   ?>
+    
