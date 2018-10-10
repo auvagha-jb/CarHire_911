@@ -46,7 +46,7 @@ CREATE TABLE `cars` (
 --
 
 INSERT INTO `cars` (`car_id`, `category`, `brand`, `model`, `colour`, `plate_no`, `base_price`, `image`, `status`, `features`) VALUES
-(1, 'sedan', 'Mercedes Benz', 'S 550', 'black', 'KCF 990J', 9000, 'mercedes-s550', '', 'Air conditioning\r\nGreat control\r\nGreat Chassis\r\n');
+(1, 'Sedan', 'Mercedes Benz', 'S 550', 'black', 'KCF 990J', 9000, 'mercedes-s550', 'Available', 'Air conditioning\r\nGreat control\r\nGreat Chassis\r\n');
 
 -- --------------------------------------------------------
 
@@ -108,18 +108,6 @@ CREATE TABLE `locations` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rental_history`
---
-
-CREATE TABLE `rental_history` (
-  `res_no` int(11) NOT NULL,
-  `car_id` int(11) NOT NULL,
-  `car_condition` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `reservations`
 --
 
@@ -129,16 +117,17 @@ CREATE TABLE `reservations` (
   `car_id` int(11) NOT NULL,
   `pickup_location_id` int(11) NOT NULL,
   `return_location_id` int(11) NOT NULL,
-  `pickup_datetime` datetime NOT NULL,
-  `return_datetime` datetime NOT NULL,
-  `mileage_onpick` int(11) NOT NULL,
-  `mileage_onreturn` int(11) NOT NULL,
+  `pickup_date` date NOT NULL,
+  `return_date` date NOT NULL,
+  `mileage_onpick` int(11) DEFAULT NULL,
+  `mileage_onreturn` int(11) DEFAULT NULL,
   `extra_mileage_fee` int(11) DEFAULT NULL,
   `extra_feat_fee` int(11) DEFAULT NULL,
   `tax` int(11) NOT NULL,
   `amount_due` int(11) NOT NULL,
   `amount_paid` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL
+  `status` varchar(255) NOT NULL,
+  `car_condition` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -248,13 +237,6 @@ ALTER TABLE `locations`
   ADD PRIMARY KEY (`location_id`);
 
 --
--- Indexes for table `rental_history`
---
-ALTER TABLE `rental_history`
-  ADD KEY `res_no` (`res_no`),
-  ADD KEY `car_id` (`car_id`);
-
---
 -- Indexes for table `reservations`
 --
 ALTER TABLE `reservations`
@@ -349,18 +331,12 @@ ALTER TABLE `employee`
   ADD CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `rental_history`
---
-ALTER TABLE `rental_history`
-  ADD CONSTRAINT `rental_history_ibfk_2` FOREIGN KEY (`res_no`) REFERENCES `reservations` (`res_no`),
-  ADD CONSTRAINT `rental_history_ibfk_3` FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_id`);
-
---
 -- Constraints for table `reservations`
 --
 ALTER TABLE `reservations`
   ADD CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`pickup_location_id`) REFERENCES `locations` (`location_id`),
-  ADD CONSTRAINT `reservations_ibfk_2` FOREIGN KEY (`return_location_id`) REFERENCES `locations` (`location_id`);
+  ADD CONSTRAINT `reservations_ibfk_2` FOREIGN KEY (`return_location_id`) REFERENCES `locations` (`location_id`),
+  ADD CONSTRAINT `reservations_ibfk_3` FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_id`);
 
 --
 -- Constraints for table `reviews`

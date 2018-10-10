@@ -6,7 +6,7 @@
     <div class="row">
     <div class="col-lg-5">
     <div class="book-a-car"> 
-        <form action="<?= base_url("Customer/search");?>">
+        <form action="<?= base_url("Customer/search");?>" method="post">
         <h4 style="text-align: center; font-weight: bold;">FIND A CAR</h4>
         <h4>SEARCH BY</h4>
         <div class="row pl-2">
@@ -292,53 +292,6 @@
     </div>
     </section>
     <!--== Testimonials Area End ==-->
-    <script>
-        $(document).ready(function(){
-           //Onload -->Show the car categories
-           changeSelect("category");
-           
-           $("input[type=radio][name=search-option]").change(function(){
-                var checked = $(this).val();
-                changeSelect(checked);
-           });
-           
-           function changeSelect(checked){
-               if(checked === "category"){
-                   showCategory();
-               }else if(checked === "brand"){
-                   showBrand(checked);
-               }
-           }
-           
-           
-           function showCategory(){
-            var html ="";
-                html +='<option selected>Select category</option>';
-                html +='<option value="sedan">Sedan</option>';
-                html +='<option value="Truck">Truck</option>';
-                html +='<option value="SUV">SUV</option>';
-                html +='<option value="Special Purpose">Special Purpose</option>';
-                
-             $("#car-chosen").html(html);
-             $("#search-by").html("CATEGORY");
-           }
-           
-           function showBrand(){
-               var html = "";
-
-                html +='<option selected>Select brand</option>';
-                html +='<option value="1">BMW</option>';
-                html +='<option value="2">Audi</option>';
-                html +='<option value="3">Lexus</option>';
-                html +='<option value="4">Subaru</option>';
-                html +='<option value="5">Toyota</option>';
-                html +='<option value="6">Nissan</option>';
-                
-                $("#car-chosen").html(html);
-                $("#search-by").html("BRAND");
-           }
-        
-        });
-    </script>
+    <script src="<?= base_url("assets/js/customer.js");?>"></script>
     
     
