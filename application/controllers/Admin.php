@@ -2,6 +2,12 @@
 
 <?php
     class Admin extends CI_Controller{
+        /*
+        ****************************************************
+        ** Processes in the index page
+        ****************************************************
+        */
+
         /**
          * The index view
          */
@@ -11,6 +17,8 @@
             $this->load->view('admin/index');
             $this->load->view('templates/footer');
         }
+        
+
 
         /**
          * Loads the employees page
@@ -285,11 +293,4 @@
         public function suspend_customer(){
 
         }
-
-        /*
-        ****************************************************
-        ** Processes in the index page
-        ****************************************************
-        */
-
     }
