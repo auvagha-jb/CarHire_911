@@ -29,6 +29,8 @@
             $this->load->view('admin/index',$data);
             $this->load->view('templates/admin/footer');
         }
+        
+
 
         /**
          * Loads the employees page

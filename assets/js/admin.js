@@ -55,7 +55,9 @@ var employeesPage = function (){
             var elBlock = $(this).closest('.block');
 
             employeeTable.ajax.reload(function(){
-                elBlock.removeClass('block-mode-loading');
+                setTimeout(()=>{
+                    elBlock.removeClass('block-mode-loading');
+                },1000);
             },false);
         });
     };
@@ -514,7 +516,9 @@ var customersPage =  function(){
             var elBlock = $(this).closest('.block');
 
             customerTable.ajax.reload(function(){
-                elBlock.removeClass('block-mode-loading');
+                setTimeout(()=>{
+                    elBlock.removeClass('block-mode-loading');
+                },1000);
             },false);
         });
     };
