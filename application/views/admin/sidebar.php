@@ -12,7 +12,7 @@
                 <div class="content-header-section sidebar-mini-visible-b">
                     <!-- Logo -->
                     <span class="content-header-item font-w700 font-size-xl float-left animated fadeIn">
-                        <span class="text-dual-primary-dark">c</span><span class="text-primary">h</span>
+                        <span class="text-dual-primary-dark">c</span><span class="text-primary">d</span>
                     </span>
                     <!-- END Logo -->
                 </div>
@@ -31,7 +31,7 @@
                     <div class="content-header-item">
                         <a class="link-effect font-w700" href="index.html">
                             <i class="fa fa-car text-primary"></i>
-                            <span class="font-size-xl text-dual-primary-dark">car</span><span class="font-size-xl text-primary">hire</span>
+                            <span class="font-size-xl text-dual-primary-dark">car</span><span class="font-size-xl text-primary">door</span>
                         </a>
                     </div>
                     <!-- END Logo -->

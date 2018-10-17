@@ -7,7 +7,7 @@
             
             <div class="block col-6 p-0">
                 <div class=" block-header block-header-default">
-                    <h3 class="block-title text-corporate">Departments</h3>
+                    <h3 class="block-title text-primary">Departments</h3>
                     <div class="block-options">
                         <button type="button" class="btn-block-option add-dept" data-toggle="modal" data-target="#modalDept">
                             <i class="si si-plus"></i> Add department

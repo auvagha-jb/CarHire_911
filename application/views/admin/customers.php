@@ -6,7 +6,7 @@
             
             <div class="block p-0">
                 <div class=" block-header block-header-default">
-                    <h3 class="block-title text-corporate">Customers</h3>
+                    <h3 class="block-title text-primary">Customers</h3>
                     <div class="block-options">
                         <button type="button" class="btn-block-option" data-toggle="block-option" data-action="fullscreen_toggle"></button>
                         <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" id="refresh-customers">

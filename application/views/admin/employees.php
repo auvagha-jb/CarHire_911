@@ -58,7 +58,7 @@
                     <!-- Add employees tab -->
                     <div class="tab-pane fade show" id="btabs-add-employee" role="tabpanel">
                         <div class="block block-themed">
-                            <div class="block-header bg-corporate">
+                            <div class="block-header bg-primary">
                                 <h3 class="block-title">Enter employee details</h3>
                             </div>
                         </div>
