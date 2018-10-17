@@ -41,7 +41,7 @@
         <link rel="stylesheet" href="<?= base_url('assets/css/admin.css') ?>">
 
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
-        <link rel="stylesheet" id="css-theme" href="<?= base_url('assets/vendors/codebase/assets/css/themes/corporate.css');?>">
+        <link rel="stylesheet" id="css-theme" href="<?= base_url('assets/css/yellow.css');?>">
         <!-- END Stylesheets -->
     </head>
     <body>
