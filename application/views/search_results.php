@@ -23,9 +23,9 @@ function showCards($query){
         
         foreach ($query->result() as $row){    
             $data.='
-                <div class="col-md-4"> 
-                    <div class="card">
-                        <img class="card-img-top special-offers" style="height:250px;" src="'.base_url("assets/img/404.png").'" alt="image"> <!--Since the image is at the top-->                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <div class="card-body">
+                <div class="col-md-6 my-4"> 
+                    <div class="card" >
+                        <img class="card-img-top special-offers" style="height:250px;" src="'.base_url("assets/img/car/").$row->image.'" alt="image"> <!--Since the image is at the top-->                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <div class="card-body">
                             <h4 class="card-title">'.$row->brand." ".$row->model.'</h4>
                             <p class="card-text">Category: '.$row->category.'</p>   
                             <p class="card-text">Price per day: Kshs '.$row->base_price.'</p>   
