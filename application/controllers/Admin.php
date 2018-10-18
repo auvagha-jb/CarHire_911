@@ -61,14 +61,44 @@
          * Adds employee
          */
         public function add_employee(){
+            $response = array();
+
             //Encrypt password
             $gen_password = random_string('alnum', 12);
             $enc_password = password_hash($gen_password,PASSWORD_BCRYPT);
 
-            echo $gen_password;
-            echo $this->input->post('department');
+            $response['password'] = $gen_password;
+            $inserted =  $this->employee_model->add_employee($enc_password);
 
-            return $this->employee_model->add_employee($enc_password);
+            if($inserted){
+
+            }
+
+            $data = array(
+                'name' => $this->input->post('first_name').' '.$this->input->post('last_name'),
+                'username' => $this->input->post('username'),
+                'password' => $gen_password,
+                'role' => $this->input->post('role')
+            );
+            $body = '
+            <p>Dear '.$data['name'].',</p>
+            <p>You have been registered to the Examination Scheduler as a/an '.$data['role'].'.</p>
+            <p>These are your credentials: <br>
+            <strong>Username: </strong> '.$data['username'].'<br>
+            <strong>Passwordd: </strong>'.$data['password'].'</p>
+            <p>You will be prompted to change your password on first login.</p>
+            <a href="'.base_url().'">Click here to login</a> 
+            
+            ';
+            $settings = array(
+                'to' => $this->input->post('email'),
+                'subject' => 'ACCOUNT REGISTRATION',
+                'body' => $body
+            );
+
+            // Send email to user
+            $sent = send_email($settings);
+
         }
 
         /**
@@ -226,7 +256,7 @@
                 $success = array(
                     "icon" => "zmdi zmdi-badge-check",
                     "type" => "success",
-                    "message" => "Department name changed added successfully"
+                    "message" => "Department name changed successfully"
                 );
                 echo json_encode($success);
             }else{
