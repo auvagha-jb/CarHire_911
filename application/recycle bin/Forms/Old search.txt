@@ -1,0 +1,49 @@
+$this->load->model('cars_model');
+        $query = $this->cars_model->getCars();
+        $data = "";//The data to be loaded on the view
+        
+        if($query->num_rows()>0){
+            $data = $this->cars_model->showCards($query);
+        }else{
+            $data = $this->cars_model->showNone();
+        }
+        
+        $view = array(
+            'header' => $this->load->view("templates/header"),
+            'body' =>  $this->load->view('search_results',$data),
+            'footer' => $this->load->view("templates/footer")
+        );
+
+
+<?= base_url("Customer/search");?>
+
+        
+        $this->load->view('search_results',$view);
+
+
+
+
+function search(){
+        
+        $this->load->model('cars_model');
+        $query = $this->cars_model->getCars();
+        $data = "";//The data to be loaded on the view
+        
+        $this->load->view('templates/header');
+        $this->load->view('login');
+        $this->load->view('templates/footer');
+        
+    }
+
+
+
+<html>
+<form class="navbar-form" role="search" action=" {{ base_url }}search/search_keyword" method = "post">
+	<div class="input-group">
+		<input type="text" class="form-control" placeholder="Search" name = "keyword"size="15px; ">
+		<div class="input-group-btn">
+			<button class="btn btn-default " type="submit" value = "Search"><i class="glyphicon glyphicon-search"></i></button>
+		</div>
+	</div>
+</form>
+</html>
