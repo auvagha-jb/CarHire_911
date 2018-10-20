@@ -18,7 +18,7 @@ if (!function_exists('send_email'))
             $mail->SMTPSecure = 'tls';                  // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 587;                          // TCP port to connect to
 
-            $mail-> setFrom("noreply@examscheduler.com", "Exam Scheduler"); 
+            $mail-> setFrom("noreply@cardoor.com", "CAR DOOR"); 
 
             $mail->addAddress($settings['to']);   
             $mail->Subject = $settings['subject'];

@@ -29,7 +29,7 @@
                 'fname' => $this->input->post('fname'),
                 'lname' => $this->input->post('lname'),
                 'email' => $this->input->post('email'),
-                'user_type' => 'employee',
+                'user_type' => 2,
                 'password' => $enc_password
             );
             
@@ -62,7 +62,7 @@
          * Query for the employee details view
          */
         public function employee_query(){
-            $this->db->select("user_id AS id, concat_ws(' ',fname,lname) AS name, email, department.name AS department");
+            $this->db->select("user_id AS id, concat_ws(' ',fname,lname) AS name, email, users.status AS status, department.name AS department");
             $this->db->from('users');
             $this->db->join('employee','users.user_id = employee.employee_id','inner');
             $this->db->join('department','employee.department_id = department.id','inner');
@@ -72,7 +72,7 @@
          * Get all employee details
          */
         public function get_employees(){
-            $order_column = array(null,"name","email",null,null);
+            $order_column = array(null,"name","email",null,null,null);
             
             $this->employee_query();
 
@@ -150,11 +150,34 @@
         }
 
         /**
-         * Deletes the records of a employee
+         * Suspends employee account
          */
-        public function delete_employee($emp_id){
+        public function suspend_employee($emp_id){
+            $data = array(
+                'status' => 0
+            );
             $this->db->where('user_id',$emp_id);
-            return $this->db->delete('users');
+            return $this->db->update('users',$data);
+        }
+
+        /**
+         * Unsuspends  employee account
+         */
+        public function unsuspend_employee($emp_id){
+            $data = array(
+                'status' => 1
+            );
+            $this->db->where('user_id',$emp_id);
+            return $this->db->update('users',$data);
+        }
+
+        /**
+         * Deletes the last entered record of employee to the users table when email fails to send
+         */
+        public function delete_latest_emp(){
+            $sql = 'DELETE FROM users WHERE date_reg IN 
+            (SELECT MAX(date_reg) FROM (SELECT date_reg FROM users WHERE user_type = 2) x)';
+            return $this->db->query($sql);
         }
 
         /**

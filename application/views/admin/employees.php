@@ -38,13 +38,14 @@
                 <div class="block-content tab-content overflow-hidden">
                     <!-- View employees tab -->
                     <div class="tab-pane fade show active table-responsive" id="btabs-view-employees" role="tabpanel">
-                        <table class="w-100 table table-hover table-striped js-dataTable-employee" data-source="<?= base_url('admin/get_employees'); ?>" data-delete-target="<?= base_url('admin/delete_employee'); ?>">
+                        <table class="w-100 table table-hover table-striped js-dataTable-employee" data-source="<?= base_url('admin/get_employees'); ?>" data-suspend-target="<?= base_url('admin/suspend_employee'); ?>" data-unsuspend-target="<?= base_url('admin/unsuspend_employee'); ?>">
                             <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Department</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
