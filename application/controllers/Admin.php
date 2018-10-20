@@ -12,13 +12,20 @@
          * The index view
          */
         public function index(){
+            $data = array(
+                'customers' => array(
+                    'count' => $this->customer_model->stats()
+                ),
+                'employees' => array(
+                    'count' => $this->employee_model->stats()
+                )
+            );
+
             $this->load->view('templates/header');
             $this->load->view('admin/sidebar');
-            $this->load->view('admin/index');
+            $this->load->view('admin/index',$data);
             $this->load->view('templates/footer');
         }
-        
-
 
         /**
          * Loads the employees page
