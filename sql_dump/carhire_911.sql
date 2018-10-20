@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 25, 2018 at 07:22 AM
--- Server version: 10.2.17-MariaDB
--- PHP Version: 7.2.10
+-- Generation Time: Oct 20, 2018 at 09:36 PM
+-- Server version: 10.2.18-MariaDB
+-- PHP Version: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -59,9 +59,11 @@ CREATE TABLE `department` (
 --
 
 INSERT INTO `department` (`id`, `name`) VALUES
-(1, 'Sales'),
+(0, 'unset'),
 (2, 'Accounts'),
-(3, 'Inventory');
+(3, 'Inventory'),
+(4, 'Marketing'),
+(23, 'Sales');
 
 -- --------------------------------------------------------
 
@@ -71,21 +73,20 @@ INSERT INTO `department` (`id`, `name`) VALUES
 
 CREATE TABLE `employee` (
   `employee_id` int(11) NOT NULL,
-  `department_id` int(11) NOT NULL,
-  `logged_once` int(1) NOT NULL DEFAULT 0
+  `department_id` int(11) NOT NULL DEFAULT 0,
+  `logged_once` int(1) NOT NULL DEFAULT 0,
+  `termination_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`employee_id`, `department_id`, `logged_once`) VALUES
-(3, 2, 0),
-(4, 1, 0),
-(5, 2, 0),
-(6, 1, 0),
-(7, 2, 0),
-(14, 3, 0);
+INSERT INTO `employee` (`employee_id`, `department_id`, `logged_once`, `termination_date`) VALUES
+(32, 23, 0, NULL),
+(35, 23, 0, NULL),
+(36, 4, 0, NULL),
+(37, 23, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -160,21 +161,26 @@ CREATE TABLE `users` (
   `lname` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `user_type` varchar(255) NOT NULL,
-  `date_reg` timestamp NOT NULL DEFAULT current_timestamp()
+  `date_reg` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` int(11) NOT NULL DEFAULT 1,
+  `user_type` int(11) DEFAULT NULL,
+  `is_logged` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `fname`, `lname`, `email`, `password`, `user_type`, `date_reg`) VALUES
-(3, 'Janey', 'Rogers', 'janey.rogers@gmail.com', '$2y$10$kL.QHD2AeNewKZdtdMFdqOPHiPuNBeAgY1bJ43LNMQPGmBnqnyx.K', 'employee', '2018-09-29 11:23:49'),
-(4, 'Ng\'ang\'alito', 'Njunguna', 'conman@gmail.com', '$2y$10$y4k1vBgWwzKJJ0QxbXozGuM.d6G1.v98ii7pafaYGIf.XhVeHZ0SO', 'employee', '2018-09-29 11:26:15'),
-(5, 'Dean', 'Lewis', 'dean.lewis@gmail.com', '$2y$10$MD97qkycavXctgeJ8xUHfe5eWBPC4ju91QyfCnhdusT3nHZpqnDtu', 'employee', '2018-09-29 13:09:45'),
-(6, 'David', 'Jones', 'djone@gmail.com', '$2y$10$UKaJxMZ/Xbn1/rlDaOW8EO3HkrjcXxlCNkcqCtG1XN7lI/400K9iC', 'employee', '2018-09-29 14:39:22'),
-(7, 'Montreal ', 'Canada', 'cancan@gmail.com', '$2y$10$zbRBvkB2n1A5GsuGjJgBb.PHeWV87QeMKYFdzmpsSunJHEa0NWeva', 'employee', '2018-09-29 14:41:36'),
-(14, 'James', 'Thurber', 'jaymo@gmail.com', '$2y$10$I32RI8CH4AswwvBhAhz8ge.xFPEeN3S5mAGxftLTHivlvVYBSS5Hi', 'employee', '2018-09-29 20:16:30');
+INSERT INTO `users` (`user_id`, `fname`, `lname`, `email`, `password`, `date_reg`, `status`, `user_type`, `is_logged`) VALUES
+(23, 'Test', 'User', 'test@gmail.com', '$2y$10$xLnLrSqpV/a/bv4gY0hxeODgfelb9nBp3LyY6UR3HKD/rpDAQp6Zm', '2018-10-18 09:11:29', 1, 1, 0),
+(24, 'test', 'user2', 'testing@gmail.com', '$2y$10$/i590EEiUNKxl405/bxYBu37Y2COtSpi7kA/QzmUVEUndftYO9rBa', '2018-10-18 09:11:44', 1, 1, 0),
+(25, 'test', 'user2', 'testing@gmail.com', '$2y$10$W7kTQK.aqPoYkAIrF8NJzexDHWuKp/rQD.9wMVzK7qmdN475pWsu.', '2018-10-18 09:11:50', 1, 2, 0),
+(26, 'Test', 'User2', 'testing2@gmail.com', '$2y$10$v/R4M2xaLQzKikLvnFQG.OqVZ0cR/aSlJ9KU5JRwWLOxCWfLpxP9m', '2018-10-18 09:14:24', 1, 2, 0),
+(27, 'Test', 'User3', 'testing3@gmail.com', '$2y$10$dYIPhGgake/nboFQAAfk4uxA5CIX/SNgvmsTgInZtJ6suWA0jKuVK', '2018-10-18 09:14:41', 1, 1, 0),
+(32, 'Vance ', 'Joy', 'vance@gmail.com', '$2y$10$BDelRFdbcxLDXOvcoSZocuf85F2fSte65/k67BpSU/Ft1n/nzluMm', '2018-10-19 08:50:21', 1, 2, 0),
+(35, 'Stephen', 'Wanyee', 'stephen.wanyee@strathmore.edu', '$2y$10$Q9gxIy8cBgz5qLZE4gXj6e3abWE6ofyRBceTl/ZB1ieDLhsIl5056', '2018-10-19 09:01:37', 1, 2, 0),
+(36, 'Venessa', 'Chege', 'venessa.chege@strathmore.edu', '$2y$10$Q/dDhrkXyvagFha7rO1Teufc2qGAeNUkoFvjiy/VVp8keeXJQtB9q', '2018-10-19 12:43:37', 1, 2, 0),
+(37, 'Johnny', 'Test', 'johnnyboy@gmail.com', '$2y$10$.NDlof8Z6fie0ZmTCM9uwegUQ0l4KmmEzB31lOcMylbJpKJzDzUY6', '2018-10-20 18:04:43', 1, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -186,6 +192,26 @@ CREATE TABLE `user_reservation_bridge` (
   `user_id` int(11) NOT NULL,
   `res_no` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_type`
+--
+
+CREATE TABLE `user_type` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_type`
+--
+
+INSERT INTO `user_type` (`id`, `name`) VALUES
+(1, 'customer'),
+(2, 'employee'),
+(3, 'admin');
 
 --
 -- Indexes for dumped tables
@@ -208,7 +234,7 @@ ALTER TABLE `department`
 --
 ALTER TABLE `employee`
   ADD UNIQUE KEY `employee_id` (`employee_id`),
-  ADD KEY `department_id` (`department_id`);
+  ADD KEY `department_id` (`department_id`) USING BTREE;
 
 --
 -- Indexes for table `locations`
@@ -244,7 +270,8 @@ ALTER TABLE `reviews`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD KEY `user_type` (`user_type`);
 
 --
 -- Indexes for table `user_reservation_bridge`
@@ -254,6 +281,12 @@ ALTER TABLE `user_reservation_bridge`
   ADD KEY `car_id` (`res_no`);
 
 --
+-- Indexes for table `user_type`
+--
+ALTER TABLE `user_type`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -261,7 +294,7 @@ ALTER TABLE `user_reservation_bridge`
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -269,8 +302,17 @@ ALTER TABLE `department`
 ALTER TABLE `reviews`
   MODIFY `review_no` int(11) NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `users`
+--
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT for table `user_type`
+--
+ALTER TABLE `user_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -287,7 +329,7 @@ ALTER TABLE `users`
 --
 ALTER TABLE `employee`
   ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`);
+  ADD CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `rental_history`
@@ -308,6 +350,12 @@ ALTER TABLE `reservations`
 --
 ALTER TABLE `reviews`
   ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_id`);
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`user_type`) REFERENCES `user_type` (`id`);
 
 --
 -- Constraints for table `user_reservation_bridge`
