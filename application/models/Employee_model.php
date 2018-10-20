@@ -187,6 +187,15 @@
             $result = $this->db->get('department');
             return $result->result_array();
         }
+
+        /**
+         * Statistics 
+         */
+        public function stats(){
+            //Gets number of employees
+            $this->db->where('user_type',2);
+            return $this->db->count_all_results('users');
+        }
         
 
     }
