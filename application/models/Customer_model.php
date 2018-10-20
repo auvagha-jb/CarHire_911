@@ -73,4 +73,13 @@
             $this->db->where('user_id',$user_id);
             return $this->db->update('users',$data);
         }
+
+        /**
+         * Statistics 
+         */
+        public function stats(){
+            //Gets number of customers
+            $this->db->where('user_type',1);
+            return $this->db->count_all_results('users');
+        }
     }

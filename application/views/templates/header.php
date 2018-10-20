@@ -7,7 +7,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
-        <title>CAR HIRE</title>
+        <title>CAR DOOR</title>
 
         <meta name="author" content="Stephen Wanyee">
         <meta name="author" content="Jerry Auvagha">
