@@ -55,6 +55,9 @@
          * Deletes department
          */
         public function delete_department($dept_id){
+            $this->db->where('department_id',$dept_id);
+            $this->db->update('employee',array('department_id'=> 0));
+            
             $this->db->where( 'id',$dept_id);
             return $this->db->delete('department');
         }

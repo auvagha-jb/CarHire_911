@@ -71,34 +71,54 @@
             $inserted =  $this->employee_model->add_employee($enc_password);
 
             if($inserted){
+                $data = array(
+                    'name' => $this->input->post('fname').' '.$this->input->post('lname'),
+                    'username' => $this->input->post('username'),
+                    'password' => $gen_password,
+                );
+                $body = '
+                <p>Dear '.$data['name'].',</p>
+                <p>You have been registered to the Car Door Company as an employee</p>
+                <p>These are your credentials: <br>
+                <strong>Username: </strong> '.$this->input->post('email').'<br>
+                <strong>Passwordd: </strong>'.$data['password'].'</p>
+                <p>You will be prompted to change your password on first login.</p>
+                <a href="'.base_url().'">Click here to login</a> 
+                
+                ';
+                $settings = array(
+                    'to' => $this->input->post('email'),
+                    'subject' => 'EMPLOYEE REGISTRATION',
+                    'body' => $body
+                );
+    
+                // Send email to user
+                $sent = send_email($settings);
 
+                if($sent){
+                    $response['res'] = array(
+                        'icon' => "fa fa-check",
+                        "type" => "success",
+                        "message" => "Record inserted successfully. Registration email sent. "
+                    );
+                }else {
+                    $this->employee_model->delete_latest_emp();
+                    $response['res'] = array(
+                        'icon' => "fa fa-warning",
+                        "type" => "warning",
+                        "message" => "Could not finish registration. Unable to sent registration email. Check your internet connection and try again"
+                    );
+                }
+
+                
+            }else{
+                $response['res'] = array(
+                    'icon' => "fa fa-warning",
+                    "type" => "warning",
+                    "message" => "Could not finish registration. Check your server connection"
+                );
             }
-
-            $data = array(
-                'name' => $this->input->post('first_name').' '.$this->input->post('last_name'),
-                'username' => $this->input->post('username'),
-                'password' => $gen_password,
-                'role' => $this->input->post('role')
-            );
-            $body = '
-            <p>Dear '.$data['name'].',</p>
-            <p>You have been registered to the Examination Scheduler as a/an '.$data['role'].'.</p>
-            <p>These are your credentials: <br>
-            <strong>Username: </strong> '.$data['username'].'<br>
-            <strong>Passwordd: </strong>'.$data['password'].'</p>
-            <p>You will be prompted to change your password on first login.</p>
-            <a href="'.base_url().'">Click here to login</a> 
-            
-            ';
-            $settings = array(
-                'to' => $this->input->post('email'),
-                'subject' => 'ACCOUNT REGISTRATION',
-                'body' => $body
-            );
-
-            // Send email to user
-            $sent = send_email($settings);
-
+            echo json_encode($response);
         }
 
         /**
@@ -111,20 +131,64 @@
             $data = [];
 
             foreach($fetch_data['result'] as $row){
-                //Actions column
-                $actions = '<div class="btn-group" data-emp-id="'.$row->id.'">
-                    <button type="button" class="btn btn-sm btn-alt-info" data-toggle="tooltip" title="Edit">
-                        <i class="fa fa-pencil"></i>
-                    </button>
-                    <button type="button" class="btn btn-sm btn-alt-danger" data-toggle="tooltip" title="Delete">
-                        <i class="fa fa-times"></i>
-                    </button>
-                </div>';
+                $actions; $status;
+                switch ($row->status){
+                    case 0:
+                    {
+                        $status = "<button disabled class='btn btn-sm btn-alt-warning'>Suspended</button>";
+                        $actions = '<div class="btn-group" data-emp-id="'.$row->id.'">
+                            <button type="button" class="btn btn-sm btn-alt-info" data-toggle="tooltip" title="Edit">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-alt-warning" data-toggle="tooltip" title="Unsuspend account">
+                                <i class="fa fa-unlock"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-alt-danger" data-toggle="tooltip" title="Terminate employement">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>';
+                        break;
+                    }
+                    case 1:
+                    {
+                        $status = "<button disabled class='btn btn-sm btn-alt-success'>Active</button>";
+                        $actions = '<div class="btn-group" data-emp-id="'.$row->id.'">
+                            <button type="button" class="btn btn-sm btn-alt-info" data-toggle="tooltip" title="Edit">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-alt-warning" data-toggle="tooltip" title="Suspend account">
+                                <i class="fa fa-lock"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-alt-danger" data-toggle="tooltip" title="Terminate employement">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>';
+                        break;
+                    }
+                    case 2:
+                    {
+                        $status = "<button disabled class='btn btn-sm btn-alt-danger'>Terminated</button>";
+                        $actions = '<div class="btn-group" data-emp-id="'.$row->id.'">
+                            <button disabled type="button" class="btn btn-sm btn-alt-info" data-toggle="tooltip" title="Edit">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                            <button disabled type="button" class="btn btn-sm btn-alt-warning" data-toggle="tooltip" title="Suspend account">
+                                <i class="fa fa-lock"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-alt-danger" data-toggle="tooltip" title="Reinstate account">
+                                <i class="fa fa-refresh"></i>
+                            </button>
+                        </div>';
+                        break;
+                    }
+                    default: break;
+                }
                 $data[] = array(
                     $row->id,
                     $row->name,
                     $row->email,
                     $row->department,
+                    $status,
                     $actions
                 );
             }
@@ -173,10 +237,17 @@
         }
 
         /**
-         * Delete employee
+         * Suspend employee
          */
-        public function delete_employee(){
-            echo json_encode($this->employee_model->delete_employee($this->input->post('emp_id')));
+        public function suspend_employee(){
+            echo json_encode($this->employee_model->suspend_employee($this->input->post('emp_id')));
+        }
+
+        /**
+         * Unsuspend employee
+         */
+        public function unsuspend_employee(){
+            echo json_encode($this->employee_model->unsuspend_employee($this->input->post('emp_id')));
         }
 
         /**
@@ -197,17 +268,19 @@
             $depts = $this->department_model->get_departments();
             $response = "";
             foreach ($depts as $dept) {
-                $response .= '<li class="list-group-item" data-dept-id="'.$dept["id"].'" data-dept-name="'.$dept["name"].'" data-delete-target="'.base_url("admin/delete_department/".$dept["id"]).'">
-                                <span class="dept-name">'.$dept["name"].'</span>
-                                <div class="btn-group float-right">
-                                    <button type="button" class="btn btn-sm btn-alt-info edit-dept" data-toggle="tooltip" title="Edit">
-                                        <i class="fa fa-pencil"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-alt-danger" data-toggle="tooltip" title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </div>
-                            </li>';                
+                if($dept["id"] != 0){
+                    $response .= '<li class="list-group-item" data-dept-id="'.$dept["id"].'" data-dept-name="'.$dept["name"].'" data-delete-target="'.base_url("admin/delete_department/".$dept["id"]).'">
+                                    <span class="dept-name">'.$dept["name"].'</span>
+                                    <div class="btn-group float-right">
+                                        <button type="button" class="btn btn-sm btn-alt-info edit-dept" data-toggle="tooltip" title="Edit">
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-alt-danger" data-toggle="tooltip" title="Delete">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </div>
+                                </li>';
+                }
             }
 
             echo $response;
@@ -291,18 +364,38 @@
             $data = [];
 
             foreach($fetch_data['result'] as $row){
-                //Actions column
-                $actions = '<div class="btn-group" data-emp-id="'.$row->id.'">
-                    <button type="button" class="btn btn-sm btn-alt-danger" data-toggle="tooltip" title="Suspend account">
-                        <i class="fa fa-lock"></i>
-                    </button>
-                </div>';
+                $actions; $status;
+                switch ($row->status){
+                    case 0:
+                    {
+                        $status = "<button disabled class='btn btn-sm btn-alt-warning'>Suspended</button>";
+                        $actions = '<div class="btn-group" data-user-id="'.$row->id.'">
+                            <button type="button" class="btn btn-sm btn-alt-warning" data-toggle="tooltip" title="Unsuspend account">
+                                <i class="fa fa-unlock"></i>
+                            </button>
+        
+                        </div>';
+                        break;
+                    }
+                    case 1:
+                    {
+                        $status = "<button disabled class='btn btn-sm btn-alt-success'>Active</button>";
+                        $actions = '<div class="btn-group" data-user-id="'.$row->id.'">
+                            <button type="button" class="btn btn-sm btn-alt-warning" data-toggle="tooltip" title="Suspend account">
+                                <i class="fa fa-lock"></i>
+                            </button>
+                        </div>';
+                        break;
+                    }
+                    default: break;
+                }
+
                 $data[] = array(
                     $row->id,
                     $row->name,
                     $row->email,
                     $row->date_reg,
-                    "<button class='btn btn-sm btn-alt-success'>Active</button>",
+                    $status,
                     $actions
                 );
             }
@@ -318,9 +411,9 @@
         }
 
         /**
-         * Suspend customer call handler
+         * Suspend/unsuspend customer call handler
          */
         public function suspend_customer(){
-
+            echo json_encode($this->customer_model->suspend_customer($this->input->post('user_id'),$this->input->post('action')));
         }
     }

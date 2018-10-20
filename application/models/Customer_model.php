@@ -5,9 +5,9 @@
          * Query for the customer details view
          */
         public function customer_query(){
-            $this->db->select("user_id AS id, concat_ws(' ',fname,lname) AS name, email, date_reg");
+            $this->db->select("user_id AS id, concat_ws(' ',fname,lname) AS name, email, date_reg,status");
             $this->db->from('users');
-            $this->db->where('user_type','customer');
+            $this->db->where('user_type',1);
         }
 
         /**
@@ -37,7 +37,7 @@
                 $this->db->limit($_POST['length'],$_POST['start']);
             }
             
-            $this->db->where('user_type','customer');
+            $this->db->where('user_type',1);
             $query = $this->db->get();
 
             return array(
@@ -60,7 +60,17 @@
         /**
          * Suspend customer account customer
          */
-        public function suspend_customer(){
-
+        public function suspend_customer($user_id,$action){
+            if($action == "suspend"){
+                $data = array(
+                    'status' => 0
+                );
+            }else if($action == "unsuspend"){
+                $data = array(
+                    'status' => 1
+                );
+            }
+            $this->db->where('user_id',$user_id);
+            return $this->db->update('users',$data);
         }
     }
