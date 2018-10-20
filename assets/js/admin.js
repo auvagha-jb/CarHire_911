@@ -333,32 +333,6 @@ var employeesPage = function (){
     };
 
     /**
-     * Fill department select dropdown
-     */
-    (function getDepartments(){
-        var dropdown = $('select[name="department"]');
-        var source = $(dropdown).data('source');
-        $.ajax({
-            url: source,
-            type: "POST",
-            dataType: "json",
-            success: (data) => {
-                data.forEach(element => {
-                    var option = '<option value="'+element["id"]+'">'+element["name"]+'</option>'
-                    $(dropdown).append(option); 
-                });
-                            
-            },
-            error: (jqXHR, textStatus) => {
-                var icon = "fa fa-warning";
-                notify(icon,"danger","Could not fetch departments. Check server connection");
-                console.log(textStatus);
-                
-            }
-        });
-    })();
-
-    /**
      * Form add employee
     */
     var initValidationAddEmployee = function(){
