@@ -33,7 +33,7 @@
     <li><i class="fa fa-mobile"></i> +254 725 127 193</li>
     <li><i class="fa fa-envelope"></i>steekam@gmail.com</li>
     </ul>
-    <a href="https://goo.gl/maps/b5mt45MCaPB2" class="map-show" target="_blank">Show Location</a>
+    <a href="https://goo.gl/maps/nBsrro1yE822" class="map-show" target="_blank">Show Location</a>
     </div>
     </div>
     </div>
@@ -49,7 +49,7 @@
     <div class="row">
     <div class="col-lg-12 text-center">
     <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="far fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+    Copyright &copy;<script>document.write(new Date().getFullYear());</script>
     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
     </div>
     </div>
@@ -99,6 +99,6 @@
     <!--=== Slicknav Min Js ===-->
     <script src="<?= base_url("assets/js/plugins/slicknav.min.js"); ?>"></script>
     <!--=== Main Js ===-->
-    <script src="<?= base_url("assets/js/main.js"); ?>"></script>
+    <script src="<?= base_url("assets/js/customer_main.js"); ?>"></script>
     </body>
     </html>

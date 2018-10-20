@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--=== Favicon ===-->
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="<?= base_url('favicon.ico'); ?>" type="image/x-icon" />
     
     <title>Car Rental Service</title>
     

@@ -9,18 +9,13 @@ class Users extends CI_Model{
         $email = $this->input->post('email');
         $password = $this->input->post('password');
         $pw_hash = password_hash($password, PASSWORD_BCRYPT);
-        $user_type = "customer";
-        
-        date_default_timezone_set('Africa/Nairobi');
-        $date_reg = date('Y-m-d H:i:s');
         
         $data = array(
             'fname' => $fname,
             'lname' => $lname,
             'email' => $email,
             'password' => $pw_hash,
-            'user_type' => $user_type,
-            'date_reg' => $date_reg,
+            'user_type' => 1,
         );
         
         
@@ -65,6 +60,7 @@ class Users extends CI_Model{
                 $data = "";
                 
                 //set session variables
+                $_SESSION['user_id'] = $row->user_id;
                 $_SESSION['email'] = $email;
                 $_SESSION['fname'] = $row->fname; 
                 
