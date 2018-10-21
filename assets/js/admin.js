@@ -332,45 +332,6 @@ var employeesPage = function (){
         });
     };
 
-    /**
-     * Deleting of employee
-     */
-    var initDeleteEmployee = function(){
-        $(document).on('click','td button[title="Delete"]',function(){
-            var emp_id = $(this).parent().data('emp-id');
-            var delete_target = $('.js-dataTable-employee').data('delete-target');
-            
-            $.ajax({
-                url: delete_target,
-                type: "POST",
-                data: {emp_id: emp_id},
-                dataType: "json",
-                success:(data) =>{
-                    var icon,message,type;
-                    if(data){
-                        icon = "fa fa-check";
-                        type="success";
-                        message = "Records deleted successfully";
-                    }else{
-                        icon = "fa fa-warning";
-                        type="danger";
-                        message = "Error in deletion. Try again later";
-                    }
-                    notify(icon,type,message);
-                    $('#refresh-emp-table').trigger('click');
-
-                },
-                error: () => {
-                    var icon = "fa fa-warning";
-                    var message = "Error occurred. Please check server connection";
-                    notify(icon,"danger",message);
-                }
-
-            });
-            
-        });
-    };
-
     return {
         init: function() {
             setActiveNav();
