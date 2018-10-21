@@ -45,9 +45,15 @@ function showCards($query){
     }
     
     function showNone(){
-        $data = '<div class="lead" style="text-align:center; font-size;150%; color: white;">Sorry, no '.$_SESSION['category'].' is available at the moment. Try another category or brand</div>';   
+        $data = "";
+        if(isset($_SESSION['category'])){
+           $data = '<div class="lead" style="text-align:center; font-size;150%; color: white;">Sorry, no '.$_SESSION['category'].' is available at the moment. Try another category or brand</div>';
+           displayForm();
+       }else{
+           $data = '<div class="lead" style="text-align:center; font-size;150%; color: white;">Sorry, no cars are available at the moment.</div>';
+       }    
         echo $data;
-       displayForm();
+       
     }
     
 ?>

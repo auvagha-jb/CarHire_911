@@ -2,7 +2,7 @@
 
 class Cars_model extends CI_Model{
     
-    function getCars(){
+    function specificSearch(){
         //The form data
         $car_chosen = $this->input->post('car-chosen');
         
@@ -12,6 +12,14 @@ class Cars_model extends CI_Model{
         $query = $this->db->query($sql,$param);
         
         $_SESSION['category'] = $car_chosen;
+        return $query;
+    }
+    
+    function generalSearch(){
+        unset($_SESSION['category']);
+        $sql = "SELECT * FROM cars WHERE status = 'available' ORDER BY category";
+        $query = $this->db->query($sql);
+    
         return $query;
     }
 

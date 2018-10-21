@@ -47,7 +47,16 @@ class Customer extends CI_Controller{
     
     function search(){
         $this->load->model('cars_model');
-        $data['query'] = $this->cars_model->getCars();
+        $data['query'] = $this->cars_model->specificSearch();
+        
+        $this->load->view('templates/header');
+        $this->load->view('search_results',$data);
+        $this->load->view('templates/footer');
+    }
+    
+    function view(){
+        $this->load->model('cars_model');
+        $data['query'] = $this->cars_model->generalSearch();
         
         $this->load->view('templates/header');
         $this->load->view('search_results',$data);
@@ -57,8 +66,42 @@ class Customer extends CI_Controller{
     function book(){
         $this->load->view('templates/header');
         $this->load->view('book_car');
-        $this->load->view('templates/footer');
-        
+        $this->load->view('templates/footer'); 
     }
     
+    function contact_us(){
+        $this->load->view('templates/header');
+        $this->load->view('contact_us');
+        $this->load->view('templates/footer');
+    }
+    
+    function send_email(){
+        $this->load->model('users');
+        $this->users->send_email();
+    }
+    
+    function mail_success(){
+        $this->load->view('templates/header');
+        $this->load->view('messages/mail_success');
+        $this->load->view('templates/footer');
+    }
+    
+    function mail_failure(){
+        $this->load->view('templates/header');
+        $this->load->view('messages/mail_failure');
+        $this->load->view('templates/footer');
+    }
+    
+    function getPrice(){
+        $this->load->model('book');
+        $this->book->getPrice();
+    }
+    
+    function test_2(){
+//        $this->load->view('templates/header');
+//        $this->load->view('booking form');
+//        $this->load->view('templates/footer');
+       $this->load->model('users');
+        $this->users->redirect();
+    }
 }

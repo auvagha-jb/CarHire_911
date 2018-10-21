@@ -2,6 +2,10 @@
 
 class Users extends CI_Model{
     
+    function __construct(){
+        parent::__construct();
+    }
+    
     function add_customer(){   
         //Form data
         $fname = $this->input->post('fname');
@@ -22,7 +26,6 @@ class Users extends CI_Model{
             'user_type' => $user_type,
             'date_reg' => $date_reg,
         );
-        
         
         $this->db->insert('users', $data);
         
@@ -86,4 +89,39 @@ class Users extends CI_Model{
         header("location: ".$home);
     }
     
+    function send_email(){
+        //Form data
+        $name = $this->input->post('name');
+        $from = $this->input->post('from');
+        $to = "jerry.auvagha@gmail.com";
+        $subject = $this->input->post('subject');
+        $message = $this->input->post('message');
+        
+        $this->load->library("phpmailer_library");
+        $mail = $this->phpmailer_library->load();
+        
+        $mail ->IsSmtp(); 
+        $mail ->SMTPDebug = 0; //To enable or disable debug
+        $mail ->SMTPAuth = true; //Gmail requires authentication
+        $mail ->SMTPSecure = 'ssl'; 
+        $mail ->Host = "smtp.gmail.com"; //SMTP host
+        $mail ->Port = 465; // Port No. or 587 id the former doesn't work
+        $mail ->IsHTML(true); //If HTML format set true 
+        $mail ->Username = $from;
+        $mail ->Password = "Benja@2017!99#";
+        $mail ->SetFrom($from,$name);
+        $mail ->Subject = $subject;
+        $mail ->Body = $message;
+        $mail ->AddAddress($to);
+
+        if(!$mail->Send()){
+            redirect("customer/mail_failure");
+        }
+        else{
+            $_SESSION['sender_name'] = $name;
+            redirect("customer/mail_success");
+        }
+    }
+    
+   
 }

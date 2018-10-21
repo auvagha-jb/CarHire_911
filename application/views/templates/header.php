@@ -13,6 +13,7 @@
     
     <!--=== Bootstrap CSS ===-->
     <link rel="stylesheet" href="<?= base_url("assets/css/bootstrap.min.css");?>">
+    <link rel="stylesheet" href="<?= base_url("assets/css/bootstrap4.min.css");?>">
     <!--=== Slicknav CSS ===-->
     <link href="<?= base_url("assets/css/plugins/slicknav.min.css");?>" rel="stylesheet">
     <!--=== Magnific Popup CSS ===-->
@@ -118,7 +119,7 @@
                 <li class="active"><a href="<?= base_url("customer/");?>">Home</a></li>
             <!--    <li><a href="#">About</a></li>-->
             <!--    <li><a href="#">Services</a></li>-->
-                <li><a href="#">Cars</a></li>
+                <li><a href="<?= base_url("customer/view");?>">Cars</a></li>
                 <li><a href="<?= base_url("customer/contact_us");?>">Contact Us</a></li>
                 <?php toggleNav();?>
             </ul>
@@ -153,8 +154,6 @@
         }else{
            $data = '<li><a href="'.base_url("customer/login").'">Sign In</a></li>';
         }
-        
-        
         echo $data;
     }
     
