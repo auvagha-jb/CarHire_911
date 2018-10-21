@@ -43,8 +43,7 @@ class Customer extends CI_Controller{
         $this->load->model("users");
         $this->users->logout();
     }
-    
-    
+
     function search(){
         $this->load->model('cars_model');
         $data['query'] = $this->cars_model->getCars();
@@ -58,7 +57,11 @@ class Customer extends CI_Controller{
         $this->load->view('templates/header');
         $this->load->view('book_car');
         $this->load->view('templates/footer');
-        
     }
-    
+
+    function add_booking() {
+        $this->load->model('book');
+        $this->book->add_booking();
+    }
+
 }
