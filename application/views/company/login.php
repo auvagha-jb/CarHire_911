@@ -18,20 +18,22 @@
             <!-- Sign In Form -->
             <div class="row justify-content-center px-5">
                 <div class="col-sm-8 col-md-6 col-xl-4">
-                    <form class="js-validation-login" action="<?= base_url('login'); ?>" method="post">
+                    <form class="js-validation-login" action="<?= base_url('company/login'); ?>" method="post">
                         <div class="form-group row">
                             <div class="col-12">
                                 <div class="form-material floating">
-                                    <input type="email" class="form-control" id="login-email" name="login-email">
+                                    <input type="email" class="form-control" id="login-email" name="login-email" required>
                                     <label for="login-username">Email</label>
+                                    <input type="hidden" id="check_email_url" value="<?= base_url('company/check_login_email');?>">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-12">
                                 <div class="form-material floating">
-                                    <input type="password" class="form-control" id="login-password" name="login-password">
+                                    <input type="password" class="form-control" id="login-password" name="login-password" required>
                                     <label for="login-password">Password</label>
+                                    <input type="hidden" id="check_password_url" value="<?= base_url('company/check_login_password');?>">
                                 </div>
                             </div>
                         </div>

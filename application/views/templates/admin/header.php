@@ -17,7 +17,7 @@
 
         <!-- Icons -->
         <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-        <link rel="shortcut icon" href="<?= base_url('favicon.ico') ?>">
+        <link rel="shortcut icon" href="<?= base_url('favicon.ico') ?>" type="image/ico">
         <!-- END Icons -->
 
         <!-- Stylesheets -->

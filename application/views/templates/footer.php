@@ -99,6 +99,6 @@
     <!--=== Slicknav Min Js ===-->
     <script src="<?= base_url("assets/js/plugins/slicknav.min.js"); ?>"></script>
     <!--=== Main Js ===-->
-    <script src="<?= base_url("assets/js/main.js"); ?>"></script>
+    <script src="<?= base_url("assets/js/customer_main.js"); ?>"></script>
     </body>
     </html>

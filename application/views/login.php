@@ -68,7 +68,7 @@
                         $("#feedback").addClass("alert alert-danger");
                         $("#feedback").html(data.error);
                     }else{
-                        window.location.href("../customer");
+                        window.location.href = "../customer";
                     }
                     
                 },"json");

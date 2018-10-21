@@ -29,7 +29,7 @@
 
                     <!-- Logo -->
                     <div class="content-header-item">
-                        <a class="link-effect font-w700" href="<?= base_url('company/logout');?>">
+                        <a class="link-effect font-w700" href="<?= base_url('company');?>">
                             <i class="fa fa-car text-primary"></i>
                             <span class="font-size-xl text-dual-primary-dark">car</span><span class="font-size-xl text-primary">door</span>
                         </a>
@@ -55,10 +55,10 @@
                     </a>
                     <ul class="list-inline mt-10">
                         <li class="list-inline-item">
-                            <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="#">J. Smith</a>
+                            <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="#"><?= $this->session->userdata('name');?></a>
                         </li>
                         <li class="list-inline-item">
-                            <a class="link-effect text-dual-primary-dark" href="<?=base_url();?>">
+                            <a class="link-effect text-dual-primary-dark" href="<?=base_url('company/logout');?>">
                                 <i class="si si-logout"></i>
                             </a>
                         </li>

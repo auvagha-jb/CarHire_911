@@ -97,6 +97,8 @@ var mySwal =  () => {
  * Set form validatorjquery defaults
  */
 var initDefaultValidator = () => {
+    console.log("Loaded defaults");
+    
     $.validator.setDefaults({
         debug: true,
         ignore: ':hidden',

@@ -37,5 +37,21 @@
     <script src="<?= base_url('assets/js/admin.js');?>"></script>
     <script src="<?= base_url('assets/js/company.js');?>"></script>
 
+    <?php if($this->session->flashdata('error')): ?>
+        <script>
+            $(document).ready(() =>{
+                notify('fa fa-warning','warning',"<?= $this->session->flashdata('error') ?>");
+            });
+        </script>
+    <?php endif;?>
+
+    <?php if($this->session->flashdata('message')): ?>
+        <script>
+            $(document).ready(() =>{
+                notify('fa fa-flag','success',"<?= $this->session->flashdata('message') ?>");
+            });
+        </script>
+    <?php endif;?>
+
 </body>
 </html>

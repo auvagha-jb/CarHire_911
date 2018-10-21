@@ -12,6 +12,8 @@
          * The index view
          */
         public function index(){
+            is_logged_in();
+
             $data = array(
                 'customers' => array(
                     'count' => $this->customer_model->stats()
@@ -32,6 +34,8 @@
          * Loads the employees page
          */
         public function employees_index(){
+            is_logged_in();
+
             $this->load->view('templates/admin/header');
             $this->load->view('templates/admin/admin_page_header');
             $this->load->view('admin/sidebar');
@@ -43,6 +47,8 @@
          * Customers page
          */
         public function customers_index(){
+            is_logged_in();
+
             $this->load->view('templates/admin/header');
             $this->load->view('templates/admin/admin_page_header');
             $this->load->view('admin/sidebar');
@@ -54,6 +60,8 @@
          * Loads the departments page
          */
         public function departments_index(){
+            is_logged_in();
+
             $this->load->view('templates/admin/header');
             $this->load->view('templates/admin/admin_page_header');
             $this->load->view('admin/sidebar');
@@ -72,6 +80,8 @@
          * Adds employee
          */
         public function add_employee(){
+            is_logged_in();
+
             $response = array();
 
             //Encrypt password
@@ -136,6 +146,8 @@
          * Gets the employee details
          */
         public function get_employees(){
+            is_logged_in();
+
             $draw = intval($this->input->post("draw"));
 
             $fetch_data = $this->employee_model->get_employees();
@@ -218,6 +230,8 @@
          * Get details of a single employee
          */
         public function get_single_employee(){
+            is_logged_in();
+
             $data = $this->employee_model->get_single_employee($this->input->post('emp_id'));
             echo json_encode($data);
         }
@@ -233,6 +247,8 @@
          * Edit employee details
          */
         public function edit_employee(){
+            is_logged_in();
+
             $success = $this->employee_model->edit_employee();
             $response = array();
 
@@ -251,6 +267,8 @@
          * Suspend employee
          */
         public function suspend_employee(){
+            is_logged_in();
+
             echo json_encode($this->employee_model->suspend_employee($this->input->post('emp_id')));
         }
 
@@ -258,6 +276,8 @@
          * Unsuspend employee
          */
         public function unsuspend_employee(){
+            is_logged_in();
+
             echo json_encode($this->employee_model->unsuspend_employee($this->input->post('emp_id')));
         }
 
@@ -265,6 +285,8 @@
          * Fetch departments
          */
         public function fetch_departments(){
+            is_logged_in();
+
             echo json_encode($this->employee_model->fetch_departments());
         }
 
@@ -276,6 +298,8 @@
          * Handler for view departments call
          */
         public function view_departments(){
+            is_logged_in();
+
             $depts = $this->department_model->get_departments();
             $response = "";
             foreach ($depts as $dept) {
@@ -301,6 +325,8 @@
          * Validates the department name
          */
         public function check_dept_name(){
+            is_logged_in();
+
             echo json_encode( $this->department_model->check_dept_name($this->input->post('dept_name')) );
         }
 
@@ -308,6 +334,8 @@
          * Validates the department name when editing
          */
         public function check_dept_name_edit(){
+            is_logged_in();
+
             echo json_encode( $this->department_model->check_dept_name_edit($this->input->post('dept_name'), $this->input->post('dept_id')) );
         }
 
@@ -315,6 +343,8 @@
          * Handler for add department call
          */
         public function add_department(){
+            is_logged_in();
+
             if($this->department_model->add_department()){
                 $success = array(
                     "icon" => "zmdi zmdi-badge-check",
@@ -336,6 +366,8 @@
          * Handler for edit department call
          */
         public function edit_department(){
+            is_logged_in();
+
             if($this->department_model->edit_department()){
                 $success = array(
                     "icon" => "zmdi zmdi-badge-check",
@@ -357,6 +389,8 @@
          * Handler for delete department
          */
         public function delete_department($dept_id){
+            is_logged_in();
+
             echo json_encode($this->department_model->delete_department($dept_id));
         }
 
@@ -369,6 +403,8 @@
          * Get customers call handler
          */
         public function get_customers(){
+            is_logged_in();
+
             $draw = intval($this->input->post("draw"));
 
             $fetch_data = $this->customer_model->get_customers();
@@ -425,6 +461,8 @@
          * Suspend/unsuspend customer call handler
          */
         public function suspend_customer(){
+            is_logged_in();
+
             echo json_encode($this->customer_model->suspend_customer($this->input->post('user_id'),$this->input->post('action')));
         }
     }

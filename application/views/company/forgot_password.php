@@ -18,17 +18,18 @@
             <!-- Reminder Form -->
             <div class="row justify-content-center px-5">
                 <div class="col-sm-8 col-md-6 col-xl-4">
-                    <form class="js-validation-forgot" action="" method="post">
+                    <form class="js-validation-forgot" action="<?= base_url('company/forgot_password');?>" method="post">
                         <div class="form-group row">
                             <div class="col-12">
                                 <div class="form-material floating">
-                                    <input type="email" class="form-control" id="reminder-credential" name="reminder-email">
+                                    <input type="email" class="form-control" id="reminder-email" name="reminder-email">
                                     <label for="reminder-credential">Email</label>
+                                    <input type="hidden" id="check_email_url" value="<?= base_url('company/check_login_email');?>">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-block btn-hero btn-noborder btn-rounded btn-alt-primary">
+                            <button type="submit" name="reminder" class="btn btn-block btn-hero btn-noborder btn-rounded btn-alt-primary">
                                 <i class="fa fa-asterisk mr-10"></i> Password Reminder
                             </button>
                             <a class="btn btn-block btn-noborder btn-rounded btn-alt-secondary" href="<?= base_url('company');?>">
