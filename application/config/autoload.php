@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url','form','cookie','string','PHPMailer/PHPMailerAutoload','PHPMailer/email');
+$autoload['helper'] = array('url','form','cookie','string','PHPMailer/PHPMailerAutoload','PHPMailer/email','access_helper');
 
 /*
 | -------------------------------------------------------------------
@@ -132,4 +132,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('employee_model','department_model','customer_model');
+$autoload['model'] = array('employee_model','department_model','customer_model','users');

@@ -3,7 +3,7 @@
     <!-- MAIN container -->
     <main id="main-container">
     <!-- Page Content -->
-    <div class="content bg-primary-dark text-body-color-light" style="min-height: 88.6vh; overflow-y:scroll">
+    <div class="content bg-primary-dark text-body-color-light" style="min-height: 88.6vh; overflow-y:scroll;">
         <div class="row invisible container" data-toggle="appear">
             <!-- Row #1 -->
             <div class="col-6 col-xl-3">
