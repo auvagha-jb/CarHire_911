@@ -33,7 +33,9 @@
 
 
     <!-- Local scripts -->
+    <script src="<?= base_url('assets/js/core.js');?>"></script>
     <script src="<?= base_url('assets/js/admin.js');?>"></script>
+    <script src="<?= base_url('assets/js/company.js');?>"></script>
 
 </body>
 </html>

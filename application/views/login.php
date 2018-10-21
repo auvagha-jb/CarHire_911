@@ -57,21 +57,21 @@
                 
                 var email = $("#email").val();
                 var password = $("#password").val();
-                 verify_user(email,password);
+                verify_user(email,password);
             });
             
             function verify_user(email,password){
                 
                 $.post("../customer/verify_user",{email:email, password:password}, function(data){
-                    console.log("Data: "+data);
-                    if(data != ""){
+                    console.log(data);
+                    if(data.error){
                         $("#feedback").addClass("alert alert-danger");
-                        $("#feedback").html(data);
+                        $("#feedback").html(data.error);
                     }else{
                         window.location.href("../customer");
                     }
                     
-                });
+                },"json");
             }
 
         }); 

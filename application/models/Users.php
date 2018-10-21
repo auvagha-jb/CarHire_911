@@ -50,10 +50,11 @@ class Users extends CI_Model{
     function verify_user(){
         $email = $this->input->post('email');
         $password = $this->input->post('password');
-        $data = ""; //The output that will be returned
+        $res = array(); //The output that will be returned
         
         //Check whether the email address exists
         $this->db->where("email",$email);
+        $this->db->where("user_type",1);
         $query = $this->db->get("users");
         
         //If it does..
@@ -62,20 +63,17 @@ class Users extends CI_Model{
             $hash = $row->password;
             //Verify password
             if(password_verify($password, $hash)){
-                $data = "";
-                
                 //set session variables
                 $_SESSION['email'] = $email;
                 $_SESSION['fname'] = $row->fname; 
                 
             }else{
-                $data = "Incorrect password";
+                $res["error"] = "Incorrect password";
             }
-            
         }else{
-            $data = "Invalid username";
+            $res['error'] = "Invalid username";
         }
-        echo $data;
+        echo json_encode($res);
     }
     
     function logout(){

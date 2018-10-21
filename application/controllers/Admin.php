@@ -22,6 +22,7 @@
             );
 
             $this->load->view('templates/admin/header');
+            $this->load->view('templates/admin/admin_page_header');
             $this->load->view('admin/sidebar');
             $this->load->view('admin/index',$data);
             $this->load->view('templates/admin/footer');
@@ -32,6 +33,7 @@
          */
         public function employees_index(){
             $this->load->view('templates/admin/header');
+            $this->load->view('templates/admin/admin_page_header');
             $this->load->view('admin/sidebar');
             $this->load->view('admin/employees');
             $this->load->view('templates/admin/footer');
@@ -42,6 +44,7 @@
          */
         public function customers_index(){
             $this->load->view('templates/admin/header');
+            $this->load->view('templates/admin/admin_page_header');
             $this->load->view('admin/sidebar');
             $this->load->view('admin/customers');
             $this->load->view('templates/admin/footer');
@@ -52,6 +55,7 @@
          */
         public function departments_index(){
             $this->load->view('templates/admin/header');
+            $this->load->view('templates/admin/admin_page_header');
             $this->load->view('admin/sidebar');
             $this->load->view('admin/departments');
             $this->load->view('templates/admin/footer');
