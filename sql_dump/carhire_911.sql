@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 20, 2018 at 09:36 PM
+-- Generation Time: Oct 21, 2018 at 04:49 PM
 -- Server version: 10.2.18-MariaDB
 -- PHP Version: 7.2.11
 
@@ -88,10 +88,10 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`employee_id`, `department_id`, `logged_once`, `termination_date`) VALUES
-(32, 23, 0, NULL),
-(35, 23, 0, NULL),
-(36, 4, 0, NULL),
-(37, 23, 0, NULL);
+(41, 3, 0, NULL),
+(46, 3, 0, NULL),
+(47, 4, 1, NULL),
+(48, 4, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -108,6 +108,40 @@ CREATE TABLE `locations` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `password_reset`
+--
+
+CREATE TABLE `password_reset` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `reset_code` varchar(255) NOT NULL,
+  `sent_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `valid` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `password_reset`
+--
+
+INSERT INTO `password_reset` (`id`, `user_id`, `reset_code`, `sent_at`, `valid`) VALUES
+(4, 40, '5be8bd7f28070305e617451bebb1d69a501dff32', '2018-10-21 16:15:13', 1),
+(5, 40, '78a3db0cc76e4035d615935e0d6d7b75a349f386', '2018-10-21 16:40:39', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rental_history`
+--
+
+CREATE TABLE `rental_history` (
+  `res_no` int(11) NOT NULL,
+  `car_id` int(11) NOT NULL,
+  `car_condition` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reservations`
 --
 
@@ -117,17 +151,16 @@ CREATE TABLE `reservations` (
   `car_id` int(11) NOT NULL,
   `pickup_location_id` int(11) NOT NULL,
   `return_location_id` int(11) NOT NULL,
-  `pickup_date` date NOT NULL,
-  `return_date` date NOT NULL,
-  `mileage_onpick` int(11) DEFAULT NULL,
-  `mileage_onreturn` int(11) DEFAULT NULL,
+  `pickup_datetime` datetime NOT NULL,
+  `return_datetime` datetime NOT NULL,
+  `mileage_onpick` int(11) NOT NULL,
+  `mileage_onreturn` int(11) NOT NULL,
   `extra_mileage_fee` int(11) DEFAULT NULL,
   `extra_feat_fee` int(11) DEFAULT NULL,
   `tax` int(11) NOT NULL,
   `amount_due` int(11) NOT NULL,
   `amount_paid` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL,
-  `car_condition` varchar(255) DEFAULT NULL
+  `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -166,15 +199,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `fname`, `lname`, `email`, `password`, `date_reg`, `status`, `user_type`, `is_logged`) VALUES
-(23, 'Test', 'User', 'test@gmail.com', '$2y$10$xLnLrSqpV/a/bv4gY0hxeODgfelb9nBp3LyY6UR3HKD/rpDAQp6Zm', '2018-10-18 09:11:29', 1, 1, 0),
-(24, 'test', 'user2', 'testing@gmail.com', '$2y$10$/i590EEiUNKxl405/bxYBu37Y2COtSpi7kA/QzmUVEUndftYO9rBa', '2018-10-18 09:11:44', 1, 1, 0),
-(25, 'test', 'user2', 'testing@gmail.com', '$2y$10$W7kTQK.aqPoYkAIrF8NJzexDHWuKp/rQD.9wMVzK7qmdN475pWsu.', '2018-10-18 09:11:50', 1, 2, 0),
-(26, 'Test', 'User2', 'testing2@gmail.com', '$2y$10$v/R4M2xaLQzKikLvnFQG.OqVZ0cR/aSlJ9KU5JRwWLOxCWfLpxP9m', '2018-10-18 09:14:24', 1, 2, 0),
-(27, 'Test', 'User3', 'testing3@gmail.com', '$2y$10$dYIPhGgake/nboFQAAfk4uxA5CIX/SNgvmsTgInZtJ6suWA0jKuVK', '2018-10-18 09:14:41', 1, 1, 0),
-(32, 'Vance ', 'Joy', 'vance@gmail.com', '$2y$10$BDelRFdbcxLDXOvcoSZocuf85F2fSte65/k67BpSU/Ft1n/nzluMm', '2018-10-19 08:50:21', 1, 2, 0),
-(35, 'Stephen', 'Wanyee', 'stephen.wanyee@strathmore.edu', '$2y$10$Q9gxIy8cBgz5qLZE4gXj6e3abWE6ofyRBceTl/ZB1ieDLhsIl5056', '2018-10-19 09:01:37', 1, 2, 0),
-(36, 'Venessa', 'Chege', 'venessa.chege@strathmore.edu', '$2y$10$Q/dDhrkXyvagFha7rO1Teufc2qGAeNUkoFvjiy/VVp8keeXJQtB9q', '2018-10-19 12:43:37', 1, 2, 0),
-(37, 'Johnny', 'Test', 'johnnyboy@gmail.com', '$2y$10$.NDlof8Z6fie0ZmTCM9uwegUQ0l4KmmEzB31lOcMylbJpKJzDzUY6', '2018-10-20 18:04:43', 1, 2, 0);
+(40, 'Stephen', 'Wanyee', 'stephen.wanyee@strathmore.edu', '$2y$10$Gf.AplyUrd1Y0gZFFoAR6Ob4fx9RxnBV69.8m4Gf0wG5MUi1l3CaC', '2018-10-21 13:47:14', 1, 3, 0),
+(41, 'Vance', 'Joy', 'vancejoy@gamil.com', '$2y$10$i5aKiNdsX83sgZ469ZMyyeeCSTiiq1tnOHxkWJleEOJAyBlq89dF.', '2018-10-21 13:55:17', 1, 2, 0),
+(43, 'Ray', 'Charles', 'raycharles@gmail.com', '$2y$10$wCpxF.3mNrUF14que6tgve4FWwXHlLKdv607hGVuBbR8MM8ZnCneK', '2018-10-21 14:52:25', 1, 1, 0),
+(44, 'Amy', 'Winehouse', 'amywine@gmail.com', '$2y$10$vuQPtxwLf1ojQLxrkhkk0.v2mIkcXbPBF1vxLxwslMCrXJOwIvofC', '2018-10-21 14:54:33', 1, 1, 0),
+(45, 'James', 'Arthur', 'jamie@arthur.com', '$2y$10$vaOCjB06RQ8KrAaAZLAb8Otvl2vZx7LONnuiCzybtgdOyeEBsIIAi', '2018-10-21 14:55:01', 1, 1, 0),
+(46, 'James', 'Jaymo', 'james@jaymo.com', '$2y$10$YJtAINl4oe6bOrZBjFrbpODoTcyd7ofACPYMsn19Pehr0KMkXmCji', '2018-10-21 14:57:05', 1, 2, 0),
+(47, 'Healthy', 'Living', 'fattie@gmail.com', '$2y$10$uYDUAs3/tG5ybTkP8uqpm.eN8nl2Te5EfS1m5PdJzF6WmFkplPJv2', '2018-10-21 14:59:06', 1, 2, 0),
+(48, 'New ', 'Girl', 'newbie@gmail.com', '$2y$10$8b.gm7h70SOeqWkKhkvQXedS4kQYl7SUrlKoigq0kzfFqPGOKxWPi', '2018-10-21 16:41:58', 1, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -237,14 +269,28 @@ ALTER TABLE `locations`
   ADD PRIMARY KEY (`location_id`);
 
 --
+-- Indexes for table `password_reset`
+--
+ALTER TABLE `password_reset`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `rental_history`
+--
+ALTER TABLE `rental_history`
+  ADD KEY `res_no` (`res_no`),
+  ADD KEY `car_id` (`car_id`);
+
+--
 -- Indexes for table `reservations`
 --
 ALTER TABLE `reservations`
   ADD PRIMARY KEY (`res_no`),
   ADD KEY `user_id` (`user_id`),
-  ADD KEY `car_id` (`car_id`),
   ADD KEY `pickup_location_id` (`pickup_location_id`),
-  ADD KEY `return_location_id` (`return_location_id`);
+  ADD KEY `return_location_id` (`return_location_id`),
+  ADD KEY `car_id` (`car_id`);
 
 --
 -- Indexes for table `reviews`
@@ -287,7 +333,13 @@ ALTER TABLE `cars`
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `password_reset`
+--
+ALTER TABLE `password_reset`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -299,25 +351,13 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `user_type`
 --
 ALTER TABLE `user_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
@@ -329,6 +369,20 @@ ALTER TABLE `users`
 ALTER TABLE `employee`
   ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `password_reset`
+--
+ALTER TABLE `password_reset`
+  ADD CONSTRAINT `password_reset_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `rental_history`
+--
+ALTER TABLE `rental_history`
+  ADD CONSTRAINT `rental_history_ibfk_2` FOREIGN KEY (`res_no`) REFERENCES `reservations` (`res_no`),
+  ADD CONSTRAINT `rental_history_ibfk_3` FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_id`),
+  ADD CONSTRAINT `rental_history_ibfk_4` FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_id`);
 
 --
 -- Constraints for table `reservations`
