@@ -21,7 +21,7 @@ class Users extends CI_Model{
             'password' => $pw_hash,
             'user_type' => 1,
         );
-        
+        $this->setSession($data);
         $this->db->insert('users', $data);
         
         $home = base_url("customer/");
@@ -75,6 +75,12 @@ class Users extends CI_Model{
             $data = "Invalid username";
         }
         echo $data;
+    }
+    
+    function setSession($data){
+        $_SESSION['user_id'] = $data['user_id'];
+        $_SESSION['email'] = $data['email'];
+        $_SESSION['fname'] = $data['fname']; 
     }
     
     function logout(){

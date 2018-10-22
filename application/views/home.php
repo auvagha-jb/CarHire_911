@@ -116,7 +116,7 @@
     </div>
     <div class="funfact-content">
     <p><span class="counter">10000</span>+</p>
-    <h4>HAPPY CUSTOMERS</h4>
+    <h4>HAPPY CLIENTS</h4>
     </div>
     </div>
     </div>
