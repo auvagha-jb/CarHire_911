@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{angular, angular-animate, angular-route, dropzone, jquery-ui}" />
+    <file url="PROJECT" libraries="{angular, angular-animate, angular-route, dropzone, jquery-1.10.2, jquery-ui}" />
   </component>
 </project>

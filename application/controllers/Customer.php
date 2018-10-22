@@ -47,7 +47,7 @@ class Customer extends CI_Controller{
     
     function search(){
         $this->load->model('cars_model');
-        $data['query'] = $this->cars_model->specificSearch();
+        $data['query'] = $this->cars_model->getCars();
         
         $this->load->view('templates/header');
         $this->load->view('search_results',$data);
@@ -95,6 +95,7 @@ class Customer extends CI_Controller{
     function getPrice(){
         $this->load->model('book');
         $this->book->getPrice();
+        $this->load->view('templates/footer');
     }
     
 }

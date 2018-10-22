@@ -32,7 +32,7 @@
     <link href="<?= base_url("assets/css/responsive.css");?>"  rel="stylesheet">
     <!--=== Jquery-ui CSS===-->
     <link href="<?= base_url("assets/css/plugins/jquery-ui.min.css");?>"  rel="stylesheet">
-    
+
     <!--=== Jquery Min Js ===-->
     <script src="<?= base_url("assets/js/jquery-3.2.1.min.js"); ?>"></script>
     <!--=== Jquery-ui Js ===-->

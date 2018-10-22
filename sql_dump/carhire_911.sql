@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 21, 2018 at 04:21 PM
+-- Generation Time: Oct 10, 2018 at 03:48 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -46,7 +46,7 @@ CREATE TABLE `cars` (
 --
 
 INSERT INTO `cars` (`car_id`, `category`, `brand`, `model`, `colour`, `plate_no`, `base_price`, `image`, `status`, `features`) VALUES
-(1, 'Sedan', 'Mercedes Benz', 'S 550', 'black', 'KCF 990J', 9000, 'mercedes-s550.jpg\r\n', 'Available', 'Air conditioning\r\nGreat control\r\nGreat Chassis\r\n');
+(1, 'Sedan', 'Mercedes Benz', 'S 550', 'black', 'KCF 990J', 9000, 'mercedes-s550', 'Available', 'Air conditioning\r\nGreat control\r\nGreat Chassis\r\n');
 
 -- --------------------------------------------------------
 
@@ -103,20 +103,6 @@ CREATE TABLE `locations` (
   `location_name` varchar(255) NOT NULL,
   `location_fee` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `locations`
---
-
-INSERT INTO `locations` (`location_id`, `location_name`, `location_fee`) VALUES
-(1, 'Nairobi office', 0),
-(2, 'JKIA', 1500),
-(3, 'Wilson Airport', 1000),
-(4, 'Madaraka Express - Nairobi Terminus', 500),
-(5, 'Mombasa Main Office', 0),
-(6, 'Moi International Airport', 1500),
-(7, 'Bamburi Airport', 1000),
-(8, 'Madaraka Express - Mombasa Terminus', 500);
 
 -- --------------------------------------------------------
 
@@ -280,12 +266,6 @@ ALTER TABLE `department`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `locations`
---
-ALTER TABLE `locations`
-  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
@@ -312,9 +292,9 @@ ALTER TABLE `employee`
 -- Constraints for table `reservations`
 --
 ALTER TABLE `reservations`
-  ADD CONSTRAINT `reservations_ibfk_3` FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_id`),
-  ADD CONSTRAINT `reservations_ibfk_4` FOREIGN KEY (`pickup_location_id`) REFERENCES `locations` (`location_id`),
-  ADD CONSTRAINT `reservations_ibfk_5` FOREIGN KEY (`return_location_id`) REFERENCES `locations` (`location_id`);
+  ADD CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`pickup_location_id`) REFERENCES `locations` (`location_id`),
+  ADD CONSTRAINT `reservations_ibfk_2` FOREIGN KEY (`return_location_id`) REFERENCES `locations` (`location_id`),
+  ADD CONSTRAINT `reservations_ibfk_3` FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_id`);
 
 --
 -- Constraints for table `reviews`
