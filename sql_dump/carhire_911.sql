@@ -2,10 +2,10 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Oct 21, 2018 at 04:49 PM
--- Server version: 10.2.18-MariaDB
--- PHP Version: 7.2.11
+-- Host: 127.0.0.1
+-- Generation Time: Oct 23, 2018 at 09:56 AM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -46,7 +46,7 @@ CREATE TABLE `cars` (
 --
 
 INSERT INTO `cars` (`car_id`, `category`, `brand`, `model`, `colour`, `plate_no`, `base_price`, `image`, `status`, `features`) VALUES
-(1, 'Sedan', 'Mercedes Benz', 'S 550', 'black', 'KCF 990J', 9000, 'mercedes-s550', 'Available', 'Air conditioning\r\nGreat control\r\nGreat Chassis\r\n');
+(1, 'Sedan', 'Mercedes Benz', 'S 550', 'black', 'KCF 990J', 9000, 'mercedes-s550.jpg\r\n', 'available', 'Air conditioning\r\nGreat control\r\nGreat Chassis\r\n');
 
 -- --------------------------------------------------------
 
@@ -105,8 +105,6 @@ CREATE TABLE `locations` (
   `location_fee` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
 -- Table structure for table `password_reset`
 --
@@ -133,11 +131,15 @@ INSERT INTO `password_reset` (`id`, `user_id`, `reset_code`, `sent_at`, `valid`)
 -- Table structure for table `rental_history`
 --
 
-CREATE TABLE `rental_history` (
-  `res_no` int(11) NOT NULL,
-  `car_id` int(11) NOT NULL,
-  `car_condition` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `locations` (`location_id`, `location_name`, `location_fee`) VALUES
+(1, 'Nairobi office', 0),
+(2, 'JKIA', 1500),
+(3, 'Wilson Airport', 1000),
+(4, 'Madaraka Express - Nairobi Terminus', 500),
+(5, 'Mombasa Main Office', 0),
+(6, 'Moi International Airport', 1500),
+(7, 'Bamburi Airport', 1000),
+(8, 'Madaraka Express - Mombasa Terminus', 500);
 
 -- --------------------------------------------------------
 
@@ -151,16 +153,15 @@ CREATE TABLE `reservations` (
   `car_id` int(11) NOT NULL,
   `pickup_location_id` int(11) NOT NULL,
   `return_location_id` int(11) NOT NULL,
-  `pickup_datetime` datetime NOT NULL,
-  `return_datetime` datetime NOT NULL,
-  `mileage_onpick` int(11) NOT NULL,
-  `mileage_onreturn` int(11) NOT NULL,
+  `pickup_date` date NOT NULL,
+  `return_date` date NOT NULL,
+  `mileage_onpick` int(11) DEFAULT NULL,
+  `mileage_onreturn` int(11) DEFAULT NULL,
   `extra_mileage_fee` int(11) DEFAULT NULL,
   `extra_feat_fee` int(11) DEFAULT NULL,
-  `tax` int(11) NOT NULL,
   `amount_due` int(11) NOT NULL,
   `amount_paid` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL
+  `car_condition` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -265,8 +266,8 @@ ALTER TABLE `employee`
 --
 -- Indexes for table `locations`
 --
-ALTER TABLE `locations`
-  ADD PRIMARY KEY (`location_id`);
+ALTER TABLE `department`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `password_reset`
@@ -278,9 +279,15 @@ ALTER TABLE `password_reset`
 --
 -- Indexes for table `rental_history`
 --
-ALTER TABLE `rental_history`
-  ADD KEY `res_no` (`res_no`),
-  ADD KEY `car_id` (`car_id`);
+ALTER TABLE `employee`
+  ADD UNIQUE KEY `employee_id` (`employee_id`),
+  ADD KEY `department_id` (`department_id`);
+
+--
+-- Indexes for table `locations`
+--
+ALTER TABLE `locations`
+  ADD PRIMARY KEY (`location_id`);
 
 --
 -- Indexes for table `reservations`
@@ -333,6 +340,19 @@ ALTER TABLE `cars`
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `locations`
+--
+ALTER TABLE `locations`
+  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `reservations`
+--
+ALTER TABLE `reservations`
+  MODIFY `res_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
@@ -398,11 +418,13 @@ ALTER TABLE `rental_history`
 
 --
 -- Constraints for table `reservations`
---
+--#feedback-result{
+    /* margin-bottom: 10px; */
+}
 ALTER TABLE `reservations`
-  ADD CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`pickup_location_id`) REFERENCES `locations` (`location_id`),
-  ADD CONSTRAINT `reservations_ibfk_2` FOREIGN KEY (`return_location_id`) REFERENCES `locations` (`location_id`),
-  ADD CONSTRAINT `reservations_ibfk_3` FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_id`);
+  ADD CONSTRAINT `reservations_ibfk_3` FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_id`),
+  ADD CONSTRAINT `reservations_ibfk_4` FOREIGN KEY (`pickup_location_id`) REFERENCES `locations` (`location_id`),
+  ADD CONSTRAINT `reservations_ibfk_5` FOREIGN KEY (`return_location_id`) REFERENCES `locations` (`location_id`);
 
 --
 -- Constraints for table `reviews`

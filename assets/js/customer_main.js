@@ -4,7 +4,7 @@
 
     jQuery(document).ready(function ($) {
         /*---------------------------------
-        All Window Scroll Function Start
+         All Window Scroll Function Start
         --------------------------------- */
         $(window).scroll(function () {
             // Header Fix Js Here

@@ -75,12 +75,11 @@
     <div class="display-table">
     <div class="display-table-cell">
     <div class="about-content">
-<!--    <p>Welcome to our comprehensive car hire search. We search hundreds of destinations and compare thousands of car hire deals to help you find your perfect drive at a low price.</p>-->
-    
+    <p>Welcome to our comprehensive car hire search. Established in 1999, we have earned the trust of tens of thousands of customers by providing the highest pedigree of car hire services.</p>
     <p>We'll help you make your trip as cheap as possible, so you're sure to hit the road smiling. Come drive with us.</p>
     <div class="about-btn">
-    <a href="#">Book a Car</a>
-    <a href="#">Contact Us</a>
+    <a href="#slider-area">Book a Car</a>
+    <a href="<?= base_url('customer/contact_us');?>">Contact Us</a>
     </div>
     </div>
     </div>
@@ -116,7 +115,7 @@
     <i class="far fa-smile-beam"></i>
     </div>
     <div class="funfact-content">
-    <p><span class="counter">550</span>+</p>
+    <p><span class="counter">10000</span>+</p>
     <h4>HAPPY CLIENTS</h4>
     </div>
     </div>

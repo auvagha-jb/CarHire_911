@@ -2,6 +2,10 @@
 
 class Users extends CI_Model{
     
+    function __construct(){
+        parent::__construct();
+    }
+    
     function add_customer(){   
         //Form data
         $fname = $this->input->post('fname');
@@ -9,17 +13,15 @@ class Users extends CI_Model{
         $email = $this->input->post('email');
         $password = $this->input->post('password');
         $pw_hash = password_hash($password, PASSWORD_BCRYPT);
-        $user_type = 1;
         
         $data = array(
             'fname' => $fname,
             'lname' => $lname,
             'email' => $email,
             'password' => $pw_hash,
-            'user_type' => $user_type,
+            'user_type' => 1,
         );
-        
-        
+        $this->setSession($data);
         $this->db->insert('users', $data);
         
         $home = base_url("customer/");
@@ -59,17 +61,27 @@ class Users extends CI_Model{
             $hash = $row->password;
             //Verify password
             if(password_verify($password, $hash)){
+                $data = "";
+                
                 //set session variables
+                $_SESSION['user_id'] = $row->user_id;
                 $_SESSION['email'] = $email;
                 $_SESSION['fname'] = $row->fname; 
                 
             }else{
-                $res["error"] = "Incorrect password";
+                $data = "Incorrect password";
             }
+            
         }else{
-            $res['error'] = "Invalid username";
+            $data = "Invalid username";
         }
-        echo json_encode($res);
+        echo $data;
+    }
+    
+    function setSession($data){
+        $_SESSION['user_id'] = $data['user_id'];
+        $_SESSION['email'] = $data['email'];
+        $_SESSION['fname'] = $data['fname']; 
     }
     
     function logout(){
@@ -79,6 +91,42 @@ class Users extends CI_Model{
         $home = base_url("customer/");
         header("location: ".$home);
     }
+    
+    function send_email(){
+        //Form data
+        $name = $this->input->post('name');
+        $from = $this->input->post('from');
+        $to = "jerry.auvagha@gmail.com";
+        $subject = $this->input->post('subject');
+        $message = $this->input->post('message');
+        
+        $this->load->library("phpmailer_library");
+        $mail = $this->phpmailer_library->load();
+        
+        $mail ->IsSmtp(); 
+        $mail ->SMTPDebug = 0; //To enable or disable debug
+        $mail ->SMTPAuth = true; //Gmail requires authentication
+        $mail ->SMTPSecure = 'ssl'; 
+        $mail ->Host = "smtp.gmail.com"; //SMTP host
+        $mail ->Port = 465; // Port No. or 587 id the former doesn't work
+        $mail ->IsHTML(true); //If HTML format set true 
+        $mail ->Username = $from;
+        $mail ->Password = "Benja@2017!99#";
+        $mail ->SetFrom($from,$name);
+        $mail ->Subject = $subject;
+        $mail ->Body = $message;
+        $mail ->AddAddress($to);
+
+        if(!$mail->Send()){
+            redirect("customer/mail_failure");
+        }
+        else{
+            $_SESSION['sender_name'] = $name;
+            redirect("customer/mail_success");
+        }
+    }
+    
+
 
     /**
      * Call to login for company employees
