@@ -1,5 +1,5 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
@@ -64,9 +64,11 @@ CREATE TABLE `department` (
 --
 
 INSERT INTO `department` (`id`, `name`) VALUES
-(1, 'Sales'),
+(0, 'unset'),
 (2, 'Accounts'),
-(3, 'Inventory');
+(3, 'Inventory'),
+(4, 'Marketing'),
+(23, 'Sales');
 
 -- --------------------------------------------------------
 
@@ -76,21 +78,20 @@ INSERT INTO `department` (`id`, `name`) VALUES
 
 CREATE TABLE `employee` (
   `employee_id` int(11) NOT NULL,
-  `department_id` int(11) NOT NULL,
-  `logged_once` int(1) NOT NULL DEFAULT '0'
+  `department_id` int(11) NOT NULL DEFAULT 0,
+  `logged_once` int(1) NOT NULL DEFAULT 0,
+  `termination_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`employee_id`, `department_id`, `logged_once`) VALUES
-(3, 2, 0),
-(4, 1, 0),
-(5, 2, 0),
-(6, 1, 0),
-(7, 2, 0),
-(14, 3, 0);
+INSERT INTO `employee` (`employee_id`, `department_id`, `logged_once`, `termination_date`) VALUES
+(41, 3, 0, NULL),
+(46, 3, 0, NULL),
+(47, 4, 1, NULL),
+(48, 4, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -105,7 +106,29 @@ CREATE TABLE `locations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `locations`
+-- Table structure for table `password_reset`
+--
+
+CREATE TABLE `password_reset` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `reset_code` varchar(255) NOT NULL,
+  `sent_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `valid` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `password_reset`
+--
+
+INSERT INTO `password_reset` (`id`, `user_id`, `reset_code`, `sent_at`, `valid`) VALUES
+(4, 40, '5be8bd7f28070305e617451bebb1d69a501dff32', '2018-10-21 16:15:13', 1),
+(5, 40, '78a3db0cc76e4035d615935e0d6d7b75a349f386', '2018-10-21 16:40:39', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rental_history`
 --
 
 INSERT INTO `locations` (`location_id`, `location_name`, `location_fee`) VALUES
@@ -166,32 +189,25 @@ CREATE TABLE `users` (
   `lname` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `user_type` varchar(255) NOT NULL,
-  `date_reg` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date_reg` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` int(11) NOT NULL DEFAULT 1,
+  `user_type` int(11) DEFAULT NULL,
+  `is_logged` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `fname`, `lname`, `email`, `password`, `user_type`, `date_reg`) VALUES
-(3, 'Janey', 'Rogers', 'janey.rogers@gmail.com', '$2y$10$kL.QHD2AeNewKZdtdMFdqOPHiPuNBeAgY1bJ43LNMQPGmBnqnyx.K', 'employee', '2018-09-29 11:23:49'),
-(4, 'Ng\'ang\'alito', 'Njunguna', 'conman@gmail.com', '$2y$10$y4k1vBgWwzKJJ0QxbXozGuM.d6G1.v98ii7pafaYGIf.XhVeHZ0SO', 'employee', '2018-09-29 11:26:15'),
-(5, 'Dean', 'Lewis', 'dean.lewis@gmail.com', '$2y$10$MD97qkycavXctgeJ8xUHfe5eWBPC4ju91QyfCnhdusT3nHZpqnDtu', 'employee', '2018-09-29 13:09:45'),
-(6, 'David', 'Jones', 'djone@gmail.com', '$2y$10$UKaJxMZ/Xbn1/rlDaOW8EO3HkrjcXxlCNkcqCtG1XN7lI/400K9iC', 'employee', '2018-09-29 14:39:22'),
-(7, 'Montreal ', 'Canada', 'cancan@gmail.com', '$2y$10$zbRBvkB2n1A5GsuGjJgBb.PHeWV87QeMKYFdzmpsSunJHEa0NWeva', 'employee', '2018-09-29 14:41:36'),
-(14, 'James', 'Thurber', 'jaymo@gmail.com', '$2y$10$I32RI8CH4AswwvBhAhz8ge.xFPEeN3S5mAGxftLTHivlvVYBSS5Hi', 'employee', '2018-09-29 20:16:30'),
-(16, 'Mike', 'Lowrey', 'mike.lowrey@gmail.com', '$2y$10$ebi/jMfOanCHKbbB3s1tMerDGfadJKDJ9u8F5S3u5kjvlqiimAKMy', 'customer', '2018-10-03 20:12:38'),
-(17, 'Marcus ', 'Rashford', 'marcus.rashford@gmail.com', '$2y$10$I4IS2lAkFY5ZjLpASBN16ewpCIZ5DHQN82lN.dqxBsGQWYiDBmFka', 'customer', '2018-10-04 05:06:02'),
-(18, 'Fidhrosa', 'Khalifa', 'fidhrosa@gmail.com', '$2y$10$iagfbIRBjGCok4guyN/.lurxQX6HG2xcEwjTwwXTS6vJ0yX3E05za', 'customer', '2018-10-04 05:12:48'),
-(22, 'Amader', 'Tuni', 'amader.tuni@gmail.com', '$2y$10$vS1kqR..NUdwihYoESnSJO0bwTRDkwCZoVu4iBkeIgu8noq/evrz6', 'customer', '2018-10-05 15:13:57'),
-(23, 'Alex', 'Tuntuni Smith', 'alex.smith@gmail.com', '$2y$10$Yvck9fzt3YeQRIDFVaSiN.2m0hXqmq/jOJuKkzBufR6rzXLSBvnxW', 'customer', '2018-10-05 17:58:30'),
-(24, 'Jerry', 'Auvagha', 'jerry.auvagha@strathmore.edu', '$2y$10$pMokbTRAhfQoNa2B5iFnzuHmW/ru7fTVkgWaaZy24jPhC7e/cVblq', 'customer', '2018-10-06 19:43:42'),
-(26, 'Jerry', 'Auvagha', 'jerrybenjamin007@gmail.com', '$2y$10$Qs0HFtHeVTCKhY1kTsRRVeMoWyiv02RRqFDdFdjUQFtHpemk8dZES', 'customer', '2018-10-06 20:24:06'),
-(27, 'Gareth', 'Bale', 'gareth.bale@gmail.com', '$2y$10$2nU7yJc9Ahv8aPnST8SrgOWTnJeUmnyyo5y3AzMTQmWw9hsEwPy3m', 'customer', '2018-10-07 07:39:24'),
-(29, 'Amanda', 'Gosling', 'amanda.gosling@gmail.com', '$2y$10$vMPjXyapvZUAX8cdkOigGuvfZohEsPMxl6iulzoDeqPzzpttapyX.', 'customer', '2018-10-07 07:48:18'),
-(30, 'Johhny', 'Depp', 'sparrow@gmail.com', '$2y$10$0j1gqoVSt4obMxOJ0WEDdut861XG6Po/hcEucDtfVNK/M3KDaSpga', '1', '2018-10-21 20:24:09'),
-(31, 'Julie', 'Chen', 'julie.chen@thetalk.com', '$2y$10$79/DOYS2Cl0chdSUA.2/JeZZ6ByW56jpSSmUBagEshI7tSWYmZ.dq', '1', '2018-10-21 20:37:15');
+INSERT INTO `users` (`user_id`, `fname`, `lname`, `email`, `password`, `date_reg`, `status`, `user_type`, `is_logged`) VALUES
+(40, 'Stephen', 'Wanyee', 'stephen.wanyee@strathmore.edu', '$2y$10$Gf.AplyUrd1Y0gZFFoAR6Ob4fx9RxnBV69.8m4Gf0wG5MUi1l3CaC', '2018-10-21 13:47:14', 1, 3, 0),
+(41, 'Vance', 'Joy', 'vancejoy@gamil.com', '$2y$10$i5aKiNdsX83sgZ469ZMyyeeCSTiiq1tnOHxkWJleEOJAyBlq89dF.', '2018-10-21 13:55:17', 1, 2, 0),
+(43, 'Ray', 'Charles', 'raycharles@gmail.com', '$2y$10$wCpxF.3mNrUF14que6tgve4FWwXHlLKdv607hGVuBbR8MM8ZnCneK', '2018-10-21 14:52:25', 1, 1, 0),
+(44, 'Amy', 'Winehouse', 'amywine@gmail.com', '$2y$10$vuQPtxwLf1ojQLxrkhkk0.v2mIkcXbPBF1vxLxwslMCrXJOwIvofC', '2018-10-21 14:54:33', 1, 1, 0),
+(45, 'James', 'Arthur', 'jamie@arthur.com', '$2y$10$vaOCjB06RQ8KrAaAZLAb8Otvl2vZx7LONnuiCzybtgdOyeEBsIIAi', '2018-10-21 14:55:01', 1, 1, 0),
+(46, 'James', 'Jaymo', 'james@jaymo.com', '$2y$10$YJtAINl4oe6bOrZBjFrbpODoTcyd7ofACPYMsn19Pehr0KMkXmCji', '2018-10-21 14:57:05', 1, 2, 0),
+(47, 'Healthy', 'Living', 'fattie@gmail.com', '$2y$10$uYDUAs3/tG5ybTkP8uqpm.eN8nl2Te5EfS1m5PdJzF6WmFkplPJv2', '2018-10-21 14:59:06', 1, 2, 0),
+(48, 'New ', 'Girl', 'newbie@gmail.com', '$2y$10$8b.gm7h70SOeqWkKhkvQXedS4kQYl7SUrlKoigq0kzfFqPGOKxWPi', '2018-10-21 16:41:58', 1, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -203,6 +219,26 @@ CREATE TABLE `user_reservation_bridge` (
   `user_id` int(11) NOT NULL,
   `res_no` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_type`
+--
+
+CREATE TABLE `user_type` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_type`
+--
+
+INSERT INTO `user_type` (`id`, `name`) VALUES
+(1, 'customer'),
+(2, 'employee'),
+(3, 'admin');
 
 --
 -- Indexes for dumped tables
@@ -225,6 +261,26 @@ ALTER TABLE `department`
 --
 ALTER TABLE `employee`
   ADD UNIQUE KEY `employee_id` (`employee_id`),
+  ADD KEY `department_id` (`department_id`) USING BTREE;
+
+--
+-- Indexes for table `locations`
+--
+ALTER TABLE `department`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_reset`
+--
+ALTER TABLE `password_reset`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `rental_history`
+--
+ALTER TABLE `employee`
+  ADD UNIQUE KEY `employee_id` (`employee_id`),
   ADD KEY `department_id` (`department_id`);
 
 --
@@ -239,9 +295,9 @@ ALTER TABLE `locations`
 ALTER TABLE `reservations`
   ADD PRIMARY KEY (`res_no`),
   ADD KEY `user_id` (`user_id`),
-  ADD KEY `car_id` (`car_id`),
   ADD KEY `pickup_location_id` (`pickup_location_id`),
-  ADD KEY `return_location_id` (`return_location_id`);
+  ADD KEY `return_location_id` (`return_location_id`),
+  ADD KEY `car_id` (`car_id`);
 
 --
 -- Indexes for table `reviews`
@@ -254,7 +310,8 @@ ALTER TABLE `reviews`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD KEY `user_type` (`user_type`);
 
 --
 -- Indexes for table `user_reservation_bridge`
@@ -262,6 +319,12 @@ ALTER TABLE `users`
 ALTER TABLE `user_reservation_bridge`
   ADD KEY `user` (`user_id`),
   ADD KEY `car_id` (`res_no`);
+
+--
+-- Indexes for table `user_type`
+--
+ALTER TABLE `user_type`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -290,6 +353,13 @@ ALTER TABLE `locations`
 --
 ALTER TABLE `reservations`
   MODIFY `res_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `password_reset`
+--
+ALTER TABLE `password_reset`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -301,7 +371,25 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT for table `user_type`
+--
+ALTER TABLE `user_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
+-- AUTO_INCREMENT for table `user_type`
+--
+ALTER TABLE `user_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -312,11 +400,27 @@ ALTER TABLE `users`
 --
 ALTER TABLE `employee`
   ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`);
+  ADD CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `password_reset`
+--
+ALTER TABLE `password_reset`
+  ADD CONSTRAINT `password_reset_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `rental_history`
+--
+ALTER TABLE `rental_history`
+  ADD CONSTRAINT `rental_history_ibfk_2` FOREIGN KEY (`res_no`) REFERENCES `reservations` (`res_no`),
+  ADD CONSTRAINT `rental_history_ibfk_3` FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_id`),
+  ADD CONSTRAINT `rental_history_ibfk_4` FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_id`);
 
 --
 -- Constraints for table `reservations`
---
+--#feedback-result{
+    /* margin-bottom: 10px; */
+}
 ALTER TABLE `reservations`
   ADD CONSTRAINT `reservations_ibfk_3` FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_id`),
   ADD CONSTRAINT `reservations_ibfk_4` FOREIGN KEY (`pickup_location_id`) REFERENCES `locations` (`location_id`),
@@ -327,6 +431,12 @@ ALTER TABLE `reservations`
 --
 ALTER TABLE `reviews`
   ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_id`);
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`user_type`) REFERENCES `user_type` (`id`);
 
 --
 -- Constraints for table `user_reservation_bridge`

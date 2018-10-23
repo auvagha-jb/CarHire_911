@@ -241,7 +241,6 @@
             return Math.round(difference_ms/one_day); 
         }
 
-       
 
     });
 

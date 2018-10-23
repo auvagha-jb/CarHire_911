@@ -1,4 +1,4 @@
-<h3>Details about the file structure</h3> <small>By: Stephen Wanyee</small>
+<h3>Details about the file structure</h3>
 <ul>
 <li>This is the root folder of the application. All the coding of the app is done in the applications folder.(Check how CodeIgniter works)</li>
 <li>The assets folder will store any images or fonts either required by the application or uploaded by users. It will also have css files and js files</li>
