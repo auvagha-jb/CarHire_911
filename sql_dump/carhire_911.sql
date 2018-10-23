@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2018 at 03:48 PM
+-- Generation Time: Oct 23, 2018 at 09:56 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -46,7 +46,7 @@ CREATE TABLE `cars` (
 --
 
 INSERT INTO `cars` (`car_id`, `category`, `brand`, `model`, `colour`, `plate_no`, `base_price`, `image`, `status`, `features`) VALUES
-(1, 'Sedan', 'Mercedes Benz', 'S 550', 'black', 'KCF 990J', 9000, 'mercedes-s550', 'Available', 'Air conditioning\r\nGreat control\r\nGreat Chassis\r\n');
+(1, 'Sedan', 'Mercedes Benz', 'S 550', 'black', 'KCF 990J', 9000, 'mercedes-s550.jpg\r\n', 'available', 'Air conditioning\r\nGreat control\r\nGreat Chassis\r\n');
 
 -- --------------------------------------------------------
 
@@ -104,6 +104,20 @@ CREATE TABLE `locations` (
   `location_fee` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `locations`
+--
+
+INSERT INTO `locations` (`location_id`, `location_name`, `location_fee`) VALUES
+(1, 'Nairobi office', 0),
+(2, 'JKIA', 1500),
+(3, 'Wilson Airport', 1000),
+(4, 'Madaraka Express - Nairobi Terminus', 500),
+(5, 'Mombasa Main Office', 0),
+(6, 'Moi International Airport', 1500),
+(7, 'Bamburi Airport', 1000),
+(8, 'Madaraka Express - Mombasa Terminus', 500);
+
 -- --------------------------------------------------------
 
 --
@@ -122,10 +136,8 @@ CREATE TABLE `reservations` (
   `mileage_onreturn` int(11) DEFAULT NULL,
   `extra_mileage_fee` int(11) DEFAULT NULL,
   `extra_feat_fee` int(11) DEFAULT NULL,
-  `tax` int(11) NOT NULL,
   `amount_due` int(11) NOT NULL,
   `amount_paid` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL,
   `car_condition` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -177,7 +189,9 @@ INSERT INTO `users` (`user_id`, `fname`, `lname`, `email`, `password`, `user_typ
 (24, 'Jerry', 'Auvagha', 'jerry.auvagha@strathmore.edu', '$2y$10$pMokbTRAhfQoNa2B5iFnzuHmW/ru7fTVkgWaaZy24jPhC7e/cVblq', 'customer', '2018-10-06 19:43:42'),
 (26, 'Jerry', 'Auvagha', 'jerrybenjamin007@gmail.com', '$2y$10$Qs0HFtHeVTCKhY1kTsRRVeMoWyiv02RRqFDdFdjUQFtHpemk8dZES', 'customer', '2018-10-06 20:24:06'),
 (27, 'Gareth', 'Bale', 'gareth.bale@gmail.com', '$2y$10$2nU7yJc9Ahv8aPnST8SrgOWTnJeUmnyyo5y3AzMTQmWw9hsEwPy3m', 'customer', '2018-10-07 07:39:24'),
-(29, 'Amanda', 'Gosling', 'amanda.gosling@gmail.com', '$2y$10$vMPjXyapvZUAX8cdkOigGuvfZohEsPMxl6iulzoDeqPzzpttapyX.', 'customer', '2018-10-07 07:48:18');
+(29, 'Amanda', 'Gosling', 'amanda.gosling@gmail.com', '$2y$10$vMPjXyapvZUAX8cdkOigGuvfZohEsPMxl6iulzoDeqPzzpttapyX.', 'customer', '2018-10-07 07:48:18'),
+(30, 'Johhny', 'Depp', 'sparrow@gmail.com', '$2y$10$0j1gqoVSt4obMxOJ0WEDdut861XG6Po/hcEucDtfVNK/M3KDaSpga', '1', '2018-10-21 20:24:09'),
+(31, 'Julie', 'Chen', 'julie.chen@thetalk.com', '$2y$10$79/DOYS2Cl0chdSUA.2/JeZZ6ByW56jpSSmUBagEshI7tSWYmZ.dq', '1', '2018-10-21 20:37:15');
 
 -- --------------------------------------------------------
 
@@ -266,6 +280,18 @@ ALTER TABLE `department`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `locations`
+--
+ALTER TABLE `locations`
+  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `reservations`
+--
+ALTER TABLE `reservations`
+  MODIFY `res_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
@@ -275,7 +301,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- Constraints for dumped tables
@@ -292,9 +318,9 @@ ALTER TABLE `employee`
 -- Constraints for table `reservations`
 --
 ALTER TABLE `reservations`
-  ADD CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`pickup_location_id`) REFERENCES `locations` (`location_id`),
-  ADD CONSTRAINT `reservations_ibfk_2` FOREIGN KEY (`return_location_id`) REFERENCES `locations` (`location_id`),
-  ADD CONSTRAINT `reservations_ibfk_3` FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_id`);
+  ADD CONSTRAINT `reservations_ibfk_3` FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_id`),
+  ADD CONSTRAINT `reservations_ibfk_4` FOREIGN KEY (`pickup_location_id`) REFERENCES `locations` (`location_id`),
+  ADD CONSTRAINT `reservations_ibfk_5` FOREIGN KEY (`return_location_id`) REFERENCES `locations` (`location_id`);
 
 --
 -- Constraints for table `reviews`

@@ -22,5 +22,17 @@ class Cars_model extends CI_Model{
     
         return $query;
     }
+    
+    function getCarDetails(){
+        $car_id = $this->input->get('car_id');
+        
+         $sql = "SELECT * FROM cars WHERE car_id = ?";
+        $query = $this->db->query($sql,$car_id);
+        $row = $query->row();
+        ////
+        return $row;
+    }
+    
+    
 
 }
