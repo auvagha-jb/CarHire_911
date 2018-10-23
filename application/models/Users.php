@@ -61,21 +61,19 @@ class Users extends CI_Model{
             $hash = $row->password;
             //Verify password
             if(password_verify($password, $hash)){
-                $data = "";
-                
                 //set session variables
                 $_SESSION['user_id'] = $row->user_id;
                 $_SESSION['email'] = $email;
                 $_SESSION['fname'] = $row->fname; 
                 
             }else{
-                $data = "Incorrect password";
+                $res['error'] = "Incorrect password";
             }
             
         }else{
-            $data = "Invalid username";
+            $res['error'] = "Invalid username";
         }
-        echo $data;
+        echo json_encode($res);
     }
     
     function setSession($data){

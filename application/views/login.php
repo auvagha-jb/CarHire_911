@@ -64,7 +64,7 @@
                 
                 $.post("../customer/verify_user",{email:email, password:password}, function(data){
                     console.log("Data: "+data);
-                    if(data != ""){
+                    if(data.error){
                         $("#feedback").addClass("alert alert-danger");
                         $("#feedback").html(data);
                     }else{
